@@ -1,0 +1,49 @@
+
+.liveblog-entry {
+    .liveblog-meta {
+	display: flex;
+	align-content: center;
+	align-items: center;
+	.liveblog-author-name {
+	    text-transform: uppercase;
+	    font-family: Amiri, serif;
+	    font-weight: bold;
+	}
+	.liveblog-author-avatar {
+	    img {
+		//width: 64px;
+		//height: 64px;
+		border-radius: 50%;
+	    }
+	}
+    }
+    .liveblog-entry-text,
+    .blover-jp-sharing,
+    .liveblog-entry-actions {
+	margin-left: 74px;
+	margin-top: 0;
+    }
+    .liveblog-entry-actions {
+	padding-left: 0;
+    }
+    .blover-jp-sharing {
+	ul {
+	    text-align: right;
+	}
+    }
+    .liveblog-entry-text {
+	font-family: "Work Sans", Helvetica, Arial, sans-serif;
+	letter-spacing: -0.03rem;
+	font-size: 0.9em;
+    }
+}
+
+.liveblog-key-events {
+    .liveblog-key-timeline {
+	li {
+	    .date {
+		font-size: 14px;
+	    }
+	}
+    }   
+}
