@@ -29,7 +29,7 @@
 
 					<button id="left-navbar-toggle" class="menu-toggle" aria-controls="left-sidebar" aria-expanded="false"><span class="screen-reader-text"><?php esc_html_e( 'Menu', 'blover' ); ?></span><svg><path d="M3 6h18v2.016h-18v-2.016zM3 12.984v-1.969h18v1.969h-18zM3 18v-2.016h18v2.016h-18z"></path></svg></button>
 					<?php
-						if ( $woocommerce ) :
+						if ( class_exists( 'WooCommerce' ) ) :
 						?>
 						<a class="btn blover-cart" href="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" title="<?php esc_html_e( 'Cart', 'blover' ) ?>"><?php esc_html_e( 'Cart', 'blover' ); ?>(<span class="blover-cart-content-counts"><?php echo esc_html( $woocommerce->cart->get_cart_contents_count() ); ?></span>)</a>
 						<?php
