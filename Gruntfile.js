@@ -186,8 +186,8 @@ module.exports = function (grunt) {
     //grunt.loadNpmTasks( 'grunt-rtlcss' );
     grunt.loadNpmTasks( 'grunt-perfbudget' );
     grunt.loadNpmTasks( 'grunt-pagespeed' );
-    grunt.loadNpmTasks( 'grunt-sass' );
-    grunt.loadNpmTasks( 'grunt-contrib-watch' );
+    //grunt.loadNpmTasks( 'grunt-sass' );
+    //grunt.loadNpmTasks( 'grunt-contrib-watch' );
     //grunt.loadNpmTasks( 'grunt-uncss' );
     //grunt.registerTask('default', [ 'watch']);
     grunt.registerTask('default', [ 'addtextdomain', 'makepot', 'postcss', 'wpcss']);
