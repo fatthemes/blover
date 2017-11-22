@@ -281,7 +281,7 @@ function blover_scripts() {
 	wp_localize_script(
 		 'blover-scripts', 'blover', array(
 			 'loadMoreText' => esc_html__( 'Load more posts', 'blover' ),
-			 'loadingText' => esc_html__( ' ', 'blover' ),
+			 'loadingText' => '',
 			 'noMorePostsText' => esc_html__( 'No More Posts', 'blover' ),
 			 'expandText' => esc_html__( 'Expand', 'blover' ),
 			 'closeText' => esc_html__( 'Close', 'blover' ),

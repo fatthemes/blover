@@ -211,12 +211,12 @@ function blover_comments_fields( $fields ) {
 		$html5    = 'html5' === $args['format'];
 
 		$fields   = array(
-			'author' => '<div class="comment-fields"><p class="comment-form-author"><label for="author">' . esc_html__( 'Name', 'blover' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label>
+			'author' => '<div class="comment-fields"><p class="comment-form-author"><label for="author">' . esc_attr__( 'Name', 'blover' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label>
 		            <input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '"' . $aria_req . $html_req . ' placeholder="' . esc_html__( 'Name', 'blover' ) . '" /></p>',
 			'email'  => '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'blover' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label>
-		            <input id="email" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_email'] ) . '"' . $aria_req . $html_req . ' placeholder="' . esc_html__( 'Email', 'blover' ) . '" /></p>',
+		            <input id="email" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_email'] ) . '"' . $aria_req . $html_req . ' placeholder="' . esc_attr__( 'Email', 'blover' ) . '" /></p>',
 			'url'    => '<p class="comment-form-ur"><label for="url">' . esc_html__( 'Website', 'blover' ) . '</label>
-			<input id="url" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . esc_html__( 'Website', 'blover' ) . '" /></p></div>',
+			<input id="url" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . esc_attr__( 'Website', 'blover' ) . '" /></p></div>',
 		);
 
 			return $fields;
@@ -308,7 +308,7 @@ function blover_custom_popular_posts_html_list( $mostpopular, $instance ) {
 					$author = get_the_author_meta( 'display_name', $popular->uid );
 					$display_name = '<a href="' . esc_url( get_author_posts_url( $popular->uid ) ) . '">' . esc_html( $author ) . '</a>';
 					// Translators: author name.
-					$stats[] = '<span class="wpp-author">' . sprintf( __( 'by %s', 'blover' ), $display_name ) . '</span>';
+					$stats[] = '<span class="wpp-author">' . sprintf( esc_html__( 'by %s', 'blover' ), $display_name ) . '</span>';
 				}
 
 			// Date option checked.
@@ -320,12 +320,10 @@ function blover_custom_popular_posts_html_list( $mostpopular, $instance ) {
 			// Category option checked.
 			if ( $instance['stats_tag']['category'] ) {
 					$post_cat = get_the_category( $popular->id );
-					$post_cat = ( isset( $post_cat[0] ) )
-				? '<a href="' . esc_url( get_category_link( $post_cat[0]->term_id ) ) . '">' . esc_html( $post_cat[0]->cat_name ) . '</a>'
-				: '';
+					$post_cat = ( isset( $post_cat[0] ) ) ? '<a href="' . esc_url( get_category_link( $post_cat[0]->term_id ) ) . '">' . esc_html( $post_cat[0]->cat_name ) . '</a>' : '';
 
 					if ( '' !== $post_cat ) {
-					$stats[] = '<span class="wpp-category">' . $post_cat . '</span>';
+					$stats[] = '<span class="wpp-category">' . esc_html( $post_cat ) . '</span>';
 					}
 				}
 
@@ -351,7 +349,7 @@ function blover_custom_popular_posts_html_list( $mostpopular, $instance ) {
 
 			$output .= '<li>';
 			$output .= ( ! empty( $thumb_url ) ) ? '<a class="wpp-image" href="' . esc_url( get_the_permalink( $popular->id ) ) . '" title="' . esc_attr( $popular->title ) . '"' . $background . '></a>' : '';
-			$output .= '<div class="wpp-content"><h2 class="wpp-post-title"><a href="' . get_the_permalink( $popular->id ) . '" title="' . esc_attr( $popular->title ) . '">' . $popular->title . '</a></h2>';
+			$output .= '<div class="wpp-content"><h2 class="wpp-post-title"><a href="' . esc_url( get_the_permalink( $popular->id ) ) . '" title="' . esc_attr( $popular->title ) . '">' . esc_html( $popular->title ) . '</a></h2>';
 			$output .= $excerpt;
 			$output .= $stats;
 			$output .= '</div></li>';
@@ -586,7 +584,7 @@ function blover_submenu_span( $item_output, $item, $depth, $args ) {
 		$needle2 = 'page_item_has_children';
 		$haystack = $item->classes;
 		if ( in_array( $needle1, $haystack, true ) || in_array( $needle2, $haystack, true ) ) {
-			$item_output = $item_output . '<span class="expand-submenu" title="' . esc_html__( 'Expand', 'blover' ) . '">&#43;</span>';
+			$item_output = $item_output . '<span class="expand-submenu" title="' . esc_attr__( 'Expand', 'blover' ) . '">&#43;</span>';
 			}
 
 		return $item_output;
@@ -689,7 +687,7 @@ function blover_woocommerce_comment_fields() {
 			$account_page_url = wc_get_page_permalink( 'myaccount' );
 			if ( $account_page_url ) {
 				// Translators: url to "my account" page.
-				$comment_form['must_log_in'] = '<p class="must-log-in">' . sprintf( esc_html__( 'You must be <a href="%s">logged in</a> to post a review.', 'blover' ), esc_url( $account_page_url ) ) . '</p>';
+				$comment_form['must_log_in'] = '<p class="must-log-in">' . sprintf( esc_html__( 'You must be %s to post a review.', 'blover' ), '<a href="' . esc_url( $account_page_url ) . '">' . esc_html__( 'logged in', 'blover' ) . '</a>' ) . '</p>';
 				}
 
 			if ( get_option( 'woocommerce_enable_review_rating' ) === 'yes' ) {

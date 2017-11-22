@@ -33,7 +33,7 @@ get_header(); ?>
 	$blover_home_page_layout = get_theme_mod( 'home_page_layout', 'classic' );
 			echo ( empty( $blover_home_page_layout ) ) ? ' col-md-12' : ' col-lg-8';
 			if ( ! empty( $blover_home_page_layout ) && ! is_active_sidebar( 'sidebar-1' ) ) :
-echo ' col-lg-push-2';
+			echo ' col-lg-push-2';
 			endif;
 			?>
 			">
@@ -45,23 +45,19 @@ echo ' col-lg-push-2';
 			<?php endif; ?>
 		<main id="main" class="site-main row masonry-container" role="main">
 
-		<?php if ( have_posts() ) : ?>
-
-			<?php ;/* Start the Loop */ ?>
-			<?php
+		<?php if ( have_posts() ) : 
+			
+			/* Start the Loop */
 			while ( have_posts() ) :
-the_post();
-?>
+				the_post();
 
-				<?php
-
-					/*
-					 * Include the Post-Format-specific template for the content.
-					 * If you want to override this in a child theme, then include a file
-					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-					 */
-					get_template_part( 'template-parts/content-home', $blover_home_page_layout );
-				?>
+				/*
+				 * Include the Post-Format-specific template for the content.
+				 * If you want to override this in a child theme, then include a file
+				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+				 */
+				get_template_part( 'template-parts/content-home', $blover_home_page_layout );
+			?>
 
 			<?php endwhile; ?>
 

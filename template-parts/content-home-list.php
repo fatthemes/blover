@@ -17,7 +17,7 @@
 		?>
 
 		<div class="featured-image col-xs-12 col-lg-6">
-			<a href="<?php esc_url( the_permalink() ); ?>" rel="bookmark">
+			<a href="<?php the_permalink(); ?>" rel="bookmark">
 			<?php the_post_thumbnail( 'medium' ); ?>
 			</a>
 			<?php echo blover_post_format_icon( get_the_ID() ); // WPCS: XSS OK. ?>
@@ -46,7 +46,7 @@
 				</div>
 	<?php else : ?>
 				<div class="entry-content">
-				<a href="<?php esc_url( the_permalink() ); ?>"><button>Read more <span class="screen-reader-text"><?php esc_url( the_title() ); ?></span></button></a>
+				<a href="<?php the_permalink(); ?>"><button><?php esc_html__( 'Read more ', 'blover' ); ?><span class="screen-reader-text"><?php esc_url( the_title() ); ?></span></button></a>
 				</div>
 			<?php endif; ?>
 			<?php if ( 'post' === get_post_type() ) : ?>
@@ -85,7 +85,7 @@
 				</div>
 			<?php else : ?>
 				<div class="entry-content">
-				<a href="<?php esc_url( the_permalink() ); ?>"><button>Read more <span class="screen-reader-text"><?php esc_url( the_title() ); ?></span></button></a>
+				<a href="<?php the_permalink(); ?>"><button><?php esc_html__( 'Read more ', 'blover' ); ?><span class="screen-reader-text"><?php esc_url( the_title() ); ?></span></button></a>
 				</div>
 	<?php endif; ?>
 			<?php if ( 'post' === get_post_type() ) : ?>

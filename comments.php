@@ -83,7 +83,7 @@ if ( post_password_required() ) {
 	<?php
 	comment_form(
 		 array(
-			 'comment_field' => '<p class="comment-form-comment"><label for="comment">' . esc_html__( 'Comment', 'blover' ) . '</label> <textarea id="comment" name="comment" rows="1" aria-required="true" required="required" placeholder="' . esc_html__( 'Comment', 'blover' ) . '" ></textarea></p>',
+			 'comment_field' => '<p class="comment-form-comment"><label for="comment">' . esc_html__( 'Comment', 'blover' ) . '</label> <textarea id="comment" name="comment" rows="1" aria-required="true" required="required" placeholder="' . esc_attr__( 'Comment', 'blover' ) . '" ></textarea></p>',
 			 'comment_notes_before' => '',
 			 'title_reply_before' => '<h3 id="reply-title" class="comment-reply-title"><span>',
 			 'title_reply_after' => '</span></h3>',

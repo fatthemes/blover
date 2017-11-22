@@ -24,7 +24,7 @@
 						?>
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 						<?php endif; ?>
-					<button class="left-sidebar-close" title="<?php esc_html_e( 'Close', 'blover' ); ?>"><svg><path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path></svg></button>
+					<button class="left-sidebar-close" title="<?php esc_attr_e( 'Close', 'blover' ); ?>"><svg><path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path></svg></button>
 					</div>
 					</div>
 					<nav id="site-navigation" class="main-navigation" role="navigation">
