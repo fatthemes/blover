@@ -7,64 +7,6 @@
  * @package blover
  */
 
-if ( ! function_exists( 'the_posts_navigation' ) ) :
-/**
- * Display navigation to next/previous set of posts when applicable.
- *
- * @todo Remove this function when WordPress 4.3 is released.
- */
-function the_posts_navigation() {
-		// Don't print empty markup if there's only one page.
-		if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
-			return;
-			}
-		?>
-		<nav class="navigation posts-navigation" role="navigation">
-		<h2 class="screen-reader-text"><?php esc_html_e( 'Posts navigation', 'blover' ); ?></h2>
-		<div class="nav-links">
-
-			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( esc_html__( 'Older posts', 'blover' ) ); ?></div>
-			<?php endif; ?>
-
-			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( esc_html__( 'Newer posts', 'blover' ) ); ?></div>
-			<?php endif; ?>
-
-		</div><!-- .nav-links -->
-		</nav><!-- .navigation -->
-		<?php
-}
-endif;
-
-if ( ! function_exists( 'the_post_navigation' ) ) :
-/**
- * Display navigation to next/previous post when applicable.
- *
- * @todo Remove this function when WordPress 4.3 is released.
- */
-function the_post_navigation() {
-		// Don't print empty markup if there's nowhere to navigate.
-		$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
-		$next     = get_adjacent_post( false, '', false );
-
-		if ( ! $next && ! $previous ) {
-			return;
-			}
-		?>
-		<nav class="navigation post-navigation" role="navigation">
-		<h2 class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'blover' ); ?></h2>
-		<div class="nav-links">
-			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', '%title' );
-				next_post_link( '<div class="nav-next">%link</div>', '%title' );
-			?>
-			</div><!-- .nav-links -->
-			</nav><!-- .navigation -->
-			<?php
-}
-endif;
-
 if ( ! function_exists( 'blover_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
@@ -75,7 +17,8 @@ function blover_posted_on() {
 
 		if ( is_single() ) {
 
-			$time_string = sprintf( $time_string,
+			$time_string = sprintf(
+				 $time_string,
 			esc_attr( get_the_date( 'c' ) ),
 			human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) )
 			);
@@ -92,7 +35,7 @@ function blover_posted_on() {
 			blover_jetpack_sharing();
 			echo '</div>';
 
-		} else {
+			} else {
 
 			$time_string = sprintf( $time_string, esc_attr( get_the_date( 'c' ) ), esc_attr( get_the_date() ) );
 
@@ -103,7 +46,7 @@ function blover_posted_on() {
 			);
 
 			echo '<span class="posted-on">' . $posted_on . '</span>'; // WPCS: XSS OK.
-		}
+			}
 
 }
 endif;
@@ -146,12 +89,14 @@ function blover_categorized_blog() {
 		$all_the_cool_cats = get_transient( 'blover_categories' );
 		if ( false === ( $all_the_cool_cats ) ) {
 			// Create an array of all the categories that are attached to posts.
-			$all_the_cool_cats = get_categories( array(
-			'fields'     => 'ids',
-			'hide_empty' => 1,
-			// We only need to know if there is more than one category.
-			'number'     => 2,
-			) );
+			$all_the_cool_cats = get_categories(
+				 array(
+					 'fields'     => 'ids',
+					 'hide_empty' => 1,
+					 // We only need to know if there is more than one category.
+					 'number'     => 2,
+				 )
+				);
 
 			// Count the number of categories that are attached to the posts.
 			$all_the_cool_cats = count( $all_the_cool_cats );
@@ -180,7 +125,7 @@ function blover_category_transient_flusher() {
 	delete_transient( 'blover_categories' );
 }
 add_action( 'edit_category', 'blover_category_transient_flusher' );
-add_action( 'save_post',     'blover_category_transient_flusher' );
+add_action( 'save_post', 'blover_category_transient_flusher' );
 
 if ( ! function_exists( 'blover_comment' ) ) :
 
@@ -213,28 +158,35 @@ function blover_comment( $comment, $args, $depth ) {
 							<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><time datetime="<?php comment_time( 'c' ); ?>">
 							<?php
 							/* translators: 1: date, 2: time */
-							printf( esc_html__( '%s ago', 'blover' ), esc_html( human_time_diff( get_comment_time( 'U' ), current_time( 'timestamp' ) ) ) );                                    ?>
-							</time></a>
-							<span class="reply">
-							    <?php comment_reply_link( array_merge(
-								    $args,
-								    array(
-									'depth' => $depth,
-									'max_depth' => $args['max_depth'],
-									'reply_text' => 'REPLY',
-									'before' => ' &#8901; ',
-								    ) ) ); ?></span><!-- .reply -->
-							<?php edit_comment_link( __( 'Edit', 'blover' ), ' &#8901; ' ); ?>
-						</div><!-- .comment-meta .commentmetadata -->
-					</div><!-- .comment-author .vcard -->
-							<?php if ( '0' === $comment->comment_approved ) : ?>
+							printf( esc_html__( '%s ago', 'blover' ), esc_html( human_time_diff( get_comment_time( 'U' ), current_time( 'timestamp' ) ) ) );
+							?>
+									</time></a>
+									<span class="reply">
+										<?php
+										comment_reply_link(
+										 array_merge(
+										$args,
+										array(
+											'depth' => $depth,
+											'max_depth' => $args['max_depth'],
+											'reply_text' => 'REPLY',
+											'before' => ' &#8901; ',
+										)
+										)
+											);
+											?>
+											</span><!-- .reply -->
+											<?php edit_comment_link( __( 'Edit', 'blover' ), ' &#8901; ' ); ?>
+											</div><!-- .comment-meta .commentmetadata -->
+											</div><!-- .comment-author .vcard -->
+											<?php if ( '0' === $comment->comment_approved ) : ?>
 						<em><?php esc_html_e( 'Your comment is awaiting moderation.', 'blover' ); ?></em>
 						<br />
 					<?php endif; ?>
-				</footer>
-			    <div class="comment-content"><?php comment_text(); ?></div>
-			</article><!-- #comment-## -->
-<?php
+											</footer>
+											<div class="comment-content"><?php comment_text(); ?></div>
+											</article><!-- #comment-## -->
+											<?php
 }
 endif; // Ends check for blover_comment().
 
@@ -259,17 +211,17 @@ function blover_comments_fields( $fields ) {
 		$html5    = 'html5' === $args['format'];
 
 		$fields   = array(
-		'author' => '<div class="comment-fields"><p class="comment-form-author"><label for="author">' . esc_html__( 'Name', 'blover' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label>
+			'author' => '<div class="comment-fields"><p class="comment-form-author"><label for="author">' . esc_html__( 'Name', 'blover' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label>
 		            <input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '"' . $aria_req . $html_req . ' placeholder="' . esc_html__( 'Name', 'blover' ) . '" /></p>',
-		'email'  => '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'blover' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label>
+			'email'  => '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'blover' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label>
 		            <input id="email" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_email'] ) . '"' . $aria_req . $html_req . ' placeholder="' . esc_html__( 'Email', 'blover' ) . '" /></p>',
-		    'url'    => '<p class="comment-form-ur"><label for="url">' . esc_html__( 'Website', 'blover' ) . '</label>
+			'url'    => '<p class="comment-form-ur"><label for="url">' . esc_html__( 'Website', 'blover' ) . '</label>
 			<input id="url" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '" placeholder="' . esc_html__( 'Website', 'blover' ) . '" /></p></div>',
-			);
+		);
 
 			return $fields;
 }
-add_filter( 'comment_form_default_fields','blover_comments_fields' );
+add_filter( 'comment_form_default_fields', 'blover_comments_fields' );
 endif;
 
 if ( ! function_exists( 'blover_get_excerpt_by_id' ) ) :
@@ -633,7 +585,7 @@ function blover_submenu_span( $item_output, $item, $depth, $args ) {
 		$needle1 = 'menu-item-has-children';
 		$needle2 = 'page_item_has_children';
 		$haystack = $item->classes;
-		if ( in_array( $needle1 ,$haystack, true ) || in_array( $needle2 ,$haystack, true ) ) {
+		if ( in_array( $needle1, $haystack, true ) || in_array( $needle2, $haystack, true ) ) {
 			$item_output = $item_output . '<span class="expand-submenu" title="' . esc_html__( 'Expand', 'blover' ) . '">&#43;</span>';
 			}
 
@@ -659,42 +611,51 @@ function blover_related_posts() {
 			if ( $by_cat ) {
 				$terms = wp_get_post_categories( get_the_ID() );
 			} else {
-				$terms = wp_get_post_tags( get_the_ID(),
-							    array(
-								'fields' => 'ids',
-							    ) );
+				$terms = wp_get_post_tags(
+					 get_the_ID(),
+								array(
+									'fields' => 'ids',
+								)
+					);
 			}
 
 			$args = array(
-			'posts_per_page' => 3,
-			'post__not_in' => array( get_the_ID() ),
-			'post_type' => 'post',
-			'tax_query' => array(
-				'relation' => 'OR',
-				array(
-					'taxonomy' => $taxonomy,
-					'terms'    => $terms,
+				'posts_per_page' => 3,
+				'post__not_in' => array( get_the_ID() ),
+				'post_type' => 'post',
+				'tax_query' => array(
+					'relation' => 'OR',
+					array(
+						'taxonomy' => $taxonomy,
+						'terms'    => $terms,
+					),
 				),
-			),
 			);
 			$the_query = new WP_Query( $args );
 
-			if ( $the_query->have_posts() ) : ?>
+			if ( $the_query->have_posts() ) :
+			?>
 					<div class="blover-related-posts col-xs-12">
-						<h3><span><?php echo esc_html( get_theme_mod( 'single_page_related_posts_title', __( 'You May Also Like', 'blover' ) ) ) ?></span></h3>
+						<h3><span><?php echo esc_html( get_theme_mod( 'single_page_related_posts_title', __( 'You May Also Like', 'blover' ) ) ); ?></span></h3>
 						<div class="row">
-						<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+						<?php
+						while ( $the_query->have_posts() ) :
+$the_query->the_post();
+?>
 					<div class="col-xs-12 col-md-4">
 						<?php if ( has_post_thumbnail() ) : ?>
 							<a class="related-posts-thumbnail" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" style="background: url( <?php the_post_thumbnail_url( 'medium' ); ?> ) center no-repeat;background-size: cover;"></a>
 						<?php endif; ?>
-				 		<h4><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h4>
+						 <h4><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h4>
 					</div>
-				<?php endwhile;
-				wp_reset_postdata(); ?>
+				<?php
+				endwhile;
+				wp_reset_postdata();
+				?>
 						</div>
 					</div>
-				<?php endif;
+				<?php
+				endif;
 			}// End if().
 }
 endif;
@@ -709,21 +670,21 @@ function blover_woocommerce_comment_fields() {
 		$commenter = wp_get_current_commenter();
 
 		$comment_form = array(
-		// Translators: woocommerce product.
-		'title_reply'          => have_comments() ? '<span>' . esc_html__( 'Add a review', 'blover' ) . '</span>' : sprintf( '<span>' . esc_html__( 'Be the first to review &ldquo;%s&rdquo;', 'blover' ) . '</span>', get_the_title() ),
-		// Translators: comment title.
-		'title_reply_to'       => esc_html__( 'Leave a Reply to %s', 'blover' ),
-		'comment_notes_after'  => '',
-		'fields'               => array(
-			'author' => '<p class="comment-form-author"><label for="author">' . esc_html__( 'Name', 'blover' ) . ' <span class="required">*</span></label>
+			// Translators: woocommerce product.
+			'title_reply'          => have_comments() ? '<span>' . esc_html__( 'Add a review', 'blover' ) . '</span>' : sprintf( '<span>' . esc_html__( 'Be the first to review &ldquo;%s&rdquo;', 'blover' ) . '</span>', get_the_title() ),
+			// Translators: comment title.
+			'title_reply_to'       => esc_html__( 'Leave a Reply to %s', 'blover' ),
+			'comment_notes_after'  => '',
+			'fields'               => array(
+				'author' => '<p class="comment-form-author"><label for="author">' . esc_html__( 'Name', 'blover' ) . ' <span class="required">*</span></label>
 				    <input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" aria-required="true" required /></p>',
-			'email'  => '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'blover' ) . ' <span class="required">*</span></label>
+				'email'  => '<p class="comment-form-email"><label for="email">' . esc_html__( 'Email', 'blover' ) . ' <span class="required">*</span></label>
 						<input id="email" name="email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" aria-required="true" required /></p>',
-		),
-		'label_submit'  => esc_html__( 'Submit', 'blover' ),
-		'logged_in_as'  => '',
-		'comment_field' => '',
-			);
+			),
+			'label_submit'  => esc_html__( 'Submit', 'blover' ),
+			'logged_in_as'  => '',
+			'comment_field' => '',
+		);
 
 			$account_page_url = wc_get_page_permalink( 'myaccount' );
 			if ( $account_page_url ) {
@@ -765,7 +726,7 @@ function blover_woocommerce_header_add_to_cart_fragment( $fragments ) {
 	ob_start();
 
 	?>
-	<a class="btn blover-cart" href="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" title="<?php esc_html_e( 'Cart', 'blover' ) ?>"><?php esc_html_e( 'Cart', 'blover' ) ?>(<span class="blover-cart-content-counts"><?php echo esc_html( $woocommerce->cart->get_cart_contents_count() ); ?></span>)</a>
+	<a class="btn blover-cart" href="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" title="<?php esc_html_e( 'Cart', 'blover' ); ?>"><?php esc_html_e( 'Cart', 'blover' ); ?>(<span class="blover-cart-content-counts"><?php echo esc_html( $woocommerce->cart->get_cart_contents_count() ); ?></span>)</a>
 	<?php
 
 	$fragments['a.blover-cart'] = ob_get_clean();

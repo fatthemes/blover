@@ -14,16 +14,21 @@
 
 get_header(); ?>
 
-	     <?php get_sidebar( 'top' ); ?>
+		 <?php get_sidebar( 'top' ); ?>
 	<div class="row">
 
-	<div id="primary" class="content-area<?php $blover_home_page_layout = get_theme_mod( 'home_page_layout', 'classic' );
+	<div id="primary" class="content-area
+	<?php
+	$blover_home_page_layout = get_theme_mod( 'home_page_layout', 'classic' );
 			echo ( empty( $blover_home_page_layout ) ) ? ' col-md-12' : ' col-lg-8';
-			if ( ! empty( $blover_home_page_layout ) && ! is_active_sidebar( 'sidebar-1' ) ) : echo ' col-lg-push-2';
-			endif; ?>">
+			if ( ! empty( $blover_home_page_layout ) && ! is_active_sidebar( 'sidebar-1' ) ) :
+echo ' col-lg-push-2';
+			endif;
+			?>
+			">
 			<?php if ( get_theme_mod( 'home_page_latest_posts_text', 1 ) ) : ?>
 			<div class="blover-page-intro">
-				<h2><span><?php echo esc_html__( 'Latest Posts', 'blover' );?></span></h2>
+				<h2><span><?php echo esc_html__( 'Latest Posts', 'blover' ); ?></span></h2>
 				<p id="today-date"></p>
 			</div>
 			<?php endif; ?>
@@ -31,8 +36,11 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php ;/* Start the Loop */ ?>
+			<?php
+			while ( have_posts() ) :
+the_post();
+?>
 							<?php if ( ! is_sticky() ) : ?>
 				<?php
 
@@ -56,13 +64,16 @@ get_header(); ?>
 
 		<?php
 			if ( '' === get_theme_mod( 'pagination', 'infinite' ) ) {
-				the_posts_pagination();
+			the_posts_pagination();
 			} else {
-				the_posts_navigation();
+			the_posts_navigation();
 			}
 		?>
 	</div><!-- #primary -->
 
-<?php if ( ! empty( $blover_home_page_layout ) ) { get_sidebar();} ?>
+<?php
+if ( ! empty( $blover_home_page_layout ) ) {
+get_sidebar();}
+?>
 	</div><!-- .row -->
 <?php get_footer(); ?>

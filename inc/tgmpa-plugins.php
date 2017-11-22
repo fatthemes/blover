@@ -1,6 +1,6 @@
 <?php
 /**
- * blover Theme Dependencies
+ * Blover Theme Dependencies
  *
  * @package    TGM-Plugin-Activation
  * @author     Thomas Griffin <thomasgriffinmedia.com> and Gary Jones <gamajo.com>
@@ -28,43 +28,57 @@ function blover_register_required_plugins() {
 
 		// WordPress Popular Posts from WordPress Plugin Repository.
 		array(
-			'name'      => 'WordPress Popular Posts',
+			'name'      => esc_html__( 'WordPress Popular Posts', 'blover' ),
 			'slug'      => 'wordpress-popular-posts',
 			'required'  => false,
 		),
 
 		// Jetpack by WordPress.com from WordPress Plugin Repository.
 		array(
-			'name'      => 'Jetpack by WordPress.com',
+			'name'      => esc_html__( 'Jetpack by WordPress.com', 'blover' ),
 			'slug'      => 'jetpack',
 			'required'  => false,
 		),
 
 		// WooCommerce from WordPress Plugin Repository.
 		array(
-			'name'      => 'WooCommerce',
+			'name'      => esc_html__( 'WooCommerce', 'blover' ),
 			'slug'      => 'woocommerce',
 			'required'  => false,
 		),
 
 		// MailChimp for WordPress from WordPress Plugin Repository.
 		array(
-			'name'      => 'MailChimp for WordPress',
+			'name'      => esc_html__( 'MailChimp for WordPress', 'blover' ),
 			'slug'      => 'mailchimp-for-wp',
 			'required'  => false,
 		),
 
 		// Contact Form 7 from WordPress Plugin Repository.
 		array(
-			'name'      => 'Contact Form 7',
+			'name'      => esc_html__( 'Contact Form 7', 'blover' ),
 			'slug'      => 'contact-form-7',
 			'required'  => false,
 		),
 
 		// User Social Profiles from WordPress Plugin Repository.
 		array(
-			'name'      => 'User Social Profiles',
+			'name'      => esc_html__( 'User Social Profiles', 'blover' ),
 			'slug'      => 'user-social-profiles',
+			'required'  => false,
+		),
+
+		// AMP from WordPress Plugin Repository.
+		array(
+			'name'      => esc_html__( 'AMP', 'blover' ),
+			'slug'      => 'amp',
+			'required'  => false,
+		),
+
+		// WordPress Popular Posts from WordPress Plugin Repository.
+		array(
+			'name'      => esc_html__( 'Liveblog', 'blover' ),
+			'slug'      => 'liveblog',
 			'required'  => false,
 		),
 	);
@@ -87,5 +101,4 @@ function blover_register_required_plugins() {
 	);
 
 	tgmpa( $plugins, $config );
-
 }

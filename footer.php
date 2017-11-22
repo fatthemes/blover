@@ -31,8 +31,8 @@
 					<?php
 					wp_nav_menu(
 						array(
-						'theme_location' => 'primary',
-						'menu_id' => 'primary-menu',
+							'theme_location' => 'primary',
+							'menu_id' => 'primary-menu',
 						)
 					);
 					wp_nav_menu(
@@ -47,9 +47,9 @@
 					);
 					?>
 					</nav><!-- #site-navigation -->
-					<?php get_sidebar( 'left' );?>
+					<?php get_sidebar( 'left' ); ?>
 					<div class="site-info">
-			<?php echo wp_kses_post( get_theme_mod( 'footer_text', '<p>&copy; 2016 ' . get_bloginfo( 'name' ) . '</p>' ) ); ?>
+			<?php echo wp_kses_post( get_theme_mod( 'footer_text', '<p>&copy; ' . date_i18n( __( 'Y', 'blover' ) ) . ' ' . get_bloginfo( 'name' ) . '</p>' ) ); ?>
 					</div><!-- .site-info -->
 				</div>
 			</div>
@@ -63,7 +63,7 @@
 			if ( has_custom_logo() ) {
 			the_custom_logo();
 			}
-			echo wp_kses_post( get_theme_mod( 'footer_text', '<p>&copy; 2016 ' . get_bloginfo( 'name' ) . '</p>' ) );
+			echo wp_kses_post( get_theme_mod( 'footer_text', '<p>&copy; ' . date_i18n( __( 'Y', 'blover' ) ) . ' ' . get_bloginfo( 'name' ) . '</p>' ) );
 		?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
