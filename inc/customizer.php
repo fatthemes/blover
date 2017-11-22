@@ -87,15 +87,6 @@ function blover_customize_register( $wp_customize ) {
 		)
 		);
 
-	// Section Blog Home Page.
-	$wp_customize->add_section(
-		'home_page', array(
-			'title' => esc_html__( 'Home Page', 'blover' ),
-			'priority' => 1000,
-			'description' => esc_html__( 'Blog Home Page Settings', 'blover' ),
-		)
-		);
-
 	$wp_customize->add_setting(
 		'home_page_layout', array(
 			'default' => 'classic',
@@ -106,7 +97,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'home_page_layout', array(
 			'label' => esc_html__( 'Blog Home Page Layout', 'blover' ),
-			'section' => 'home_page',
+			'section' => 'static_front_page',
 			'type' => 'select',
 			'choices' => array(
 				'masonry' => esc_html__( 'Masonry + Sidebar', 'blover' ),
@@ -127,7 +118,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'home_page_slider_height', array(
 			'label' => esc_html__( 'Height of Home Page Slider', 'blover' ),
-			'section' => 'home_page',
+			'section' => 'static_front_page',
 			'description' => esc_html__( '(in pixels)', 'blover' ),
 			'type' => 'number',
 			'input_attrs' => array(
@@ -148,7 +139,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'home_page_slider_img_size', array(
 			'label' => esc_html__( 'Slider Image Size', 'blover' ),
-			'section' => 'home_page',
+			'section' => 'static_front_page',
 			'description' => esc_html__( 'From >Settings>Media', 'blover' ),
 			'type' => 'select',
 			'choices' => array(
@@ -158,6 +149,27 @@ function blover_customize_register( $wp_customize ) {
 				'full' => esc_html__( 'Full', 'blover' ),
 			),
 		)
+		);
+
+		$wp_customize->add_setting(
+		 'home_page_slider_play_speed', array(
+			 'default'        => 4000,
+			 'sanitize_callback' => 'absint',
+		 )
+		);
+
+	$wp_customize->add_control(
+		 'home_page_slider_play_speed', array(
+			 'label'   => esc_html__( 'Sliding speed of Home Page Slider (in ms)', 'blover' ),
+			 'section' => 'static_front_page',
+			 'description'    => esc_html__( '0 to disable autoplay', 'blogito' ),
+			 'type'    => 'number',
+			 'input_attrs' => array(
+				 'min'   => 0,
+				 'max'   => 10000,
+				 'step'  => 100,
+			 ),
+		 )
 		);
 
 	$wp_customize->add_setting(
@@ -170,7 +182,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'home_page_latest_posts_text', array(
 			'label' => esc_html__( 'Enable Latest Posts Text', 'blover' ),
-			'section' => 'home_page',
+			'section' => 'static_front_page',
 			'type' => 'checkbox',
 		)
 		);
@@ -185,7 +197,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'home_page_display_content', array(
 			'label' => esc_html__( 'Display Content on Home and Archive Pages.', 'blover' ),
-			'section' => 'home_page',
+			'section' => 'static_front_page',
 			'type' => 'checkbox',
 		)
 		);
@@ -200,7 +212,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'home_page_show_featured_images', array(
 			'label' => esc_html__( 'Show Featured Images on Homepage', 'blover' ),
-			'section' => 'home_page',
+			'section' => 'static_front_page',
 			'type' => 'checkbox',
 		)
 		);
@@ -215,7 +227,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'hide_title_on_home_archive', array(
 			'label' => esc_html__( 'Hide Titles On Home Page/Archive Pages', 'blover' ),
-			'section' => 'home_page',
+			'section' => 'static_front_page',
 			'type' => 'checkbox',
 		)
 		);
@@ -230,7 +242,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'hide_meta_on_home_archive', array(
 			'label' => esc_html__( 'Hide Meta On Home Page/Archive Pages', 'blover' ),
-			'section' => 'home_page',
+			'section' => 'static_front_page',
 			'type' => 'checkbox',
 		)
 		);
@@ -245,7 +257,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'pagination', array(
 			'label' => esc_html__( 'Pagination Style', 'blover' ),
-			'section' => 'home_page',
+			'section' => 'static_front_page',
 			'type' => 'select',
 			'choices' => array(
 				'ajax' => esc_html__( 'Load More Button', 'blover' ),
@@ -265,7 +277,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'wpp_img_size', array(
 			'label' => esc_html__( 'Popular Posts Image Size', 'blover' ),
-			'section' => 'home_page',
+			'section' => 'static_front_page',
 			'description' => esc_html__( 'From >Settings>Media', 'blover' ),
 			'type' => 'select',
 			'choices' => array(
@@ -275,6 +287,21 @@ function blover_customize_register( $wp_customize ) {
 				'full' => esc_html__( 'Full', 'blover' ),
 			),
 		)
+		);
+
+	$wp_customize->add_setting(
+		 'home_page_show_sticky', array(
+			 'default'        => 0,
+			 'sanitize_callback' => 'wp_validate_boolean',
+		 )
+		);
+
+	$wp_customize->add_control(
+		 'home_page_show_sticky', array(
+			 'label'   => esc_html__( 'Show Sticky Posts Below Slider', 'blover' ),
+			 'section' => 'static_front_page',
+			 'type'    => 'checkbox',
+		 )
 		);
 
 	// Section Single Page.
@@ -565,4 +592,5 @@ function blover_sanitize_select_img_size( $value ) {
 	if ( in_array( $value, array( 'thumbnail', 'medium', 'large', 'full' ), true ) ) {
 		return $value;
 	}
+	return 'full';
 }

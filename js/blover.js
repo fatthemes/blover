@@ -24,8 +24,8 @@ $bloverFeaturedSliderImage.show();
 // // Slick slider
 $('.blover-featured-slider').slick({
   infinite: true,
-  autoplay: true,
-  autoplaySpeed: 4000,
+  autoplay: Boolean(blover.home_page_slider_autoplay),
+  autoplaySpeed: Number(blover.home_page_slider_play_speed),
   speed: 1000,
   slidesToShow: 1,
   slidesToScroll: 1,

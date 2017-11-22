@@ -195,54 +195,54 @@ if ( ! function_exists( 'blover_fonts_url' ) ) :
  * @return string Google fonts URL for the theme.
  */
 function blover_fonts_url() {
-	$fonts_url = '';
-	$fonts     = array();
-	$subsets   = 'latin';
+		$fonts_url = '';
+		$fonts     = array();
+		$subsets   = 'latin';
 
-	/*
-	 * Translators: If there are characters in your language that are not supported
-	 * by Amiri, translate this to 'off'. Do not translate into your own language.
-	 */
-	if ( 'off' !== _x( 'on', 'Amiri font: on or off', 'blover' ) ) {
-		$fonts[] = 'Amiri:700,400,400italic';
-	}
+		/*
+		 * Translators: If there are characters in your language that are not supported
+		 * by Amiri, translate this to 'off'. Do not translate into your own language.
+		 */
+		if ( 'off' !== _x( 'on', 'Amiri font: on or off', 'blover' ) ) {
+			$fonts[] = 'Amiri:700,400,400italic';
+			}
 
-	/*
-	 * Translators: If there are characters in your language that are not supported
-	 * by Work Sans, translate this to 'off'. Do not translate into your own language.
-	 */
-	if ( 'off' !== _x( 'on', 'Work Sans font: on or off', 'blover' ) ) {
-		$fonts[] = 'Work Sans:400';
-	}
+		/*
+		 * Translators: If there are characters in your language that are not supported
+		 * by Work Sans, translate this to 'off'. Do not translate into your own language.
+		 */
+		if ( 'off' !== _x( 'on', 'Work Sans font: on or off', 'blover' ) ) {
+			$fonts[] = 'Work Sans:400';
+			}
 
-	/*
-	 * Translators: To add an additional character subset specific to your language,
-	 * translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language.
-	 */
-	$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'blover' );
+		/*
+		 * Translators: To add an additional character subset specific to your language,
+		 * translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language.
+		 */
+		$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'blover' );
 
-	if ( 'cyrillic' === $subset ) {
-		$subsets .= ',cyrillic,cyrillic-ext';
-	} elseif ( 'greek' === $subset ) {
-		$subsets .= ',greek,greek-ext';
-	} elseif ( 'devanagari' === $subset ) {
-		$subsets .= ',devanagari';
-	} elseif ( 'vietnamese' === $subset ) {
-		$subsets .= ',vietnamese';
-	}
+		if ( 'cyrillic' === $subset ) {
+			$subsets .= ',cyrillic,cyrillic-ext';
+			} elseif ( 'greek' === $subset ) {
+			$subsets .= ',greek,greek-ext';
+			} elseif ( 'devanagari' === $subset ) {
+			$subsets .= ',devanagari';
+			} elseif ( 'vietnamese' === $subset ) {
+			$subsets .= ',vietnamese';
+			}
 
-	if ( $fonts ) {
-		$fonts_url = esc_url(
-		add_query_arg(
+			if ( $fonts ) {
+			$fonts_url = esc_url(
+			add_query_arg(
 			array(
 				'family' => urlencode( implode( '|', $fonts ) ),
 				'subset' => urlencode( $subsets ),
 			), 'https://fonts.googleapis.com/css'
-		)
+			)
 		);
-	}
+			}
 
-	return $fonts_url;
+			return $fonts_url;
 }
 endif;
 
@@ -276,10 +276,15 @@ function blover_scripts() {
 	$blover_ajax_max_pages = $wp_query->max_num_pages;
 	$blover_ajax_paged = ( get_query_var( 'paged' ) > 1 ) ? get_query_var( 'paged' ) : 1;
 	$blover_pagination = get_theme_mod( 'pagination', 'infinite' );
+	$blover_home_page_slider_play_speed = get_theme_mod( 'home_page_slider_play_speed', 4000 );
+	$blover_home_page_slider_autoplay = ( 0 == $blover_home_page_slider_play_speed ) ? false : true;
 
 	// Passing theme options to blover.js.
 	wp_localize_script(
 		 'blover-scripts', 'blover', array(
+			 'home_page_slider_img_number' => get_theme_mod( 'home_page_slider_img_number', 2 ),
+			 'home_page_slider_play_speed' => $blover_home_page_slider_play_speed,
+			 'home_page_slider_autoplay' => $blover_home_page_slider_autoplay,
 			 'loadMoreText' => esc_html__( 'Load more posts', 'blover' ),
 			 'loadingText' => '',
 			 'noMorePostsText' => esc_html__( 'No More Posts', 'blover' ),

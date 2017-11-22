@@ -34,24 +34,24 @@ echo ' col-lg-push-2';
 			<?php endif; ?>
 		<main id="main" class="site-main row masonry-container" role="main">
 
-		<?php if ( have_posts() ) :
-			
+		<?php
+		if ( have_posts() ) :
+
 			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();
-				?>
-				<?php if ( ! is_sticky() ) : ?>
-				<?php
 
+				if ( blover_show_sticky() ) :
 					/*
 					 * Include the Post-Format-specific template for the content.
 					 * If you want to override this in a child theme, then include a file
 					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 					 */
 					get_template_part( 'template-parts/content-home', $blover_home_page_layout );
-				?>
-			<?php endif; ?>
-			<?php endwhile; ?>
+
+				endif;
+			endwhile;
+		?>
 
 		<?php else : ?>
 
@@ -75,4 +75,5 @@ if ( ! empty( $blover_home_page_layout ) ) {
 get_sidebar();}
 ?>
 	</div><!-- .row -->
-<?php get_footer();
+<?php
+get_footer();

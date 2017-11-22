@@ -774,3 +774,18 @@ function blover_woocommerce_related_products_args( $args ) {
 	return $args;
 }
 add_filter( 'woocommerce_output_related_products_args', 'blover_woocommerce_related_products_args' );
+
+if ( ! function_exists( 'blover_show_sticky' ) ) :
+
+/**
+ * Show sticky posts below slider depends on option
+ *
+ * @return bool
+ */
+function blover_show_sticky() {
+	if ( is_sticky() && ! get_theme_mod( 'home_page_show_sticky', 0 ) ) {
+		return false;
+	}
+	return true;
+}
+endif;
