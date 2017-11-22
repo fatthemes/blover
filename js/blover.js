@@ -24,8 +24,8 @@ $bloverFeaturedSliderImage.show();
 // // Slick slider
 $('.blover-featured-slider').slick({
   infinite: true,
-  autoplay: true,
-  autoplaySpeed: 4000,
+  autoplay: Boolean(blover.home_page_slider_autoplay),
+  autoplaySpeed: Number(blover.home_page_slider_play_speed),
   speed: 1000,
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -38,9 +38,6 @@ $('.blover-featured-slider').slick({
         //variableWidth: false
       }
     }
-    // You can unslick at a given breakpoint now by adding:
-    // settings: "unslick"
-    // instead of a settings object
   ]
 });
 }
@@ -68,7 +65,6 @@ var lastScrollTop = 0; //, delta = 5;
       var $bloverAdminBarHeight = $bloverWpAdminBar.height();
       var $bloverAdminBarPosistionValue = $bloverWpAdminBar.css('position');
       var st = $(this).scrollTop();
-      //console.log($bloverAdminBarPosistionValue);
       if($bloverAdminBarHeight > 0 ){
 	if($bloverAdminBarPosistionValue === 'fixed') {
 	    if ( st > $bloverAdminBarHeight ) {
@@ -87,28 +83,8 @@ var lastScrollTop = 0; //, delta = 5;
 	   } else {
 	     $bloverSiteNavigation.css( 'top', $bloverAdminBarHeight + 'px' );
 	   }
-	} else {
-	    
-	    if ( st > $bloverAdminBarHeight ) {
-		console.log($bloverAdminBarPosistionValue);
-	      //$bloverSiteNavigation.css( 'top', $bloverAdminBarHeight + 'px' );
-$bloverSiteNavigation.css( 'top', '0' );
-	     if (st > $bloverAdminBarHeight + 70) {
-		 $bloverSiteNavigation.css( 'top', '0' );
-	      if (st > lastScrollTop){
-		  $bloverSiteNavigation.slideUp(100);
-	      } else {
-		  $bloverSiteNavigation.slideDown(200);
-	      }
-	     } else {
-		 $bloverSiteNavigation.slideDown(200);
-	     }
-	   } else {
-	     $bloverSiteNavigation.css( 'top', $bloverAdminBarHeight + 'px' );
-	   }
 	}
       } else {
-	if ( st > 32 ) {
 	  $bloverSiteNavigation.css( 'top', '0' );
 	 if (st > 70) {
 
@@ -120,9 +96,6 @@ $bloverSiteNavigation.css( 'top', '0' );
 	 } else {
 	     $bloverSiteNavigation.slideDown(200);
 	 }
-       } else {
-	 $bloverSiteNavigation.css( 'top', '32px' );
-       }
       }
      lastScrollTop = st;
     });
@@ -130,20 +103,11 @@ $bloverSiteNavigation.css( 'top', '0' );
 	var button, closeButton, menu, bgmenu;
 
 	button = $( '#left-navbar-toggle' );
-
-	//menu = $('.left-sidebar-bg');
         bgmenu = $('.left-sidebar-bg');
         menu = $('#left-sidebar');
-
-        //body = $( 'body' );
-
-        //page = $( '#page' );
-
         closeButton = $('.left-sidebar-close');
-
         button.on( 'click', function() {
                             bloverMenuToggle();
-
                         });
 
         closeButton.on( 'click', function() {

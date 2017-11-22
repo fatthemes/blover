@@ -17,11 +17,13 @@
 							if ( is_attachment() ) :
 							echo esc_html__( 'Attachment page', 'blover' );
 							else :
-								echo wp_kses( get_the_category_list( __( ' &#124; ', 'blover' ) ), array(
-									'a' => array(
-										'href' => array(),
-									),
-								) );
+								echo wp_kses(
+									 get_the_category_list( __( ' &#124; ', 'blover' ) ), array(
+										 'a' => array(
+											 'href' => array(),
+										 ),
+									 )
+									);
 							endif;
 						?>
 						</div>
@@ -46,10 +48,12 @@
 	<div class="entry-content col-xs-12">
 		<?php the_content(); ?>
 		<?php
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'blover' ),
-				'after'  => '</div>',
-			) );
+			wp_link_pages(
+				 array(
+					 'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'blover' ),
+					 'after'  => '</div>',
+				 )
+				);
 		?>
 	</div><!-- .entry-content -->
 

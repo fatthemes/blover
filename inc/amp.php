@@ -1,11 +1,17 @@
 <?php
 /**
  * AMP support
- * 
+ *
  * @package blover
  */
+
 add_action( 'amp_post_template_css', 'blover_amp_additional_css_styles' );
 
+/**
+ * Custom CSS for AMP.
+ *
+ * @param type $amp_template amp plugin template.
+ */
 function blover_amp_additional_css_styles( $amp_template ) {
 	?>
 	body {
@@ -39,13 +45,5 @@ function blover_amp_additional_css_styles( $amp_template ) {
 		font-weight: normal;
 		text-transform: uppercase;
 	}
-	<?php
-}
-
-add_action( 'amp_post_template_head', 'blover_amp_post_template_head' );
-
-function blover_amp_post_template_head() {
-	?>
-	<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
 	<?php
 }

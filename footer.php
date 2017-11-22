@@ -24,15 +24,15 @@
 						?>
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 						<?php endif; ?>
-					<button class="left-sidebar-close" title="<?php esc_html_e( 'Close', 'blover' ); ?>"><svg><path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path></svg></button>
+					<button class="left-sidebar-close" title="<?php esc_attr_e( 'Close', 'blover' ); ?>"><svg><path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path></svg></button>
 					</div>
 					</div>
 					<nav id="site-navigation" class="main-navigation" role="navigation">
 					<?php
 					wp_nav_menu(
 						array(
-						'theme_location' => 'primary',
-						'menu_id' => 'primary-menu',
+							'theme_location' => 'primary',
+							'menu_id' => 'primary-menu',
 						)
 					);
 					wp_nav_menu(
@@ -47,9 +47,9 @@
 					);
 					?>
 					</nav><!-- #site-navigation -->
-					<?php get_sidebar( 'left' );?>
+					<?php get_sidebar( 'left' ); ?>
 					<div class="site-info">
-			<?php echo wp_kses_post( get_theme_mod( 'footer_text', '<p>&copy; 2016 ' . get_bloginfo( 'name' ) . '</p>' ) ); ?>
+			<?php echo wp_kses_post( get_theme_mod( 'footer_text', '<p>&copy; ' . date_i18n( __( 'Y', 'blover' ) ) . ' ' . get_bloginfo( 'name' ) . '</p>' ) ); ?>
 					</div><!-- .site-info -->
 				</div>
 			</div>
@@ -63,7 +63,7 @@
 			if ( has_custom_logo() ) {
 			the_custom_logo();
 			}
-			echo wp_kses_post( get_theme_mod( 'footer_text', '<p>&copy; 2016 ' . get_bloginfo( 'name' ) . '</p>' ) );
+			echo wp_kses_post( get_theme_mod( 'footer_text', '<p>&copy; ' . date_i18n( __( 'Y', 'blover' ) ) . ' ' . get_bloginfo( 'name' ) . '</p>' ) );
 		?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->

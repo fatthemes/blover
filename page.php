@@ -14,10 +14,18 @@
 
 get_header(); ?>
 <div class="row">
-		<div id="primary" class="content-area col-lg-8<?php if ( ! is_active_sidebar( 'sidebar-1' ) ) { echo ' col-lg-push-2'; } ?>">
+		<div id="primary" class="content-area col-lg-8
+		<?php
+		if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+echo ' col-lg-push-2'; }
+?>
+">
 		<main id="main" class="site-main row" role="main">
 
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php
+			while ( have_posts() ) :
+the_post();
+?>
 
 							<article id="post-<?php the_ID(); ?>" <?php post_class( 'col-md-12' ); ?>>
 
@@ -26,15 +34,21 @@ get_header(); ?>
 											<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
 									</header><!-- .entry-header -->
-
+									<?php if ( has_post_thumbnail() ) : ?>
+										<div class="single-featured-image"   >
+											<?php the_post_thumbnail( 'full' ); ?>
+										</div>
+									<?php endif; ?>
 
 									<div class="entry-content">
 											<?php the_content(); ?>
 											<?php
-													wp_link_pages( array(
-															'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'blover' ),
-															'after'  => '</div>',
-													) );
+													wp_link_pages(
+														 array(
+															 'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'blover' ),
+															 'after'  => '</div>',
+														 )
+														);
 											?>
 									</div><!-- .entry-content -->
 
@@ -47,7 +61,7 @@ get_header(); ?>
 				<?php
 					// If comments are open or we have at least one comment, load up the comment template.
 					if ( comments_open() || get_comments_number() ) :
-						comments_template();
+					comments_template();
 					endif;
 				?>
 
