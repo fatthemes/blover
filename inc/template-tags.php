@@ -323,7 +323,7 @@ function blover_custom_popular_posts_html_list( $mostpopular, $instance ) {
 					$post_cat = ( isset( $post_cat[0] ) ) ? '<a href="' . esc_url( get_category_link( $post_cat[0]->term_id ) ) . '">' . esc_html( $post_cat[0]->cat_name ) . '</a>' : '';
 
 					if ( '' !== $post_cat ) {
-					$stats[] = '<span class="wpp-category">' . esc_html( $post_cat ) . '</span>';
+					$stats[] = '<span class="wpp-category">' . $post_cat . '</span>';
 					}
 				}
 
@@ -359,7 +359,6 @@ function blover_custom_popular_posts_html_list( $mostpopular, $instance ) {
 		$output .= '</ol>';
 
 		return $output;
-
 }
 
 if ( ! get_theme_mod( 'wpp_styling', 0 ) ) {
