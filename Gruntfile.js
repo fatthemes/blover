@@ -2,6 +2,21 @@
 module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
+        //pkg: grunt.file.readJSON('package.json'),
+        sass: {
+			dist: {
+				files: {
+					'style.css' : 'scss/underscores/style.scss'
+				}
+			}
+		},
+
+		watch: {
+			css: {
+				files: 'scss/**/*.scss',
+				tasks: ['sass']
+			}
+		},
 
         addtextdomain: {
             options: {
@@ -49,8 +64,8 @@ module.exports = function (grunt) {
               processors: [
                 //require("postcss-import")(),
                 //require("postcss-url")(),
-                //require('postcss-cssnext')(),
-                require('autoprefixer')({browsers: ['> 1%' , 'Last 2 versions']}), // add vendor prefixes
+                require('postcss-cssnext')(),
+                //require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
                 require('postcss-discard-duplicates')()
                 //require('cssnano')(), // minify the result
                 //require('rtlcss')() // right to left
@@ -72,7 +87,95 @@ module.exports = function (grunt) {
                 files: {'style.css' : 'style.css'}
                 //files: {'rtl.css' : 'rtl.css'}
             }
-        }
+        },
+/*        rtlcss: {
+            'default':{
+                target: 'style.css',
+                expand : true,
+                //dest   : '',
+                src    : 'rtl.css'
+            }
+        },
+*/
+        perfbudget: {
+          default: {
+            options: {
+              url: 'http://THEME_SLUG.dev.limestreet.pl/',
+              key: 'A.eac3cfd59f876326152463fcacabf220',
+	      timeout: '600',
+	      //repeatView: true,
+	      //location: 'ec2-eu-central-1',
+	      budget: {
+		visualComplete: '5000',
+		render: '3000',
+		//requests: '100',
+		SpeedIndex: '3000'
+	      }
+            }
+          }
+        },
+
+        pagespeed: {
+          options: {
+            //nokey: true,
+	    key: 'AIzaSyBnA8a5PGowgM6PqFVBUHyEKNrLtnEuJBA',
+            url: 'http://THEME_SLUG.dev.limestreet.pl/'
+          },
+          desktop: {
+            options: {
+              url: 'http://THEME_SLUG.dev.limestreet.pl/',
+	      paths: [ '/', 'sample-page/', '?s=post', '?s=gergeafer', '2017/07/05/hello-world/', '2013/01/10/markup-image-alignment/', 'category/post-formats/', '2013/01/10/markup-image-alignment/', '2013/01/11/markup-html-tags-and-formatting/', 'tag/template/', 'segtegdfgdfg', 'author/themedemos/' ],
+              locale: 'en_GB',
+              strategy: 'desktop',
+              threshold: 50
+            }
+          },
+	  mobile: {
+            options: {
+              url: 'http://THEME_SLUG.dev.limestreet.pl/',
+	      paths: [ '/', 'sample-page/', '?s=post', '?s=gergeafer', '2017/07/05/hello-world/', '2013/01/10/markup-image-alignment/', 'category/post-formats/', '2013/01/10/markup-image-alignment/', '2013/01/11/markup-html-tags-and-formatting/', 'tag/template/', 'segtegdfgdfg', 'author/themedemos/' ],
+              locale: 'en_GB',
+              strategy: 'mobile',
+              threshold: 50
+            }
+          }
+        },
+	
+/*	uncss: {
+	    dist: {
+	      options: {
+		stylesheet: ['style.css']
+	      },
+	      files: [{
+		nonull: true,
+		src: [''],
+		dest: 'style.css'
+	      }]
+	    }
+	}
+*/
+        //jshint: {
+            //options: grunt.file.readJSON('.jshintrc'),
+            //target: [
+              //  '*.js',
+                //'**/*.js',
+                //'js/*.js',
+                //'js/pencil.js',
+                //'js/customizer.js',
+                //'js/navigation.js',
+                //'js/skip-link-focus-fix.js'
+                //'!*.min.js',
+                //'!**/*.min.js',
+                //'!node_modules/**',
+                //'!vendor/**',
+                //'!tests/**',
+                //'!Gruntfile.js',
+                //'!**/jquery.magnific-popup.js',
+                //'!**/smoothscroll.js',
+                //'!**/theia-sticky-sidebar.js',
+                //'!**/slick.js'
+            //]
+            //}
     });
 
     //grunt.loadNpmTasks( 'grunt-contrib-sass' );
@@ -81,10 +184,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks( 'grunt-wp-css' );
     //grunt.loadNpmTasks( 'grunt-contrib-jshint' );
     //grunt.loadNpmTasks( 'grunt-rtlcss' );
-    //grunt.loadNpmTasks( 'grunt-perfbudget' );
-    //grunt.loadNpmTasks( 'grunt-pagespeed' );
-    //grunt.loadNpmTasks( 'grunt-sass' );
-    //grunt.loadNpmTasks( 'grunt-contrib-watch' );
+    grunt.loadNpmTasks( 'grunt-perfbudget' );
+    grunt.loadNpmTasks( 'grunt-pagespeed' );
+    grunt.loadNpmTasks( 'grunt-sass' );
+    grunt.loadNpmTasks( 'grunt-contrib-watch' );
     //grunt.loadNpmTasks( 'grunt-uncss' );
     //grunt.registerTask('default', [ 'watch']);
     grunt.registerTask('default', [ 'addtextdomain', 'makepot', 'postcss', 'wpcss']);
