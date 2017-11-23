@@ -96,15 +96,15 @@ pipeline:
     image: limestreet/apache-php-7
     environment:
     commands:
-    - ls -la
+    #- ls -la
     #- printenv
     - THEME_SLUG=$DRONE_REPO_NAME
     - THEME_LOW=`echo "$THEME_SLUG" | sed 's/-by-fat//'`
     #- echo $THEME_LOW
     #- echo $PWD
     #- THEME_NAME=`echo "$THEME_LOW" | sed 's/\b\w/\U&/'`
-    - npm install --silent
-    #- sleep 15
+    #- npm install --silent
+    - sleep 15
     - REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_LOW/style.css"
     #- echo $REMOTEURL
     - REMOTEVERSION=$(curl $REMOTEURL | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
