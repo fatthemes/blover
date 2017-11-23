@@ -162,7 +162,7 @@ function blover_customize_register( $wp_customize ) {
 		 'home_page_slider_play_speed', array(
 			 'label'   => esc_html__( 'Sliding speed of Home Page Slider (in ms)', 'blover' ),
 			 'section' => 'static_front_page',
-			 'description'    => esc_html__( '0 to disable autoplay', 'blogito' ),
+			 'description'    => esc_html__( '0 to disable autoplay', 'blover' ),
 			 'type'    => 'number',
 			 'input_attrs' => array(
 				 'min'   => 0,
