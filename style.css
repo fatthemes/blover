@@ -5347,7 +5347,6 @@ object {
 .slick-slider {
 	display: block;
 	position: relative;
-	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	-webkit-user-select: none;
 	-moz-user-select: none;
