@@ -65,7 +65,7 @@ module.exports = function (grunt) {
                 //require("postcss-import")(),
                 //require("postcss-url")(),
                 //require('postcss-cssnext')(),
-                require('autoprefixer')({browsers: ['last 2 versions', '> 0.5%']}), // add vendor prefixes
+                require('autoprefixer')(), // add vendor prefixes
                 require('postcss-discard-duplicates')()
                 //require('cssnano')(), // minify the result
                 //require('rtlcss')() // right to left

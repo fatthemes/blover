@@ -113,21 +113,18 @@ pipeline:
     - echo $LOCALVERSION
     - if [ $REMOTEVERSION != $LOCALVERSION ]; then echo "Wrong theme version - $REMOTEVERSION instead of $LOCALVERSION" && exit 1 ;fi
     - sed -i "s/THEME_SLUG/$THEME_SLUG/g" ./Gruntfile.js
-#    - pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.fatthemes.com/
-#    - pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.fatthemes.com/sample-page/
-    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.fatthemes.com/cart/
-    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.fatthemes.com/product-category/summer-2016/
-    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.fatthemes.com/product/black-concrete-planter-for-succulents/
-    #- pa11y --ignore "warning;notice" http://beta.$THEME_LOW.fatthemes.com/?s=post
-    #- pa11y --ignore "warning;notice" http://beta.$THEME_LOW.fatthemes.com/?s=gergeafer
-    #- pa11y --ignore "warning;notice" http://beta.$THEME_LOW.fatthemes.com/blog/
-    #- pa11y --ignore "warning;notice" http://beta.$THEME_LOW.fatthemes.com/blog/the-padded-seat-means-you-sit-comfortably/
-    #- pa11y --ignore "warning;notice" http://beta.$THEME_LOW.fatthemes.com/blog/category/design/
-    #- pa11y --ignore "warning;notice" http://beta.$THEME_LOW.fatthemes.com/blog/audio-post-abstrait/
-    #- pa11y --ignore "warning;notice" http://beta.$THEME_LOW.fatthemes.com/blog/how-to-design-more-with-less/
-    #- pa11y --ignore "warning;notice" http://beta.$THEME_LOW.fatthemes.com/blog/video-post-to-bring-you-joy/
-    #- pa11y --ignore "warning;notice" http://beta.$THEME_LOW.fatthemes.com/blog/author/martha-inez/
-    #- pa11y --ignore "warning;notice" http://beta.$THEME_LOW.fatthemes.com/blog/tag/wordpress/
+    - pa11y -V
+    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/
+    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/sample-page/
+    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/?s=post
+    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/?s=gergeafer
+    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/gergeafer
+    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/2013/01/10/markup-image-alignment/
+    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/2013/01/11/markup-html-tags-and-formatting/
+    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/category/aciform/
+    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/2012/01/03/template-comments/
+    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/author/patryk/
+    #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/tag/template/
     - grunt pagespeed
     - grunt perfbudget
     when:
