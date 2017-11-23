@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blover 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/style\n"
-"POT-Creation-Date: 2017-11-23 08:21:00+00:00\n"
+"POT-Creation-Date: 2017-11-23 14:30:24+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -90,6 +90,16 @@ msgstr ""
 
 #: footer.php:52 footer.php:66
 msgid "Y"
+msgstr ""
+
+#: footer.php:68
+#. translators: WordPress.
+msgid "Proudly powered by %s"
+msgstr ""
+
+#: footer.php:70
+#. translators: theme name and theme author.
+msgid "Theme: %1$s by %2$s."
 msgstr ""
 
 #: functions.php:48
