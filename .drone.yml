@@ -22,16 +22,13 @@ pipeline:
       #  exclude: dev
 
   wptest:
-    image: php:cli
+    image: limestreet/apache-php-7
     environment:
       - WP_VERSION=master
       - WP_DEVELOP_DIR=/tmp/wp
     commands:
       - echo "wptest"
-      - apt-get update && apt-get install -y git mysql-server
-      - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-      - chmod +x wp-cli.phar
-      - mv wp-cli.phar /usr/local/bin/wp
+      - apt-get update && apt-get install git
       - php -v
       - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
       - THEME_SLUG=$(basename $(pwd))
@@ -61,10 +58,8 @@ pipeline:
       #  exclude: dev
 
   performancetest:
-    image: node
+    image: limestreet/apache-php-7
     environment:
-    commands:
-    - npm install -g grunt-cli
     - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
       #- echo $VERSION_LINE
     - VERSION=$(echo $VERSION_LINE | grep -Po "\d\d?\.\d\d?\.?\d?\d?")
