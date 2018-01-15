@@ -68,14 +68,6 @@ pipeline:
       #- VERSION=`grep -Po "(\d\d?\.\d\d?\.\d\d?)" <<< "$VERSION_LINE"`
     - sed -i "s/$VERSION_LINE/Version:\ $VERSION+build$DRONE_BUILD_NUMBER/" $PWD/scss/underscores/style.scss
     - sed -i "s/$VERSION_LINE/Version:\ $VERSION+build$DRONE_BUILD_NUMBER/" $PWD/style.css
-      #- COMPOSER_THEME_VERSION_LINE=$(grep -Po '"version"\s?\s?:\s?\s?"\d\d?\.\d\d?\.\d\d?.*"' $PWD/composer.json)
-      #- echo $COMPOSER_THEME_VERSION_LINE
-      #- COMPOSER_THEME_VERSION=$(echo $COMPOSER_THEME_VERSION_LINE | grep -Po "(\d\d?\.\d\d?\.\d\d?)")
-    #- COMPOSER_THEME_VERSION=`grep -Po "(\d\d?\.\d\d?\.?\d?\d?)" <<< "$COMPOSER_THEME_VERSION_LINE"`
-      #- sed -i "s/$COMPOSER_THEME_VERSION_LINE/\"version\"\ :\ \"$COMPOSER_THEME_VERSION+build$DRONE_BUILD_NUMBER\"/" $PWD/composer.json
-      #- cat composer.json
-      #- git fetch
-      #- git status
     - npm install --silent
     #- ls -la
     #- printenv
