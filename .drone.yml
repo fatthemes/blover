@@ -28,7 +28,7 @@ pipeline:
       - WP_DEVELOP_DIR=/tmp/wp
     commands:
       - echo "wptest"
-      - apt-get update && apt-get install -y git
+      - apt-get update && apt-get install -y git mysql-client
       - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
       - chmod +x wp-cli.phar
       - mv wp-cli.phar /usr/local/bin/wp
