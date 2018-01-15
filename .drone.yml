@@ -22,12 +22,13 @@ pipeline:
       #  exclude: dev
 
   wptest:
-    image: limestreet/apache-php-7
+    image: php:cli
     environment:
       - WP_VERSION=master
       - WP_DEVELOP_DIR=/tmp/wp
     commands:
       - echo "wptest"
+      - apt-get update && apt-get install git
       - php -v
       - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
       - THEME_SLUG=$(basename $(pwd))
@@ -56,20 +57,17 @@ pipeline:
       #branch:
       #  exclude: dev
 
-  push_to_dev:
-    image: limestreet/apache-php-7
+  performancetest:
+    image: node
     environment:
     commands:
-      #- $DRONE_TAG
-      - git config --global user.email "$DOCKER_EMAIL"
-      #- git reset --hard
-      #- git clean -f
-      - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
+    - npm install -g grunt-cli
+    - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
       #- echo $VERSION_LINE
-      - VERSION=$(echo $VERSION_LINE | grep -Po "\d\d?\.\d\d?\.?\d?\d?")
+    - VERSION=$(echo $VERSION_LINE | grep -Po "\d\d?\.\d\d?\.?\d?\d?")
       #- VERSION=`grep -Po "(\d\d?\.\d\d?\.\d\d?)" <<< "$VERSION_LINE"`
-      - sed -i "s/$VERSION_LINE/Version:\ $VERSION+build$DRONE_BUILD_NUMBER/" $PWD/scss/underscores/style.scss
-      - sed -i "s/$VERSION_LINE/Version:\ $VERSION+build$DRONE_BUILD_NUMBER/" $PWD/style.css
+    - sed -i "s/$VERSION_LINE/Version:\ $VERSION+build$DRONE_BUILD_NUMBER/" $PWD/scss/underscores/style.scss
+    - sed -i "s/$VERSION_LINE/Version:\ $VERSION+build$DRONE_BUILD_NUMBER/" $PWD/style.css
       #- COMPOSER_THEME_VERSION_LINE=$(grep -Po '"version"\s?\s?:\s?\s?"\d\d?\.\d\d?\.\d\d?.*"' $PWD/composer.json)
       #- echo $COMPOSER_THEME_VERSION_LINE
       #- COMPOSER_THEME_VERSION=$(echo $COMPOSER_THEME_VERSION_LINE | grep -Po "(\d\d?\.\d\d?\.\d\d?)")
@@ -78,24 +76,7 @@ pipeline:
       #- cat composer.json
       #- git fetch
       #- git status
-      - npm install --silent
-      - git add .
-    #- git status
-      - git commit -m "Drone build nr $DRONE_BUILD_NUMBER [CI SKIP]"
-      - git checkout -b dev
-      - git merge master
-      - git push origin dev --force
-    #- git push origin/beta
-    secrets: [ DOCKER_EMAIL ]
-    when:
-      event: push
-      #branch:
-      #  exclude: dev
-
-  performancetest:
-    image: limestreet/apache-php-7
-    environment:
-    commands:
+    - npm install --silent
     #- ls -la
     #- printenv
     - THEME_SLUG=$DRONE_REPO_NAME
@@ -104,7 +85,8 @@ pipeline:
     #- echo $PWD
     #- THEME_NAME=`echo "$THEME_LOW" | sed 's/\b\w/\U&/'`
     #- npm install --silent
-    - sleep 15
+    #- sleep 15
+    - rsync -a $PWD/* /tmp/dev.limestreet.pl/themes/*
     - REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_LOW/style.css"
     #- echo $REMOTEURL
     - REMOTEVERSION=$(curl $REMOTEURL | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
@@ -131,10 +113,12 @@ pipeline:
       event: push
       #branch:
       #  exclude: dev
-      
+    volumes:
+      - /srv/rancheragent2/dev.limestreet.pl/html/wp-content/themes:/tmp/dev.limestreet.pl/themes
+
 services:
   database:
-    image: mysql:5.6
+    image: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=pass
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
