@@ -28,8 +28,8 @@ pipeline:
       - WP_DEVELOP_DIR=/tmp/wp
     commands:
       #- echo "wptest"
-      #- curl google.com
-      #- curl dev.limestreet.pl
+      - apt-get update && apt-get install -y wget
+      - wget dev.limestreet.pl
       - php -v
       - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
       - THEME_SLUG=$(basename $(pwd))
