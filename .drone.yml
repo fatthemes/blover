@@ -34,7 +34,7 @@ pipeline:
       #  exclude: dev
 
   wptest:
-    image: wordpress
+    image: wordpress:php-cli7.2
     environment:
       - WP_VERSION=master
       - WP_DEVELOP_DIR=/tmp/wp
