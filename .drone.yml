@@ -28,8 +28,6 @@ pipeline:
       - WP_DEVELOP_DIR=/tmp/wp
     commands:
       #- echo "wptest"
-      - apt-get update && apt-get install -y wget
-      - wget dev.limestreet.pl
       - php -v
       - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
       - THEME_SLUG=$(basename $(pwd))
@@ -61,8 +59,6 @@ pipeline:
   performancetest:
     image: limestreet/apache-php-7
     commands:
-    - apt-get update && apt-get install -y wget
-    - wget dev.limestreet.pl
     #- npm install -g grunt-cli
     #- echo "nameserver 8.8.8.8" > /etc/resolv.conf
     #- cat /etc/resolv.conf
@@ -86,13 +82,13 @@ pipeline:
     #- sleep 15
     - rsync -a $PWD/ /tmp/dev.limestreet.pl/themes/
     - ls -la /tmp/dev.limestreet.pl/themes
-    - REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_LOW/style.css"
+    #- REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_LOW/style.css"
     #- echo $REMOTEURL
-    - REMOTEVERSION=$(wget -qO- $REMOTEURL | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
-    - echo $REMOTEVERSION
+    #- REMOTEVERSION=$(curl $REMOTEURL | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
+    #- echo $REMOTEVERSION
     - LOCALVERSION=$(cat style.css | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
     - echo $LOCALVERSION
-    - if [ $REMOTEVERSION != $LOCALVERSION ]; then echo "Wrong theme version - $REMOTEVERSION instead of $LOCALVERSION" && exit 1 ;fi
+    #- if [ $REMOTEVERSION != $LOCALVERSION ]; then echo "Wrong theme version - $REMOTEVERSION instead of $LOCALVERSION" && exit 1 ;fi
     - sed -i "s/THEME_SLUG/$THEME_SLUG/g" ./Gruntfile.js
     #- pa11y -V
     #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/
@@ -124,4 +120,3 @@ services:
       - MYSQL_USER=wp
       - MYSQL_PASSWORD=wp
       - MYSQL_DATABASE=wordpress_test
-
