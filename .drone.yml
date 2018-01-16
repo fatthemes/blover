@@ -81,7 +81,7 @@ pipeline:
     - ls -la $PWD
     - ls -la /srv
     - rsync -a $PWD/ /srv/$THEME_SLUG/
-    - ls -la /
+    #- ls -la /
     - ls -la $PWD
     - ls -la /srv
     - REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_LOW/style.css"
