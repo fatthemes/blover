@@ -22,13 +22,14 @@ pipeline:
       #  exclude: dev
 
   wptest:
-    image: limestreet/apache-php-7
+    image: wordpress:cli-php7.2
+    user: root
     environment:
       - WP_VERSION=master
       - WP_DEVELOP_DIR=/tmp/wp
     commands:
       - echo "wptest"
-      #- apt-get update && apt-get install -y git
+      - apt-get update && apt-get install -y git
       #- curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
       #- chmod +x wp-cli.phar
       #- mv wp-cli.phar /usr/local/bin/wp
@@ -111,7 +112,7 @@ pipeline:
 
 services:
   database:
-    image: mysql:5.6
+    image: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=pass
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
