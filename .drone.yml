@@ -59,7 +59,7 @@ pipeline:
       #branch:
       #  exclude: dev
     volumes:
-      - dev-content:/srv    
+      - drone-volume:/srv
       
   performancetest:
     image: limestreet/apache-php-7
@@ -128,6 +128,6 @@ services:
       - MYSQL_DATABASE=wordpress_test
 
 volumes:
-  dev-content:
+  drone-volume:
     driver: rancher-nfs
     
