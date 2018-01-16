@@ -1,12 +1,12 @@
 pipeline:
   codetest:
-    image: wordpress/apache
+    image: limestreet/php-cli
     environment:
       - PHPCS_DIR=/tmp/phpcs
       - SNIFFS_DIR=/tmp/sniffs
     commands:
       - echo "codetest"
-      - apt-get update && apt-get install git
+      #- apt-get update && apt-get install git
       - git clone -b "2.9" --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
       - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR
       - git clone -b 7.1.5 --depth 1 https://github.com/wimg/PHPCompatibility.git $SNIFFS_DIR/PHPCompatibility
@@ -62,7 +62,7 @@ pipeline:
       #  exclude: dev
 
   performancetest:
-    image: limestreet/apache-php-7
+    image: node
     environment:
     - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
       #- echo $VERSION_LINE
