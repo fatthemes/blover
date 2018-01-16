@@ -62,6 +62,7 @@ pipeline:
     image: limestreet/apache-php-7
     commands:
     - apt-get update && apt-get install -y wget
+    - wget dev.limestreet.pl
     #- npm install -g grunt-cli
     #- echo "nameserver 8.8.8.8" > /etc/resolv.conf
     #- cat /etc/resolv.conf
@@ -87,7 +88,7 @@ pipeline:
     - ls -la /tmp/dev.limestreet.pl/themes
     - REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_LOW/style.css"
     #- echo $REMOTEURL
-    - REMOTEVERSION=$(wget $REMOTEURL | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
+    - REMOTEVERSION=$(wget -qO- $REMOTEURL | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
     - echo $REMOTEVERSION
     - LOCALVERSION=$(cat style.css | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
     - echo $LOCALVERSION
@@ -123,4 +124,3 @@ services:
       - MYSQL_USER=wp
       - MYSQL_PASSWORD=wp
       - MYSQL_DATABASE=wordpress_test
-
