@@ -22,8 +22,7 @@ pipeline:
       #  exclude: dev
 
   wptest:
-    image: wordpress:cli-php7.2
-    user: root
+    image: limestreet/apache-php-7
     environment:
       - WP_VERSION=master
       - WP_DEVELOP_DIR=/tmp/wp
@@ -63,7 +62,7 @@ pipeline:
 
   performancetest:
     image: node
-    environment:
+    commands:
     - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
       #- echo $VERSION_LINE
     - VERSION=$(echo $VERSION_LINE | grep -Po "\d\d?\.\d\d?\.?\d?\d?")
@@ -112,7 +111,7 @@ pipeline:
 
 services:
   database:
-    image: mysql
+    image: mariadb
     environment:
       - MYSQL_ROOT_PASSWORD=pass
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
