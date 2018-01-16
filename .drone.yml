@@ -30,6 +30,7 @@ pipeline:
       #- echo "wptest"
       #- curl google.com
       #- curl dev.limestreet.pl
+      - touch /srv/test.txt
       - php -v
       - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
       - THEME_SLUG=$(basename $(pwd))
@@ -57,6 +58,8 @@ pipeline:
       event: push
       #branch:
       #  exclude: dev
+    volumes:
+        dev-content:/srv
       
   performancetest:
     image: limestreet/apache-php-7
@@ -123,3 +126,7 @@ services:
       - MYSQL_USER=wp
       - MYSQL_PASSWORD=wp
       - MYSQL_DATABASE=wordpress_test
+
+volumes:
+  dev-content:
+    driver: rancher-nfs
