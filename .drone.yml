@@ -23,7 +23,7 @@ pipeline:
       #  exclude: dev
 
   wptest:
-    image: wordpress/php7.2
+    image: wordpress:php7.2
     environment:
       - WP_VERSION=master
       - WP_DEVELOP_DIR=/tmp/wp
@@ -34,7 +34,7 @@ pipeline:
       - chmod +x wp-cli.phar
       - mv wp-cli.phar /usr/local/bin/wp
       - php -v
-      - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
+      #- find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
       - THEME_SLUG=$(basename $(pwd))
       - mkdir -p $WP_DEVELOP_DIR
       - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
