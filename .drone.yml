@@ -4,8 +4,12 @@ pipeline:
     environment:
       - PHPCS_DIR=/tmp/phpcs
       - SNIFFS_DIR=/tmp/sniffs
+      - WP_VERSION=master
+      - WP_DEVELOP_DIR=/tmp/wp
     commands:
       #- echo "codetest1"
+      - mkdir -p $WP_DEVELOP_DIR
+      - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
       - git clone -b "2.9" --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
       - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR
       - git clone -b 7.1.5 --depth 1 https://github.com/wimg/PHPCompatibility.git $SNIFFS_DIR/PHPCompatibility
@@ -36,7 +40,7 @@ pipeline:
   wptest:
     image: limestreet/wordpress-php-cli
     environment:
-      - WP_VERSION=master
+      #- WP_VERSION=master
       - WP_DEVELOP_DIR=/tmp/wp
     commands:
       - echo "wptest"
@@ -47,8 +51,8 @@ pipeline:
       - php -v
       #- find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
       - THEME_SLUG=$(basename $(pwd))
-      - mkdir -p $WP_DEVELOP_DIR
-      - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
+      #- mkdir -p $WP_DEVELOP_DIR
+      #- git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
       - THEME_DIR=$WP_DEVELOP_DIR/src/wp-content/themes
       - cd ..
       - cp -r $THEME_SLUG $THEME_DIR
