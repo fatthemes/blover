@@ -1,5 +1,5 @@
 pipeline:
-  codetest:
+  codetest1:
     image: limestreet/php-cli
     environment:
       - PHPCS_DIR=/tmp/phpcs
@@ -21,14 +21,34 @@ pipeline:
       #branch:
       #  exclude: dev
 
+  codetest2:
+    image: wordpress:cli-php7.2
+    environment:
+      - PHPCS_DIR=/tmp/phpcs
+      - SNIFFS_DIR=/tmp/sniffs
+    commands:
+      - echo "codetest"
+      - apt-get update && apt-get install -y git
+      - git clone -b "2.9" --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
+      - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR
+      - git clone -b 7.1.5 --depth 1 https://github.com/wimg/PHPCompatibility.git $SNIFFS_DIR/PHPCompatibility
+      - $PHPCS_DIR/scripts/phpcs --config-set installed_paths $SNIFFS_DIR
+      - $PHPCS_DIR/scripts/phpcs -p -s -v -n . --standard=./phpcs.ruleset.xml --extensions=php --ignore=*/node_modules/*,*/vendor/*,class-tgm-plugin-activation.php,class-media-grabber.php
+      - php -v
+      - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 /opt/source/php-5.2.17/bin/php -l
+    when:
+      event: push
+      #branch:
+      #  exclude: dev
+
   wptest:
-    image: limestreet/apache-php-7
+    image: wordpress
     environment:
       - WP_VERSION=master
       - WP_DEVELOP_DIR=/tmp/wp
     commands:
       - echo "wptest"
-      #- apt-get update && apt-get install -y git
+      - apt-get update && apt-get install -y git
       #- curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
       #- chmod +x wp-cli.phar
       #- mv wp-cli.phar /usr/local/bin/wp
