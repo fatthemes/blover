@@ -1,11 +1,11 @@
 pipeline:
-  codetest1:
+  codetest:
     image: limestreet/php-cli
     environment:
       - PHPCS_DIR=/tmp/phpcs
       - SNIFFS_DIR=/tmp/sniffs
     commands:
-      #- echo "codetest1"
+      - echo "codetest"
       - git clone -b "2.9" --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
       - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR
       - git clone -b 7.1.5 --depth 1 https://github.com/wimg/PHPCompatibility.git $SNIFFS_DIR/PHPCompatibility
@@ -21,31 +21,15 @@ pipeline:
       #branch:
       #  exclude: dev
 
-  codetest2:
-    image: limestreet/wordpress-php-cli
-    commands:
-      #- echo "codetest2"
-      #- ls -la $PWD
-      - php -v
-      - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path ".*" -print0 | xargs -0 -n 1 php -l
-    when:
-      event: push
-      #branch:
-      #  exclude: dev
-
   wptest:
-    image: limestreet/php-cli
+    image: limestreet/apache-php-7
     environment:
       - WP_VERSION=master
       - WP_DEVELOP_DIR=/tmp/wp
     commands:
       - echo "wptest"
-      - apt-get update && apt-get install -y git
-      #- curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-      #- chmod +x wp-cli.phar
-      #- mv wp-cli.phar /usr/local/bin/wp
       - php -v
-      #- find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
+      - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
       - THEME_SLUG=$(basename $(pwd))
       - mkdir -p $WP_DEVELOP_DIR
       - git clone --depth=1 --branch="$WP_VERSION" git://develop.git.wordpress.org/ $WP_DEVELOP_DIR
@@ -72,18 +56,46 @@ pipeline:
       #branch:
       #  exclude: dev
 
-  performancetest:
-    image: node
+  push_to_dev:
+    image: limestreet/apache-php-7
+    environment:
     commands:
-    - apt-get update && apt-get install -y rsync
-    - npm install -g grunt-cli
-    - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
+      #- $DRONE_TAG
+      - git config --global user.email "$DOCKER_EMAIL"
+      #- git reset --hard
+      #- git clean -f
+      - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
       #- echo $VERSION_LINE
-    - VERSION=$(echo $VERSION_LINE | grep -Po "\d\d?\.\d\d?\.?\d?\d?")
+      - VERSION=$(echo $VERSION_LINE | grep -Po "\d\d?\.\d\d?\.?\d?\d?")
       #- VERSION=`grep -Po "(\d\d?\.\d\d?\.\d\d?)" <<< "$VERSION_LINE"`
-    - sed -i "s/$VERSION_LINE/Version:\ $VERSION+build$DRONE_BUILD_NUMBER/" $PWD/scss/underscores/style.scss
-    - sed -i "s/$VERSION_LINE/Version:\ $VERSION+build$DRONE_BUILD_NUMBER/" $PWD/style.css
-    - npm install --silent
+      - sed -i "s/$VERSION_LINE/Version:\ $VERSION+build$DRONE_BUILD_NUMBER/" $PWD/scss/underscores/style.scss
+      - sed -i "s/$VERSION_LINE/Version:\ $VERSION+build$DRONE_BUILD_NUMBER/" $PWD/style.css
+      #- COMPOSER_THEME_VERSION_LINE=$(grep -Po '"version"\s?\s?:\s?\s?"\d\d?\.\d\d?\.\d\d?.*"' $PWD/composer.json)
+      #- echo $COMPOSER_THEME_VERSION_LINE
+      #- COMPOSER_THEME_VERSION=$(echo $COMPOSER_THEME_VERSION_LINE | grep -Po "(\d\d?\.\d\d?\.\d\d?)")
+    #- COMPOSER_THEME_VERSION=`grep -Po "(\d\d?\.\d\d?\.?\d?\d?)" <<< "$COMPOSER_THEME_VERSION_LINE"`
+      #- sed -i "s/$COMPOSER_THEME_VERSION_LINE/\"version\"\ :\ \"$COMPOSER_THEME_VERSION+build$DRONE_BUILD_NUMBER\"/" $PWD/composer.json
+      #- cat composer.json
+      #- git fetch
+      #- git status
+      - npm install --silent
+      - git add .
+    #- git status
+      - git commit -m "Drone build nr $DRONE_BUILD_NUMBER [CI SKIP]"
+      - git checkout -b dev
+      - git merge master
+      - git push origin dev --force
+    #- git push origin/beta
+    secrets: [ DOCKER_EMAIL ]
+    when:
+      event: push
+      #branch:
+      #  exclude: dev
+
+  performancetest:
+    image: limestreet/apache-php-7
+    environment:
+    commands:
     #- ls -la
     #- printenv
     - THEME_SLUG=$DRONE_REPO_NAME
@@ -92,8 +104,7 @@ pipeline:
     #- echo $PWD
     #- THEME_NAME=`echo "$THEME_LOW" | sed 's/\b\w/\U&/'`
     #- npm install --silent
-    #- sleep 15
-    - rsync -a $PWD/* /tmp/dev.limestreet.pl/themes/*
+    - sleep 15
     - REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_LOW/style.css"
     #- echo $REMOTEURL
     - REMOTEVERSION=$(curl $REMOTEURL | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
@@ -120,9 +131,7 @@ pipeline:
       event: push
       #branch:
       #  exclude: dev
-    volumes:
-      - /srv/rancheragent2/dev.limestreet.pl/html/wp-content/themes:/tmp/dev.limestreet.pl/themes
-
+      
 services:
   database:
     image: mysql:5.6
