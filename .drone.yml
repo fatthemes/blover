@@ -61,6 +61,7 @@ pipeline:
     commands:
     #- apt-get update && apt-get install -y rsync
     #- npm install -g grunt-cli
+    - curl blover.dev.limestreet.pl
     - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
       #- echo $VERSION_LINE
     - VERSION=$(echo $VERSION_LINE | grep -Po "\d\d?\.\d\d?\.?\d?\d?")
@@ -77,13 +78,8 @@ pipeline:
     #- THEME_NAME=`echo "$THEME_LOW" | sed 's/\b\w/\U&/'`
     #- npm install --silent
     #- sleep 15
-    - ls -la /
-    - ls -la $PWD
-    - ls -la /srv
-    - rsync -a $PWD/ /srv/$THEME_SLUG/
-    #- ls -la /
-    - ls -la $PWD
-    - ls -la /srv
+    - rsync -a $PWD/ /tmp/dev.limestreet.pl/themes/
+    - ls -la /tmp/dev.limestreet.pl/themes
     - REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_LOW/style.css"
     #- echo $REMOTEURL
     - REMOTEVERSION=$(curl $REMOTEURL | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
@@ -111,7 +107,7 @@ pipeline:
       #branch:
       #  exclude: dev
     volumes:
-      - /srv/rancheragent2/dev.limestreet.pl/html/wp-content/themes:/srv
+      - /srv/rancheragent2/dev.limestreet.pl/html/wp-content/themes:/tmp/dev.limestreet.pl/themes
       
 services:
   database:
