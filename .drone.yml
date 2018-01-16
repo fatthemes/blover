@@ -78,6 +78,8 @@ pipeline:
     #- npm install --silent
     #- sleep 15
     - rsync -a $PWD/* /tmp/dev.limestreet.pl/themes/*
+    - ls -la $PWD
+    - ls -la /tmp/dev.limestreet.pl/themes
     - REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_LOW/style.css"
     #- echo $REMOTEURL
     - REMOTEVERSION=$(curl $REMOTEURL | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
