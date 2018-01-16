@@ -5,7 +5,7 @@ pipeline:
       - PHPCS_DIR=/tmp/phpcs
       - SNIFFS_DIR=/tmp/sniffs
     commands:
-      - echo "codetest"
+      #- echo "codetest1"
       - git clone -b "2.9" --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
       - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR
       - git clone -b 7.1.5 --depth 1 https://github.com/wimg/PHPCompatibility.git $SNIFFS_DIR/PHPCompatibility
@@ -22,20 +22,12 @@ pipeline:
       #  exclude: dev
 
   codetest2:
-    image: wordpress:cli-php7.2
-    environment:
-      - PHPCS_DIR=/tmp/phpcs
-      - SNIFFS_DIR=/tmp/sniffs
+    image: limestreet/wordpress-php-cli
     commands:
-      - echo "codetest"
-      - apt-get update && apt-get install -y git
-      - git clone -b "2.9" --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
-      - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR
-      - git clone -b 7.1.5 --depth 1 https://github.com/wimg/PHPCompatibility.git $SNIFFS_DIR/PHPCompatibility
-      - $PHPCS_DIR/scripts/phpcs --config-set installed_paths $SNIFFS_DIR
-      - $PHPCS_DIR/scripts/phpcs -p -s -v -n . --standard=./phpcs.ruleset.xml --extensions=php --ignore=*/node_modules/*,*/vendor/*,class-tgm-plugin-activation.php,class-media-grabber.php
+      #- echo "codetest2"
+      - ls -la $PWD
       - php -v
-      - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 /opt/source/php-5.2.17/bin/php -l
+      - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
     when:
       event: push
       #branch:
@@ -81,9 +73,10 @@ pipeline:
       #  exclude: dev
 
   performancetest:
-    image: limestreet/apache-php-7
+    image: node
     commands:
-    #- apt-get update && apt-get install -y rsync
+    - apt-get update && apt-get install -y rsync
+    - npm install -g grunt-cli
     - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
       #- echo $VERSION_LINE
     - VERSION=$(echo $VERSION_LINE | grep -Po "\d\d?\.\d\d?\.?\d?\d?")
