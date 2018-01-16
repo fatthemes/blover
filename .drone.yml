@@ -61,9 +61,9 @@ pipeline:
       #  exclude: dev
 
   performancetest:
-    image: node
+    image: limestreet/apache-php-7
     commands:
-    - apt-get update && apt-get install -y rsync
+    #- apt-get update && apt-get install -y rsync
     - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
       #- echo $VERSION_LINE
     - VERSION=$(echo $VERSION_LINE | grep -Po "\d\d?\.\d\d?\.?\d?\d?")
