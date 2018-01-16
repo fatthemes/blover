@@ -59,7 +59,7 @@ pipeline:
       #branch:
       #  exclude: dev
     volumes:
-        dev-content:/srv
+      - dev-content:/srv    
       
   performancetest:
     image: limestreet/apache-php-7
@@ -130,3 +130,4 @@ services:
 volumes:
   dev-content:
     driver: rancher-nfs
+    
