@@ -77,7 +77,10 @@ pipeline:
     #- THEME_NAME=`echo "$THEME_LOW" | sed 's/\b\w/\U&/'`
     #- npm install --silent
     #- sleep 15
-    - rsync -a $PWD/ /srv/
+    - ls -la /
+    - ls -la $PWD
+    - ls -la /srv
+    - rsync -a $PWD/ /srv/$THEME_SLUG/
     - ls -la /
     - ls -la $PWD
     - ls -la /srv
