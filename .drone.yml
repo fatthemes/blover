@@ -57,6 +57,8 @@ pipeline:
       event: push
       #branch:
       #  exclude: dev
+    volumes:
+      - rancher-nfs
       
   performancetest:
     image: limestreet/apache-php-7
