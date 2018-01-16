@@ -77,7 +77,8 @@ pipeline:
     #- THEME_NAME=`echo "$THEME_LOW" | sed 's/\b\w/\U&/'`
     #- npm install --silent
     #- sleep 15
-    - rsync -a $PWD/* /srv/*
+    - rsync -a $PWD/ /srv/
+    - ls -la /
     - ls -la $PWD
     - ls -la /srv
     - REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_LOW/style.css"
