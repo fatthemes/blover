@@ -60,9 +60,10 @@ pipeline:
       #branch:
       #  exclude: dev
 
-  prepare-for-performancetest:
+  performancetest:
     image: node
     commands:
+    - apt-get update && apt-get install -y rsync
     - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
       #- echo $VERSION_LINE
     - VERSION=$(echo $VERSION_LINE | grep -Po "\d\d?\.\d\d?\.?\d?\d?")
@@ -70,27 +71,16 @@ pipeline:
     - sed -i "s/$VERSION_LINE/Version:\ $VERSION+build$DRONE_BUILD_NUMBER/" $PWD/scss/underscores/style.scss
     - sed -i "s/$VERSION_LINE/Version:\ $VERSION+build$DRONE_BUILD_NUMBER/" $PWD/style.css
     - npm install --silent
-    when:
-      event: push
-      #branch:
-      #  exclude: dev
-    volumes:
-      - /srv/rancheragent2/dev.limestreet.pl/html/wp-content/themes:/tmp/dev.limestreet.pl/themes
-      
-  rsync-themedir:
-    image: debian
-    commands:
-      - mkdir -p /tmp/dev.limestreet.pl/themes/$DRONE_REPO_NAME
-      - rsync -a $PWD/$DRONE_REPO_NAME /tmp/dev.limestreet.pl/themes/$DRONE_REPO_NAME
-    volumes:
-      - /srv/rancheragent2/dev.limestreet.pl/html/wp-content/themes:/tmp/dev.limestreet.pl/themes
-
-  performancetest:
-    image: node
-    commands:
-    - npm install -g grunt-cli
+    #- ls -la
+    #- printenv
     - THEME_SLUG=$DRONE_REPO_NAME
     - THEME_LOW=`echo "$THEME_SLUG" | sed 's/-by-fat//'`
+    #- echo $THEME_LOW
+    #- echo $PWD
+    #- THEME_NAME=`echo "$THEME_LOW" | sed 's/\b\w/\U&/'`
+    #- npm install --silent
+    #- sleep 15
+    - rsync -a $PWD/* /tmp/dev.limestreet.pl/themes/*
     - REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_LOW/style.css"
     #- echo $REMOTEURL
     - REMOTEVERSION=$(curl $REMOTEURL | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
