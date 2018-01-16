@@ -29,9 +29,9 @@ pipeline:
     commands:
       - echo "wptest"
       - apt-get update && apt-get install -y git
-      - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-      - chmod +x wp-cli.phar
-      - mv wp-cli.phar /usr/local/bin/wp
+      #- curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+      #- chmod +x wp-cli.phar
+      #- mv wp-cli.phar /usr/local/bin/wp
       - php -v
       #- find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
       - THEME_SLUG=$(basename $(pwd))
