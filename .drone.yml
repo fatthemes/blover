@@ -63,7 +63,7 @@ pipeline:
     #- npm install -g grunt-cli
     - THEME_SLUG=$DRONE_REPO_NAME
     - THEME_LOW=`echo "$THEME_SLUG" | sed 's/-by-fat//'`
-    - echo "79.137.46.215  $THEME_LOW.dev.limestreet.pl"
+    - echo "79.137.46.215  $THEME_LOW.dev.limestreet.pl" >> /etc/hosts
     - curl $THEME_LOW.dev.limestreet.pl
     - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
       #- echo $VERSION_LINE
