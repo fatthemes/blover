@@ -1,11 +1,11 @@
 pipeline:
   codetest:
-    image: limestreet/php-cli
+    image: limestreet/apache-php-7
+    #image: limestreet/php-cli
     environment:
       - PHPCS_DIR=/tmp/phpcs
       - SNIFFS_DIR=/tmp/sniffs
     commands:
-      - apt-get update && apt-get install ping nslookup
       - ping -c 3 dev.limestreet.pl
       - ping -c 3 79.137.46.215
       - nslookup dev.limestreet.pl
