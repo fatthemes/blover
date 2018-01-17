@@ -10,6 +10,8 @@ pipeline:
       #- cat /etc/resolv.conf
       #- cat /etc/hosts
       #- nslookup dev.limestreet.pl
+      - ping -c 3 dev-limestreet
+      - ping -c 3 10.42.123.134
       - ping -c 3 dev.limestreet.pl
       - ping -c 3 79.137.46.215
       - curl 79.137.46.215
