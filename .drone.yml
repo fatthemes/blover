@@ -5,6 +5,8 @@ pipeline:
       - PHPCS_DIR=/tmp/phpcs
       - SNIFFS_DIR=/tmp/sniffs
     commands:
+      - curl dev.limestreet.pl
+      - curl blover.dev.limestreet.pl
       - git clone -b "2.9" --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
       - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR
       - git clone -b 7.1.5 --depth 1 https://github.com/wimg/PHPCompatibility.git $SNIFFS_DIR/PHPCompatibility
@@ -81,7 +83,7 @@ pipeline:
     #- sleep 15
     - rsync -a $PWD/ /tmp/dev.limestreet.pl/themes/$THEME_SLUG/
     - ls -la /tmp/dev.limestreet.pl/themes
-    - REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_LOW/style.css"
+    - REMOTEURL="http://$THEME_LOW.dev.limestreet.pl/wp-content/themes/$THEME_SLUG/style.css"
     #- echo $REMOTEURL
     - REMOTEVERSION=$(curl $REMOTEURL | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?.*)")
     - echo $REMOTEVERSION
