@@ -12,7 +12,7 @@ pipeline:
       - ping -c 3 79.137.46.215
       - curl 79.137.46.215
       - curl dev.limestreet.pl
-      #- curl blover.dev.limestreet.pl
+      - curl blover.dev.limestreet.pl
       - exit 1
       - git clone -b "2.9" --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
       - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR
