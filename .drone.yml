@@ -29,8 +29,9 @@ pipeline:
     commands:
       #- echo "wptest"
       #- curl google.com
-      #- curl dev.limestreet.pl
-      - touch /srv/test.txt
+      - curl dev.limestreet.pl
+      - rm /srv/test.txt
+      - ls -la /srv
       - php -v
       - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
       - THEME_SLUG=$(basename $(pwd))
