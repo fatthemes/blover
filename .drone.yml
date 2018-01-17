@@ -7,13 +7,15 @@ pipeline:
       - SNIFFS_DIR=/tmp/sniffs
     commands:
       #- apt-get update && apt-get install -y dnsutils
-      #- cat /etc/resolv.conf
-      #- cat /etc/hosts
+      - cat /etc/resolv.conf
+      - cat /etc/hosts
+      - echo "10.42.123.134 dev.limestreet.pl" >> /etc/hosts
       #- nslookup dev.limestreet.pl
       #- ping -c 3 dev-limestreet
-      - ping -c 50 10.42.123.134
+      - ping -c 3 10.42.123.134
       - ping -c 3 dev.limestreet.pl
       - ping -c 3 79.137.46.215
+      - curl 10.42.123.134
       - curl 79.137.46.215
       - curl dev.limestreet.pl
       - curl blover.dev.limestreet.pl
