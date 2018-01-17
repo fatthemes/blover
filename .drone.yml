@@ -30,7 +30,6 @@ pipeline:
       event: push
       #branch:
       #  exclude: dev
-    privileged: true
 
   wptest:
     image: limestreet/apache-php-7
