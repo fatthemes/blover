@@ -5,7 +5,6 @@ pipeline:
       - PHPCS_DIR=/tmp/phpcs
       - SNIFFS_DIR=/tmp/sniffs
     commands:
-      #- echo "codetest"
       - curl dev.limestreet.pl
       - git clone -b "2.9" --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
       - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR
@@ -28,10 +27,6 @@ pipeline:
       - WP_VERSION=master
       - WP_DEVELOP_DIR=/tmp/wp
     commands:
-      #- echo "wptest"
-      #- curl google.com
-      - curl dev.limestreet.pl
-      - rm /srv/test.txt
       - ls -la /srv
       - php -v
       - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 php -l
