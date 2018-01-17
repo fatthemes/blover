@@ -5,8 +5,10 @@ pipeline:
       - PHPCS_DIR=/tmp/phpcs
       - SNIFFS_DIR=/tmp/sniffs
     commands:
+      - apt-get update && apt-get install ping nslookup
       - ping -c 3 dev.limestreet.pl
       - ping -c 3 79.137.46.215
+      - nslookup dev.limestreet.pl
       #- curl dev.limestreet.pl
       #- curl blover.dev.limestreet.pl
       - git clone -b "2.9" --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
