@@ -112,7 +112,7 @@ pipeline:
     - echo $LOCALVERSION
     - if [ $REMOTEVERSION != $LOCALVERSION ]; then echo "Wrong theme version - $REMOTEVERSION instead of $LOCALVERSION" && exit 1 ;fi
     - sed -i "s/THEME_SLUG/$THEME_SLUG/g" ./Gruntfile.js
-    #- pa11y -V
+    - pa11y -V
     #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/
     #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/sample-page/
     #- pa11y --ignore "warning;notice" http://$THEME_SLUG.dev.limestreet.pl/?s=post
@@ -139,4 +139,3 @@ services:
       - MYSQL_USER=wp
       - MYSQL_PASSWORD=wp
       - MYSQL_DATABASE=wordpress_test
-
