@@ -113,17 +113,17 @@ pipeline:
     - if [ $REMOTEVERSION != $LOCALVERSION ]; then echo "Wrong theme version - $REMOTEVERSION instead of $LOCALVERSION" && exit 1 ;fi
     - sed -i "s/THEME_SLUG/$THEME_SLUG/g" ./Gruntfile.js
     - pa11y -V
-    #- pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/
-    #- pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/sample-page/
-    #- pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/?s=post
-    #- pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/?s=gergeafer
-    #- pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/gergeafer
-    #- pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/2013/01/10/markup-image-alignment/
-    #- pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/2013/01/11/markup-html-tags-and-formatting/
-    #- pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/category/aciform/
-    #- pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/2012/01/03/template-comments/
-    #- pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/author/patryk/
-    #- pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/tag/template/
+    - pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/
+    - pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/sample-page/
+    - pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/?s=post
+    - pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/?s=gergeafer
+    - pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/gergeafer
+    - pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/2013/01/10/markup-image-alignment/
+    - pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/2013/01/11/markup-html-tags-and-formatting/
+    - pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/category/aciform/
+    - pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/2012/01/03/template-comments/
+    - pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/author/patryk/
+    - pa11y --ignore "warning;notice" http://$THEME_LOW.dev.limestreet.pl/tag/template/
     - grunt pagespeed
     - grunt perfbudget
     when:
@@ -133,7 +133,7 @@ pipeline:
       
 services:
   database:
-    image: mysql:5.6
+    image: mariadb
     environment:
       - MYSQL_ROOT_PASSWORD=pass
       - MYSQL_USER=wp
