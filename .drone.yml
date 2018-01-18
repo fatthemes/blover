@@ -139,3 +139,4 @@ services:
       - MYSQL_USER=wp
       - MYSQL_PASSWORD=wp
       - MYSQL_DATABASE=wordpress_test
+
