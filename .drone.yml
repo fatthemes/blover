@@ -57,7 +57,6 @@ pipeline:
 
   push_to_dev:
     image: limestreet/apache-php-7
-    environment:
     commands:
       #- $DRONE_TAG
       - git config --global user.email "$DOCKER_EMAIL"
@@ -93,7 +92,6 @@ pipeline:
 
   performancetest:
     image: limestreet/apache-php-7
-    environment:
     commands:
     #- ls -la
     #- printenv
@@ -130,7 +128,14 @@ pipeline:
       event: push
       #branch:
       #  exclude: dev
-      
+
+  github_release:
+    image: plugins/github-release
+    api_key: 1234
+    files: dist/*.zip
+    when:
+      event: tag
+
 services:
   database:
     image: mariadb
