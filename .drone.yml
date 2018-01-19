@@ -20,6 +20,15 @@ pipeline:
       #branch:
       #  exclude: dev
 
+  database:
+    image: mariadb
+    detach: true
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_USER=wp
+      - MYSQL_PASSWORD=wp
+      - MYSQL_DATABASE=wordpress_test
+
   wptest:
     image: limestreet/apache-php-7
     environment:
@@ -129,6 +138,52 @@ pipeline:
       #branch:
       #  exclude: dev
 
+  fatthemes_pre_wraith_1:
+    image: limestreet/fatthemes
+    detach: true
+    commands:
+      #- import db
+      #- wp search-replace domain
+    when:
+      event: tag
+
+  fatthemes_wraith_1:
+    image: bbcnews/wraith
+    commands:
+      #- test "fatthemes_pre_wraith_1" with wraith
+    when:
+      event: tag
+
+  fatthemes_pre_build:
+    image: limestreet/apache-php-7
+    commands:
+      #- clone fatthemes composer repo
+    when:
+      event: tag
+      
+  fatthemes_build_new_image:
+    image: docker
+    commands:
+      #- build -t with docker + composer dependency
+    when:
+      event: tag
+
+  fatthemes_pre_wraith_2:
+    image: limestreet/fatthemes
+    detach: true
+    commands:
+      #- connect to db
+    when:
+      event: tag
+
+  fatthemes_wraith_2:
+    image: bbcnews/wraith
+    commands:
+      #- test "fatthemes_pre_wraith_2" with wraith
+      #- wp search-replace domain
+    when:
+      event: tag
+
   github_release:
     image: plugins/github-release
     api_key: 1234
@@ -136,11 +191,9 @@ pipeline:
     when:
       event: tag
 
-services:
-  database:
-    image: mariadb
-    environment:
-      - MYSQL_ROOT_PASSWORD=pass
-      - MYSQL_USER=wp
-      - MYSQL_PASSWORD=wp
-      - MYSQL_DATABASE=wordpress_test
+  fatthemes_push_new_image_to_registry:
+    image: docker
+    commands:
+      #- docker push to registry
+    when:
+      event: tag
