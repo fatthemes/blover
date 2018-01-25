@@ -7,6 +7,8 @@ pipeline:
       - MYSQL_USER=wp
       - MYSQL_PASSWORD=wp
       - MYSQL_DATABASE=wordpress_test
+    when:
+      event: push
 
   codetest:
     image: limestreet/php-cli
@@ -26,8 +28,6 @@ pipeline:
       - find -L . -name '*.php' -not -path "*node_modules*" -not -path "*vendor*" -not -path "*php-codesniffer*" -not -path ".*" -print0 | xargs -0 -n 1 -P 4 /opt/source/php-5.2.17/bin/php -l
     when:
       event: push
-      #branch:
-      #  exclude: dev
 
   wptest:
     image: limestreet/apache-php-7
@@ -61,8 +61,6 @@ pipeline:
       - phpunit --group themes
     when:
       event: push
-      #branch:
-      #  exclude: dev
 
   push_to_dev:
     image: limestreet/apache-php-7
@@ -95,8 +93,6 @@ pipeline:
     secrets: [ DOCKER_EMAIL ]
     when:
       event: push
-      #branch:
-      #  exclude: dev
 
   performancetest:
     image: limestreet/apache-php-7
@@ -137,70 +133,45 @@ pipeline:
     secrets: [ WEBPAGETEST_API_KEY, PAGESPEED_API_KEY ]
     when:
       event: push
-      #branch:
-      #  exclude: dev
 
-  fatthemes_pre_wraith_1:
-    image: limestreet/fatthemes
-    detach: true
-    commands:
-      #- import db
-      #- wp search-replace domain
-    when:
-      event: tag
-
-  fatthemes_wraith_1:
-    image: bbcnews/wraith
-    commands:
-      #- test "fatthemes_pre_wraith_1" with wraith
-    when:
-      event: tag
-    volumes:
-      - /srv/rancheragent3/wraith/fatthemes:/tmp/wraith
-
-  fatthemes_pre_build:
+  version_check_and_build:
     image: limestreet/apache-php-7
     commands:
-      #- clone fatthemes composer repo
+      - THEME_SLUG=$DRONE_REPO_NAME
+      - THEMEVERSION=$(cat style.css | grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?)")
+      - REPOTAG=`echo "${DRONE_TAG}" | grep -Po "(\d\d?\.\d\d?\.?\d?\d?)")`
+      - echo $REPOTAG
+      - if [ $REPOTAG != $THEMEVERSION ]; then echo "Wrong theme/tag version - version from repo tag is $REPOTAG (${DRONE_TAG}) but theme version from style.css is $THEMEVERSION" && exit 1 ;fi
+      - apt-get update && apt-get install -y zip
+      - npm install --silent
+      - grunt
+      - rm -rf *.yml .drone.yml .g* .j* .n* scss node_modules vendor tests Gruntfile.js casper-tests.js package.json *.ruleset.xml nbproject *.rb *.tmp *.map *.log Dockerfile
+      - cd ..
+      - zip -FSr $THEME_SLUG.zip $THEME_SLUG
+      - mkdir -p $DRONE_REPO_NAME/dist
+      - cp $THEME_SLUG.zip $DRONE_REPO_NAME/dist/$THEME_SLUG.zip
     when:
       event: tag
-      
-  fatthemes_build_new_image:
-    image: docker
-    commands:
-      #- build -t with docker + composer dependency
-    when:
-      event: tag
-
-  fatthemes_pre_wraith_2:
-    image: limestreet/fatthemes
-    detach: true
-    commands:
-      #- connect to db
-    when:
-      event: tag
-
-  fatthemes_wraith_2:
-    image: bbcnews/wraith
-    commands:
-      #- test "fatthemes_pre_wraith_2" with wraith
-      #- wp search-replace domain
-      #- put on shared directory
-    when:
-      event: tag
-    volumes:
-      - /srv/rancheragent3/wraith/fatthemes:/tmp/wraith
 
   github_release:
     image: plugins/github-release
-    api_key: 1234
-    files: dist/*.zip
+    secrets: [ github_token ]
+    files: dist/*
+    prerelease: true
     when:
       event: tag
+      #branch:
+      #  - exclude: [master]
 
-  fatthemes_push_new_image_to_registry:
-    image: docker
-    commands:
-      #- docker push to registry
-    when:
-      event: tag
+#  trigger_fatthemes_build:
+#    image: plugins/downstream
+#    server: https://drone.limestreet.pl
+#    token: [ fatthemes_token ]
+#    fork: true
+#    repositories:
+#      - fatthemes/fatthemes.com
+#    when:
+#      event: tag
+
+branches:
+  exclude: [master]
