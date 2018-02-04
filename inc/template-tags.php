@@ -795,7 +795,8 @@ add_filter( 'get_the_archive_title', 'blover_the_archive_title' );
 /**
  * Modify the_archive_title
  *
- * @return bool
+ * @param string $title title of archive pages.
+ * @return string $title
  */
 function blover_the_archive_title( $title ) {
 	if ( is_category() ) {
