@@ -19,7 +19,7 @@ get_header(); ?>
 		?>
 		<div class="row archive-blover-page-intro-row">
 		<div class="blover-page-intro col-xs-12" style="<?php echo 'background:' . esc_attr( $cat_bg_color ) . ' url(' . esc_url( $catimgsrc[0] ) . ') no-repeat center;color:' . esc_attr( $cat_text_color ) . ';'; ?>background-size:cover;">
-			<h1 style="color:<?php echo esc_attr( $cat_text_color ); ?>;"><?php echo esc_html( single_cat_title( '', false ) ); ?></h1>
+		    <h1 style="color:<?php echo esc_attr( $cat_text_color ); ?>;"><?php the_archive_title(); // echo  esc_html( single_cat_title( '', false ) ); ?></h1>
 			<div class="row">
 			<?php the_archive_description( '<div class="taxonomy-description col-md-8 col-md-offset-2">', '</div>' ); ?>
 			</div>

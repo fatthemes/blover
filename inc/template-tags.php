@@ -788,3 +788,18 @@ function blover_show_sticky() {
 	return true;
 }
 endif;
+
+
+add_filter( 'get_the_archive_title', 'blover_the_archive_title' );
+
+/**
+ * Modify the_archive_title
+ *
+ * @return bool
+ */
+function blover_the_archive_title( $title ) {
+	if ( is_category() ) {
+		$title = single_cat_title( '', false );
+	}
+	return $title;
+}
