@@ -25,16 +25,7 @@
 		<div class="blover-list-content col-xs-12 col-lg-6">
 			<header class="entry-header">
 			<div class="blog-category-list">
-				<?php
-				echo wp_kses(
-					get_the_category_list( __( '<span> &#124; </span>', 'blover' ) ), array(
-						'a' => array(
-							'href' => array(),
-						),
-						'span' => '',
-					)
-					);
-				?>
+				<?php the_category( __( '<span> &#124; </span>', 'blover' ) ); ?>
 			</div>
 	<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 			<!-- .title-meta-wrapper -->
@@ -64,15 +55,7 @@
 			<div class="title-meta-wrapper">
 				<?php echo blover_post_format_icon( get_the_ID() ); // WPCS: XSS OK. ?>
 				<div class="blog-category-list">
-				<?php
-				echo wp_kses(
-					get_the_category_list( __( ' &#124; ', 'blover' ) ), array(
-						'a' => array(
-							'href' => array(),
-						),
-					)
-					);
-				?>
+				<?php the_category( __( '<span> &#124; </span>', 'blover' ) ); ?>
 				</div>
 			<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 			</div>
