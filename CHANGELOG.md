@@ -1,5 +1,10 @@
 # Changes to Blover
 
+## [1.1.1] - 2018-02-13
+
+### Changed
+- Internal build process changed.
+
 ## [1.1.0] - 2018-02-13
 
 ### Fixed
