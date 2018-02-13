@@ -143,3 +143,38 @@
 	}
     }
 }
+
+.widget_contact_info {
+    .confit-address,
+    .confit-email {
+	font-weight: 700;
+	padding-bottom: 1em;
+    }
+}
+
+.blog-stats ul li {
+    text-align: center;
+    font-size: 200%;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.widget_jetpack_display_posts_widget {
+    .jetpack-display-remote-posts {
+	h4 {
+	    a {
+		text-decoration: none;
+		font-size: 1.125rem;
+		font-weight: 700;
+		line-height: 1.2;
+	    }
+	}
+	p {
+	    padding: 0;
+	    line-height: 1.4em !important;
+	    font-size: 90%;
+	    margin-bottom: 2em !important;
+	    margin-top: 1em !important;
+	}
+    }
+}
