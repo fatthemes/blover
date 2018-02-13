@@ -109,3 +109,37 @@
 	margin-top: $grid-gutter-width/2;
     }
 }
+
+.widget_wpcom_social_media_icons_widget {
+    ul {
+	text-align: center;
+	li {
+	    display: inline-block !important;
+	    margin: 0.25em !important;
+	}
+    }
+    .genericon {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background-color: #fff;
+	padding-top: 0.625rem;
+    }
+}
+
+.widget_authors {
+    > ul,
+    li > ul {
+	margin-top: $grid-gutter-width/2;
+    }  
+    > ul {
+	> li {
+	    > ul {
+		> li {
+		    border-bottom: 1px solid $color__border-input;
+		    padding-bottom: $grid-gutter-width/2;
+		}
+	    }
+	}
+    }
+}

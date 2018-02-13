@@ -4112,6 +4112,25 @@ object {
 .product .sharedaddy {
   margin-top: 1rem; }
 
+.widget_wpcom_social_media_icons_widget ul {
+  text-align: center; }
+  .widget_wpcom_social_media_icons_widget ul li {
+    display: inline-block !important;
+    margin: 0.25em !important; }
+.widget_wpcom_social_media_icons_widget .genericon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #fff;
+  padding-top: 0.625rem; }
+
+.widget_authors > ul,
+.widget_authors li > ul {
+  margin-top: 1rem; }
+.widget_authors > ul > li > ul > li {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem; }
+
 .liveblog-entry .liveblog-meta {
   display: flex;
   align-content: center;
