@@ -1,8 +1,10 @@
 # Changes to Blover
 
-## [1.0.2] - 2018-02-06
+## [1.1] - 2018-02-13
 
-### Fixed: PHP 7.2 compatibility.
+### Fixed
+- PHP 7.2 compatibility.
+- Broken Read More tag
 
 ## [1.0.1] - 2018-02-04
 
