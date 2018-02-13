@@ -2440,16 +2440,16 @@ h1 a, .site-title a, h2 a, h3 a, h4 a, h5 a, h6 a, .navigation a, .main-navigati
     width: 100%; }
   .widget.widget_search .search-form .search-field {
     width: calc(100% - 0.75rem); }
-  .widget.widget_categories label {
+  .widget.widget_categories label, .widget.widget_archive label, .widget.widget_recent_comments label, .widget.widget_meta label, .widget.widget_pages label {
     color: #111; }
-  .widget.widget_categories a {
+  .widget.widget_categories a, .widget.widget_archive a, .widget.widget_recent_comments a, .widget.widget_meta a, .widget.widget_pages a {
     color: #000000; }
-  .widget.widget_categories ul > li {
+  .widget.widget_categories ul > li, .widget.widget_archive ul > li, .widget.widget_recent_comments ul > li, .widget.widget_meta ul > li, .widget.widget_pages ul > li {
     margin-bottom: 0;
     padding: 1rem 0 0 0; }
-  .widget.widget_categories ul.children {
+  .widget.widget_categories ul.children, .widget.widget_archive ul.children, .widget.widget_recent_comments ul.children, .widget.widget_meta ul.children, .widget.widget_pages ul.children {
     padding-left: 1rem; }
-  .widget.widget_categories > ul > li {
+  .widget.widget_categories > ul > li, .widget.widget_archive > ul > li, .widget.widget_recent_comments > ul > li, .widget.widget_meta > ul > li, .widget.widget_pages > ul > li {
     border-bottom: 1px solid #ddd;
     padding-bottom: 1rem; }
 
