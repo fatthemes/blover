@@ -4154,6 +4154,9 @@ object {
   margin-bottom: 2em !important;
   margin-top: 1em !important; }
 
+.widgets-list-layout .widgets-list-layout-blavatar {
+  max-width: none !important; }
+
 .liveblog-entry .liveblog-meta {
   display: flex;
   align-content: center;
