@@ -27,7 +27,7 @@
 			<div class="blog-category-list">
 				<?php the_category( __( '<span> &#124; </span>', 'blover' ) ); ?>
 			</div>
-	<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+			<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 			<!-- .title-meta-wrapper -->
 			</header>
 			<!-- .entry-header -->
@@ -35,20 +35,16 @@
 				<div class="entry-content">
 				<?php blover_content(); ?>
 				</div>
-	<?php else : ?>
-				<div class="entry-content">
-				<a href="<?php the_permalink(); ?>"><button><?php esc_html__( 'Read more ', 'blover' ); ?><span class="screen-reader-text"><?php esc_url( the_title() ); ?></span></button></a>
-				</div>
 			<?php endif; ?>
 			<?php if ( 'post' === get_post_type() ) : ?>
 				<div class="entry-meta">
 				<?php blover_posted_on() . blover_entry_footer(); ?>
 				</div>
 				<!-- .entry-meta -->
-		<?php endif; ?>
+			<?php endif; ?>
 		</div>
 
-<?php else : ?>
+	<?php else : ?>
 
 		<div class="blover-list-content col-xs-12">
 			<header class="entry-header">
@@ -57,28 +53,24 @@
 				<div class="blog-category-list">
 				<?php the_category( __( '<span> &#124; </span>', 'blover' ) ); ?>
 				</div>
-			<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+				<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 			</div>
 			<!-- .title-meta-wrapper -->
 			</header>
 			<!-- .entry-header -->
 			<?php if ( get_theme_mod( 'home_page_display_content', 1 ) ) : ?>
 				<div class="entry-content">
-		<?php blover_content(); ?>
+				<?php blover_content(); ?>
 				</div>
-			<?php else : ?>
-				<div class="entry-content">
-				<a href="<?php the_permalink(); ?>"><button><?php esc_html__( 'Read more ', 'blover' ); ?><span class="screen-reader-text"><?php esc_url( the_title() ); ?></span></button></a>
-				</div>
-	<?php endif; ?>
+			<?php endif; ?>
 			<?php if ( 'post' === get_post_type() ) : ?>
 				<div class="entry-meta">
-			<?php blover_posted_on() . blover_entry_footer(); ?>
+				<?php blover_posted_on() . blover_entry_footer(); ?>
 				</div>
 				<!-- .entry-meta -->
-	<?php endif; ?>
+			<?php endif; ?>
 		</div>
-<?php endif; ?>
+	<?php endif; ?>
 	</article>
 	<!-- #post-## -->
 </div>

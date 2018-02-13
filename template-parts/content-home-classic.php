@@ -32,10 +32,6 @@
 		<div class="entry-content">
 			<?php blover_content(); ?>
 		</div>
-	<?php else : ?>
-		<div class="entry-content">
-			<a href="<?php the_permalink(); ?>"><button><?php esc_html__( 'Read more ', 'blover' ); ?><span class="screen-reader-text"><?php esc_url( the_title() ); ?></span></button></a>
-		</div>
 	<?php endif; ?>
 	<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">

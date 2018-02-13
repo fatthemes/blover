@@ -2440,16 +2440,16 @@ h1 a, .site-title a, h2 a, h3 a, h4 a, h5 a, h6 a, .navigation a, .main-navigati
     width: 100%; }
   .widget.widget_search .search-form .search-field {
     width: calc(100% - 0.75rem); }
-  .widget.widget_categories label {
+  .widget.widget_categories label, .widget.widget_archive label, .widget.widget_recent_comments label, .widget.widget_meta label, .widget.widget_pages label {
     color: #111; }
-  .widget.widget_categories a {
+  .widget.widget_categories a, .widget.widget_archive a, .widget.widget_recent_comments a, .widget.widget_meta a, .widget.widget_pages a {
     color: #000000; }
-  .widget.widget_categories ul > li {
+  .widget.widget_categories ul > li, .widget.widget_archive ul > li, .widget.widget_recent_comments ul > li, .widget.widget_meta ul > li, .widget.widget_pages ul > li {
     margin-bottom: 0;
     padding: 1rem 0 0 0; }
-  .widget.widget_categories ul.children {
+  .widget.widget_categories ul.children, .widget.widget_archive ul.children, .widget.widget_recent_comments ul.children, .widget.widget_meta ul.children, .widget.widget_pages ul.children {
     padding-left: 1rem; }
-  .widget.widget_categories > ul > li {
+  .widget.widget_categories > ul > li, .widget.widget_archive > ul > li, .widget.widget_recent_comments > ul > li, .widget.widget_meta > ul > li, .widget.widget_pages > ul > li {
     border-bottom: 1px solid #ddd;
     padding-bottom: 1rem; }
 
@@ -4111,6 +4111,51 @@ object {
 
 .product .sharedaddy {
   margin-top: 1rem; }
+
+.widget_wpcom_social_media_icons_widget ul {
+  text-align: center; }
+  .widget_wpcom_social_media_icons_widget ul li {
+    display: inline-block !important;
+    margin: 0.25em !important; }
+.widget_wpcom_social_media_icons_widget .genericon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #fff;
+  padding-top: 0.625rem; }
+
+.widget_authors > ul,
+.widget_authors li > ul {
+  margin-top: 1rem; }
+.widget_authors > ul > li > ul > li {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem; }
+
+.widget_contact_info .confit-address,
+.widget_contact_info .confit-email {
+  font-weight: 700;
+  padding-bottom: 1em; }
+
+.blog-stats ul li {
+  text-align: center;
+  font-size: 200%;
+  font-weight: bold;
+  line-height: 1.2; }
+
+.widget_jetpack_display_posts_widget .jetpack-display-remote-posts h4 a {
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.2; }
+.widget_jetpack_display_posts_widget .jetpack-display-remote-posts p {
+  padding: 0;
+  line-height: 1.4em !important;
+  font-size: 90%;
+  margin-bottom: 2em !important;
+  margin-top: 1em !important; }
+
+.widgets-list-layout .widgets-list-layout-blavatar {
+  max-width: none !important; }
 
 .liveblog-entry .liveblog-meta {
   display: flex;
