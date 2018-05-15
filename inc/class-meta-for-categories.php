@@ -2,8 +2,6 @@
 /**
  * Meta fields for category design improvements.
  * Version: 0.1
- * Author:
- * Author URI:
  * License: GPLv2
  *
  * @package blover
@@ -19,7 +17,7 @@ class Meta_For_Categories {
 		/**
 		 * Class constructor.
 		 */
-		function __construct() {
+		public function __construct() {
 
 				add_action( 'init', array( $this, 'register_meta' ) );
 				add_action( 'category_add_form_fields', array( $this, 'new_term_bg_color_field' ) );
@@ -40,7 +38,7 @@ class Meta_For_Categories {
 		/**
 		 * Registering meta keys.
 		 */
-		function register_meta() {
+		public function register_meta() {
 
 				register_meta( 'term', 'bg_color', array( $this, 'sanitize_hex' ) );
 				register_meta( 'term', 'text_color', array( $this, 'sanitize_hex' ) );
@@ -53,7 +51,7 @@ class Meta_For_Categories {
 		 * @param type $color hex color.
 		 * @return type
 		 */
-		function sanitize_hex( $color ) {
+		public function sanitize_hex( $color ) {
 
 				$color = ltrim( $color, '#' );
 
@@ -67,7 +65,7 @@ class Meta_For_Categories {
 		 * @param type $hash before hex color.
 		 * @return type
 		 */
-		function get_term_bg_color( $term_id, $hash = false ) {
+		public function get_term_bg_color( $term_id, $hash = false ) {
 
 				$color = get_term_meta( $term_id, 'bg_color', true );
 				$color = $this->sanitize_hex( $color );
@@ -82,7 +80,7 @@ class Meta_For_Categories {
 				 * @param type $hash before hex color.
 				 * @return type
 				 */
-		function get_term_text_color( $term_id, $hash = false ) {
+		public function get_term_text_color( $term_id, $hash = false ) {
 
 				$color = get_term_meta( $term_id, 'text_color', true );
 				$color = $this->sanitize_hex( $color );
@@ -96,7 +94,7 @@ class Meta_For_Categories {
 		 * @param type $term_id taxonomy term.
 		 * @return type
 		 */
-		function get_term_image( $term_id ) {
+		public function get_term_image( $term_id ) {
 
 				$imageid = get_term_meta( $term_id, 'image', true );
 
@@ -106,7 +104,7 @@ class Meta_For_Categories {
 		/**
 		 * New term screen background color field.
 		 */
-		function new_term_bg_color_field() {
+		public function new_term_bg_color_field() {
 
 				wp_nonce_field( basename( __FILE__ ), 'mfc_term_bg_color_nonce' ); ?>
 
@@ -114,33 +112,37 @@ class Meta_For_Categories {
 					<label for="mfc-term-bg-color"><?php esc_html_e( 'Background Color', 'blover' ); ?></label>
 					<input type="text" name="mfc_term_bg_color" id="mfc-term-bg-color" value="" class="mfc-bg-color-field" data-default-color="#fff" />
 				</div>
-		<?php }
+		<?php
+		}
 
 				/**
 				 * New term screen text color field.
 				 */
-		function new_term_text_color_field() {
+		public function new_term_text_color_field() {
 
-				wp_nonce_field( basename( __FILE__ ), 'mfc_term_text_color_nonce' ); ?>
+				wp_nonce_field( basename( __FILE__ ), 'mfc_term_text_color_nonce' );
+				?>
 
 				<div class="form-field mfc-term-text-color-wrap">
 					<label for="mfc-term-text-color"><?php esc_html_e( 'Text Color', 'blover' ); ?></label>
 					<input type="text" name="mfc_term_text_color" id="mfc-term-text-color" value="" class="mfc-text-color-field" data-default-color="#000" />
 				</div>
-		<?php }
+		<?php
+		}
 
 		/**
 		 * Edit term screen bg color field.
 		 *
 		 * @param type $term taxonomy term.
 		 */
-		function edit_term_bg_color_field( $term ) {
+		public function edit_term_bg_color_field( $term ) {
 
 				$default = '#ffffff';
 				$color   = $this->get_term_bg_color( $term->term_id, true );
 
 				if ( ! $color ) {
-				$color = $default; } ?>
+				$color = $default; }
+				?>
 
 				<tr class="form-field mfc-term-bg-color-wrap">
 					<th scope="row"><label for="mfc-term-bg-color"><?php esc_html_e( 'Background Color', 'blover' ); ?></label></th>
@@ -149,20 +151,22 @@ class Meta_For_Categories {
 						<input type="text" name="mfc_term_bg_color" id="mfc-term-bg-color" value="<?php echo esc_attr( $color ); ?>" class="mfc-bg-color-field" data-default-color="<?php echo esc_attr( $default ); ?>" />
 					</td>
 				</tr>
-		<?php }
+		<?php
+		}
 
 				/**
 				 * Edit term screen bg color field.
 				 *
 				 * @param type $term taxonomy term.
 				 */
-		function edit_term_text_color_field( $term ) {
+		public function edit_term_text_color_field( $term ) {
 
 				$default = '#000000';
 				$color   = $this->get_term_text_color( $term->term_id, true );
 
 				if ( ! $color ) {
-				$color = $default; } ?>
+				$color = $default; }
+				?>
 
 				<tr class="form-field mfc-term-text-color-wrap">
 					<th scope="row"><label for="mfc-term-text-color"><?php esc_html_e( 'Text Color', 'blover' ); ?></label></th>
@@ -171,16 +175,18 @@ class Meta_For_Categories {
 						<input type="text" name="mfc_term_text_color" id="mfc-term-text-color" value="<?php echo esc_attr( $color ); ?>" class="mfc-text-color-field" data-default-color="<?php echo esc_attr( $default ); ?>" />
 					</td>
 				</tr>
-		<?php }
+		<?php
+		}
 
 		/**
 		 * New term screen image field.
 		 *
 		 * @param type $term taxonomy term.
 		 */
-		function new_term_image_field( $term ) {
+		public function new_term_image_field( $term ) {
 
-				wp_nonce_field( basename( __FILE__ ), 'mfc_term_image_nonce' ); ?>
+				wp_nonce_field( basename( __FILE__ ), 'mfc_term_image_nonce' );
+				?>
 
 				<div class="form-field mfc-category-form-field">
 					<label for="mfc_category_image_imageholder"><?php esc_html_e( 'Image', 'blover' ); ?></label>
@@ -193,14 +199,15 @@ class Meta_For_Categories {
 					</div>
 				</div>
 
-		<?php }
+		<?php
+		}
 
 		/**
 		 * Edit term screen image field.
 		 *
 		 * @param type $term taxonomy term.
 		 */
-		function edit_term_image_field( $term ) {
+		public function edit_term_image_field( $term ) {
 
 				$default = '';
 				$imageid = $this->get_term_image( $term->term_id, true );
@@ -210,7 +217,8 @@ class Meta_For_Categories {
 				$image = $default; }
 
 				if ( ! $imageid ) {
-				$imageid = $default; } ?>
+				$imageid = $default; }
+				?>
 
 				<tr class="form-field mfc-category-form-field">
 
@@ -235,7 +243,8 @@ class Meta_For_Categories {
 				</td>
 			</tr>    
 
-		<?php }
+		<?php
+		}
 
 		/**
 		 * Saving meta data - bg color.
@@ -243,7 +252,7 @@ class Meta_For_Categories {
 		 * @param type $term_id taxonomy term ID.
 		 * @return type
 		 */
-		function save_term_bg_color( $term_id ) {
+		public function save_term_bg_color( $term_id ) {
 
 				if ( ! isset( $_POST['mfc_term_bg_color_nonce'] ) || ! wp_verify_nonce( $_POST['mfc_term_bg_color_nonce'], basename( __FILE__ ) ) ) {
 				return; }
@@ -262,7 +271,7 @@ class Meta_For_Categories {
 				 * @param type $term_id taxonomy term ID.
 				 * @return type
 				 */
-		function save_term_text_color( $term_id ) {
+		public function save_term_text_color( $term_id ) {
 
 				if ( ! isset( $_POST['mfc_term_text_color_nonce'] ) || ! wp_verify_nonce( $_POST['mfc_term_text_color_nonce'], basename( __FILE__ ) ) ) {
 				return; }
@@ -281,7 +290,7 @@ class Meta_For_Categories {
 		 * @param type $term_id taxonomy term ID.
 		 * @return type
 		 */
-		function save_term_image( $term_id ) {
+		public function save_term_image( $term_id ) {
 
 				if ( ! isset( $_POST['mfc_term_image_nonce'] ) || ! wp_verify_nonce( $_POST['mfc_term_image_nonce'], basename( __FILE__ ) ) ) {
 			 return; }
@@ -300,7 +309,7 @@ class Meta_For_Categories {
 		 * @param type $hook_suffix hook suffix.
 		 * @return type
 		 */
-		function admin_enqueue_scripts( $hook_suffix ) {
+		public function admin_enqueue_scripts( $hook_suffix ) {
 
 				if ( ( 'edit-tags.php' !== $hook_suffix || 'category' !== get_current_screen()->taxonomy ) && ( 'term.php' !== $hook_suffix || 'category' !== get_current_screen()->taxonomy ) ) {
 				return; }
@@ -316,11 +325,11 @@ class Meta_For_Categories {
 				);
 
 				$data = array(
-						// 'wp_version' => WP_VERSION,
-						'label'      => array(
-								'title'  => esc_html__( 'Choose Category Image', 'blover' ),
-								'button' => esc_html__( 'Choose Image', 'blover' ),
-						),
+					// 'wp_version' => WP_VERSION,
+					'label'      => array(
+						'title'  => esc_html__( 'Choose Category Image', 'blover' ),
+						'button' => esc_html__( 'Choose Image', 'blover' ),
+					),
 				);
 
 				wp_localize_script(
@@ -335,6 +344,6 @@ class Meta_For_Categories {
 				}
 }
 
-new Meta_For_Categories;
+new Meta_For_Categories();
 
 }// End if().

@@ -13,6 +13,6 @@ if ( ! is_active_sidebar( 'top-1' ) ) {
 ?>
 <div class="row">
 	<div id="top-widget" class="widget-area col-md-12" role="complementary">
-	    <?php dynamic_sidebar( 'top-1' ); ?>
+		<?php dynamic_sidebar( 'top-1' ); ?>
 	</div><!-- #top-widget -->
 </div>

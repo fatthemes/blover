@@ -12,6 +12,9 @@ get_header(); ?>
 				<?php woocommerce_content(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
-	<?php if ( ! is_product() && get_theme_mod( 'woocommerce_sidebar', 1 ) && is_active_sidebar( 'shop-sidebar-1' ) ) { get_sidebar( 'shop-sidebar' ); } ?>
+	<?php
+	if ( ! is_product() && get_theme_mod( 'woocommerce_sidebar', 1 ) && is_active_sidebar( 'shop-sidebar-1' ) ) {
+get_sidebar( 'shop-sidebar' ); }
+?>
 </div><!-- .row -->
 <?php get_footer(); ?>

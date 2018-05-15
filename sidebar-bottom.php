@@ -12,5 +12,5 @@ if ( ! is_active_sidebar( 'bottom-1' ) ) {
 }
 ?>
 	<div id="bottom-widget" class="widget-area container" role="complementary">
-	    <?php dynamic_sidebar( 'bottom-1' ); ?>
+		<?php dynamic_sidebar( 'bottom-1' ); ?>
 	</div><!-- #bottom-widget -->
