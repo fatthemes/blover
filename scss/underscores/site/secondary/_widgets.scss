@@ -37,7 +37,11 @@
             }
         }
     }
-    &.widget_categories {
+    &.widget_categories,
+    &.widget_archive,
+    &.widget_recent_comments,
+    &.widget_meta,
+    &.widget_pages {
         label {
             color: $color__text-input-focus;
         }

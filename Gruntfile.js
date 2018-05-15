@@ -101,15 +101,17 @@ module.exports = function (grunt) {
           default: {
             options: {
               url: 'http://THEME_SLUG.dev.limestreet.pl/',
-              key: 'A.eac3cfd59f876326152463fcacabf220',
+              key: 'WEBPAGETEST_API_KEY',
 	      timeout: '600',
 	      //repeatView: true,
 	      //location: 'ec2-eu-central-1',
+	      location: 'Dulles_MotoG',
+	      connectivity: '3G',
 	      budget: {
-		visualComplete: '5000',
-		render: '3000',
+		visualComplete: '7000',
+		render: '5000',
 		//requests: '100',
-		SpeedIndex: '3000'
+		SpeedIndex: '6000'
 	      }
             }
           }
@@ -118,7 +120,7 @@ module.exports = function (grunt) {
         pagespeed: {
           options: {
             //nokey: true,
-	    key: 'AIzaSyBnA8a5PGowgM6PqFVBUHyEKNrLtnEuJBA',
+	    key: 'PAGESPEED_API_KEY',
             url: 'http://THEME_SLUG.dev.limestreet.pl/'
           },
           desktop: {

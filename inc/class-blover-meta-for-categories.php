@@ -7,12 +7,12 @@
  * @package blover
  */
 
-if ( ! class_exists( 'Meta_For_Categories' ) ) {
+if ( ! class_exists( 'Blover_Meta_For_Categories' ) ) {
 
 /**
  * Class for managing extra metadata for categories.
  */
-class Meta_For_Categories {
+class Blover_Meta_For_Categories {
 
 		/**
 		 * Class constructor.
@@ -344,6 +344,6 @@ class Meta_For_Categories {
 				}
 }
 
-new Meta_For_Categories();
+new Blover_Meta_For_Categories();
 
 }// End if().

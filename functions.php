@@ -57,9 +57,6 @@ function blover_setup() {
 			 */
 			add_theme_support(
 				 'html5', array(
-					 'search-form',
-					 'comment-form',
-					 'comment-list',
 					 'gallery',
 					 'caption',
 				 )
@@ -260,7 +257,7 @@ function blover_scripts() {
 	wp_enqueue_script( 'slick', get_template_directory_uri() . '/slick/slick.min.js', array( 'jquery' ), '20150828', true );
 
 	if ( ! is_singular() && ! is_404() && have_posts() ) {
-	wp_enqueue_script( 'infinite-scroll', get_template_directory_uri() . '/js/jquery.infinitescroll.min.js', array( 'jquery', 'masonry' ), '2.1.0', true );
+	wp_enqueue_script( 'jquery-infinite-scroll', get_template_directory_uri() . '/js/jquery.infinitescroll.min.js', array( 'jquery', 'masonry' ), '2.1.0', true );
 	}
 
 	if ( get_theme_mod( 'sticky_sidebar', 1 ) && is_active_sidebar( 'sidebar-1' ) ) {
@@ -331,7 +328,7 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Some meta fields for category styling.
  */
-require get_template_directory() . '/inc/class-meta-for-categories.php';
+require get_template_directory() . '/inc/class-blover-meta-for-categories.php';
 
 /**
  * Load TGMPA recommended plugins.

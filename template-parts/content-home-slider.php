@@ -33,17 +33,8 @@ $the_slider->the_post();
 											<div class="row">
 											 <div class="blover-featured-slider-title col-sm-12 col-lg-6">
 														<span class="featured-category">
-														<?php
-														echo wp_kses(
-															 get_the_category_list( __( '<span> &#124; </span>', 'blover' ) ), array(
-																 'a' => array(
-																	 'href' => array(),
-																 ),
-																 'span' => '',
-															 )
-															);
-?>
-</span>
+														<?php the_category( __( '<span> &#124; </span>', 'blover' ) ); ?>
+														</span>
 														<h2 class="blover-featured-slider-header"><a href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark"><?php echo get_the_title(); ?></a></h2>
 											 </div>
 										 </div>
@@ -56,17 +47,8 @@ $the_slider->the_post();
 											<div class="row">
 											<div class="blover-featured-slider-title col-sm-12 col-lg-6">
 												<span class="featured-category">
-												<?php
-												echo wp_kses(
-													 get_the_category_list( __( '<span> &#124; </span>', 'blover' ) ), array(
-														 'a' => array(
-															 'href' => array(),
-														 ),
-														 'span' => '',
-													 )
-													);
-?>
-</span>
+												<?php the_category( __( '<span> &#124; </span>', 'blover' ) ); ?>
+												</span>
 												<h2 class="blover-featured-slider-header"><a href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark"><?php echo get_the_title(); ?></a></h2>
 											</div>
 											</div>

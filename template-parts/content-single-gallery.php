@@ -13,18 +13,12 @@
 
 	<div class="category-list">
 		<?php
-						if ( is_attachment() ) :
+		if ( is_attachment() ) {
 			echo esc_html__( 'Attachment page', 'blover' );
-						else :
-							echo wp_kses(
-								 get_the_category_list( __( ' &#124; ', 'blover' ) ), array(
-									 'a' => array(
-										 'href' => array(),
-									 ),
-								 )
-								);
-						endif;
-					?>
+		} else {
+			the_category( __( '<span> &#124; </span>', 'blover' ) );
+		}
+		?>
 	</div>
 
 	<header class="entry-header row">
