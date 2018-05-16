@@ -4,7 +4,7 @@
 
 ### Changed
 - Description improved.
-- Tested up to 4.9.6
+- Tested up to 4.9.5
 
 ## [1.1.1] - 2018-02-13
 
