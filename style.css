@@ -1770,7 +1770,7 @@ img, figure {
     						blockquote, q, img.alignleft, img.alignnone, figure.alignleft, figure.alignnone {
     				        margin-left: -21%;
     				    }
-
+    
     				    img.alignnone, figure.alignnone {
     				        min-width: 121%;
     				    }
