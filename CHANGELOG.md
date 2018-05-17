@@ -1,5 +1,11 @@
 # Changes to Blover
 
+## [1.1.2] - 2018-05-16
+
+### Changed
+- Description improved.
+- Tested up to 4.9.5
+
 ## [1.1.1] - 2018-02-13
 
 ### Changed
