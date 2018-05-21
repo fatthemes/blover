@@ -3233,6 +3233,9 @@ h1 a, .site-title a, h2 a, h3 a, h4 a, h5 a, h6 a, .navigation a, .main-navigati
 .comment-list {
   padding: 0; }
 
+.wpgdprc-checkbox label {
+  display: inline-block; }
+
 /*--------------------------------------------------------------
 # Infinite scroll
 --------------------------------------------------------------*/

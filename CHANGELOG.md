@@ -1,10 +1,11 @@
 # Changes to Blover
 
-## [1.1.2] - 2018-05-16
+## [1.1.2] - 2018-05-17
 
 ### Changed
 - Description improved.
-- Tested up to 4.9.5
+- Tested up to 4.9.6
+- Compatibility with WP GDPR Compliance plugin added
 
 ## [1.1.1] - 2018-02-13
 
