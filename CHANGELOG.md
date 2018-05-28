@@ -1,5 +1,10 @@
 # Changes to Blover
 
+## [1.1.3] - 2018-05-28
+
+### Changed
+- Compatibility with gdpr plugins improved
+
 ## [1.1.2] - 2018-05-17
 
 ### Changed
