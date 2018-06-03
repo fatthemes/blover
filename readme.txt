@@ -36,6 +36,10 @@ Nice and simple personal blog/magazine theme
   - https://pixabay.com/pl/modelu-twarz-pi%C4%99kne-czarno-bia%C5%82e-2303361/
   - https://pixabay.com/pl/sok-cytryna-pomara%C5%84czowy-apple-2902892/
   - https://pixabay.com/pl/charakter-beach-sea-breeze-1797412/
+* Amiri-Regular.ttf: Copyright (c) 2010-2016, Khaled Hosny <khaledhosny@eglug.org>. Portions copyright (c) 2010, Sebastian Kosch <sebastian@aldusleaf.org>. SIL Open Font License, 1.1
+* Amiri-Italic.ttf: Copyright (c) 2010-2016, Khaled Hosny <khaledhosny@eglug.org>. Portions copyright (c) 2010, Sebastian Kosch <sebastian@aldusleaf.org>. SIL Open Font License, 1.1
+* Amiri-Bold.ttf: Copyright (c) 2010-2016, Khaled Hosny <khaledhosny@eglug.org>. Portions copyright (c) 2010, Sebastian Kosch <sebastian@aldusleaf.org>. SIL Open Font License, 1.1
+* WorkSans-Regular.ttf: Copyright (c) 2014-2015 Wei Huang (wweeiihhuuaanngg@gmail.com) SIL Open Font License, 1.1
 
 == Changelog ==
 
