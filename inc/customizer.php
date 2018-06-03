@@ -576,7 +576,7 @@ function blover_customize_register( $wp_customize ) {
 			'type' => 'checkbox',
 		)
 	);
-	
+
 	$wp_customize->add_setting(
 		'load_google_fonts_from_google', array(
 			'default' => 1,
