@@ -1,5 +1,9 @@
 # Changes to Blover
 
+## [1.1.5] - 2018-07-10
+
+### Changed
+- Do not show social menu when empty
 
 ## [1.1.4] - 2018-06-03
 

@@ -51,16 +51,18 @@
 						<?php endif; ?>
 					</div>
 						<?php
-						wp_nav_menu(
-							array(
-								'theme_location' => 'social',
-								'menu_id' => 'social-menu',
-								'container_class' => 'social-menu-container',
-								'depth'           => 1,
-								'link_before'     => '<span class="screen-reader-text">',
-								'link_after'      => '</span>',
-							)
-						);
+						if ( has_nav_menu( 'social' ) ) {
+							wp_nav_menu(
+								array(
+									'theme_location' => 'social',
+									'menu_id' => 'social-menu',
+									'container_class' => 'social-menu-container',
+									'depth'           => 1,
+									'link_before'     => '<span class="screen-reader-text">',
+									'link_after'      => '</span>',
+								)
+							);
+						}
 						wp_nav_menu(
 							array(
 								'theme_location' => 'top',
