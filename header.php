@@ -51,7 +51,7 @@
 						<?php endif; ?>
 					</div>
 						<?php
-						if( has_nav_menu( 'social' ) ) {
+						if ( has_nav_menu( 'social' ) ) {
 							wp_nav_menu(
 								array(
 									'theme_location' => 'social',
