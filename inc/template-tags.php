@@ -19,12 +19,15 @@ if ( ! function_exists( 'blover_posted_on' ) ) :
 		if ( is_single() ) {
 
 			$time_string = sprintf(
-				$time_string, esc_attr( get_the_date( 'c' ) ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) )
+				$time_string,
+				esc_attr( get_the_date( 'c' ) ),
+				human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) )
 			);
 
 			$posted_on = sprintf(
 				// Translators: post date in "ago" format.
-				esc_html_x( '%s ago', 'post date', 'blover' ), '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+				esc_html_x( '%s ago', 'post date', 'blover' ),
+				'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 			);
 
 			$byline = '<span class="author vcard">' . get_avatar( get_the_author_meta( 'ID' ) ) . '<a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>';
@@ -36,10 +39,7 @@ if ( ! function_exists( 'blover_posted_on' ) ) :
 
 			$time_string = sprintf( $time_string, esc_attr( get_the_date( 'c' ) ), esc_attr( get_the_date() ) );
 
-			$posted_on = sprintf(
-				// Translators: date.
-				esc_html_x( '%s ', 'post date', 'blover' ), '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-			);
+			$posted_on = '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>';
 
 			echo '<span class="posted-on">' . $posted_on . '</span>'; // WPCS: XSS OK.
 		}
@@ -166,7 +166,8 @@ if ( ! function_exists( 'blover_comment' ) ) :
 					<?php
 					comment_reply_link(
 						array_merge(
-							$args, array(
+							$args,
+							array(
 								'depth' => $depth,
 								'max_depth' => $args['max_depth'],
 								'reply_text' => 'REPLY',
@@ -282,7 +283,8 @@ if ( ! function_exists( 'blover_comment' ) ) :
 				// display text in singular or plural, according to comments count.
 				$stats[] = '<span class="wpp-comments">' . sprintf(
 						// Translators: comment count.
-						_n( '%s comment', '%s comments', absint( $popular->comment_count ), 'blover' ), number_format_i18n( $popular->comment_count )
+						_n( '%s comment', '%s comments', absint( $popular->comment_count ), 'blover' ),
+					number_format_i18n( $popular->comment_count )
 					) . '</span>';
 			}
 
@@ -294,13 +296,15 @@ if ( ! function_exists( 'blover_comment' ) ) :
 					// display text in singular or plural, according to views count.
 					$stats[] = '<span class="wpp-views">' . sprintf(
 							// Translators: pageviews.
-							_n( '%s view per day', '%s views per day', absint( $popular->pageviews ), 'blover' ), number_format_i18n( $popular->pageviews, 2 )
+							_n( '%s view per day', '%s views per day', absint( $popular->pageviews ), 'blover' ),
+						number_format_i18n( $popular->pageviews, 2 )
 						) . '</span>';
 				} else { // Sorting posts by views
 					// display text in singular or plural, according to views count.
 					$stats[] = '<span class="wpp-views">' . sprintf(
 							// Translators: pageviews.
-							_n( '%s view', '%s views', absint( $popular->pageviews ), 'blover' ), number_format_i18n( $popular->pageviews )
+							_n( '%s view', '%s views', absint( $popular->pageviews ), 'blover' ),
+						number_format_i18n( $popular->pageviews )
 						) . '</span>';
 					}
 				}
@@ -626,7 +630,8 @@ if ( ! function_exists( 'blover_comment' ) ) :
 				$terms = wp_get_post_categories( get_the_ID() );
 				} else {
 				$terms = wp_get_post_tags(
-				get_the_ID(), array(
+				get_the_ID(),
+				array(
 					'fields' => 'ids',
 				)
 				);
@@ -735,7 +740,7 @@ if ( ! function_exists( 'blover_comment' ) ) :
 	 * @param string $fragments todo.
 	 */
 	function blover_woocommerce_header_add_to_cart_fragment( $fragments ) {
-	
+
 	ob_start();
 	?>
 	<a class="btn blover-cart" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_html_e( 'Cart', 'blover' ); ?>"><?php esc_html_e( 'Cart', 'blover' ); ?>(<span class="blover-cart-content-counts"><?php echo esc_html( $woocommerce->cart->get_cart_contents_count() ); ?></span>)</a>

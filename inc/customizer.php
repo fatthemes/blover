@@ -16,7 +16,8 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
 	$wp_customize->add_setting(
-		'sidebar_bg_color_1', array(
+		'sidebar_bg_color_1',
+		array(
 			'type' => 'theme_mod',
 			'default' => '#f8f8f8',
 			'sanitize_callback' => 'sanitize_hex_color',
@@ -25,16 +26,19 @@ function blover_customize_register( $wp_customize ) {
 
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
-		$wp_customize, 'sidebar_bg_color_1', array(
-			'label' => esc_html__( 'Sidebar Background Color 1', 'blover' ),
-			'section' => 'colors',
-			'priority' => 110,
-		)
+		$wp_customize,
+			'sidebar_bg_color_1',
+			array(
+				'label' => esc_html__( 'Sidebar Background Color 1', 'blover' ),
+				'section' => 'colors',
+				'priority' => 110,
+			)
 		)
 	);
 
 	$wp_customize->add_setting(
-		'sidebar_bg_color_2', array(
+		'sidebar_bg_color_2',
+		array(
 			'type' => 'theme_mod',
 			'default' => '#f8f8f8',
 			'sanitize_callback' => 'sanitize_hex_color',
@@ -43,16 +47,19 @@ function blover_customize_register( $wp_customize ) {
 
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
-		$wp_customize, 'sidebar_bg_color_2', array(
-			'label' => esc_html__( 'Sidebar Background Color 2', 'blover' ),
-			'section' => 'colors',
-			'priority' => 120,
-		)
+		$wp_customize,
+			'sidebar_bg_color_2',
+			array(
+				'label' => esc_html__( 'Sidebar Background Color 2', 'blover' ),
+				'section' => 'colors',
+				'priority' => 120,
+			)
 		)
 	);
 
 	$wp_customize->add_setting(
-		'sidebar_bg_color_3', array(
+		'sidebar_bg_color_3',
+		array(
 			'type' => 'theme_mod',
 			'default' => '#f8f8f8',
 			'sanitize_callback' => 'sanitize_hex_color',
@@ -61,16 +68,19 @@ function blover_customize_register( $wp_customize ) {
 
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
-		$wp_customize, 'sidebar_bg_color_3', array(
-			'label' => esc_html__( 'Sidebar Background Color 3', 'blover' ),
-			'section' => 'colors',
-			'priority' => 130,
-		)
+		$wp_customize,
+			'sidebar_bg_color_3',
+			array(
+				'label' => esc_html__( 'Sidebar Background Color 3', 'blover' ),
+				'section' => 'colors',
+				'priority' => 130,
+			)
 		)
 	);
 
 	$wp_customize->add_setting(
-		'footer_bg_color', array(
+		'footer_bg_color',
+		array(
 			'type' => 'theme_mod',
 			'default' => '#f8f8f8',
 			'sanitize_callback' => 'sanitize_hex_color',
@@ -79,23 +89,27 @@ function blover_customize_register( $wp_customize ) {
 
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
-		$wp_customize, 'footer_bg_color', array(
-			'label' => esc_html__( 'Footer Widget Area Background Color', 'blover' ),
-			'section' => 'colors',
-			'priority' => 130,
-		)
+		$wp_customize,
+			'footer_bg_color',
+			array(
+				'label' => esc_html__( 'Footer Widget Area Background Color', 'blover' ),
+				'section' => 'colors',
+				'priority' => 130,
+			)
 		)
 	);
 
 	$wp_customize->add_setting(
-		'home_page_layout', array(
+		'home_page_layout',
+		array(
 			'default' => 'classic',
 			'sanitize_callback' => 'blover_sanitize_select_home_page_layout',
 		)
 	);
 
 	$wp_customize->add_control(
-		'home_page_layout', array(
+		'home_page_layout',
+		array(
 			'label' => esc_html__( 'Blog Home Page Layout', 'blover' ),
 			'section' => 'static_front_page',
 			'type' => 'select',
@@ -109,14 +123,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'home_page_slider_height', array(
+		'home_page_slider_height',
+		array(
 			'default' => 740,
 			'sanitize_callback' => 'absint',
 		)
 	);
 
 	$wp_customize->add_control(
-		'home_page_slider_height', array(
+		'home_page_slider_height',
+		array(
 			'label' => esc_html__( 'Height of Home Page Slider', 'blover' ),
 			'section' => 'static_front_page',
 			'description' => esc_html__( '(in pixels)', 'blover' ),
@@ -130,14 +146,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'home_page_slider_img_size', array(
+		'home_page_slider_img_size',
+		array(
 			'default' => 'full',
 			'sanitize_callback' => 'blover_sanitize_select_img_size',
 		)
 	);
 
 	$wp_customize->add_control(
-		'home_page_slider_img_size', array(
+		'home_page_slider_img_size',
+		array(
 			'label' => esc_html__( 'Slider Image Size', 'blover' ),
 			'section' => 'static_front_page',
 			'description' => esc_html__( 'From >Settings>Media', 'blover' ),
@@ -152,14 +170,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'home_page_slider_play_speed', array(
+		'home_page_slider_play_speed',
+		array(
 			'default' => 4000,
 			'sanitize_callback' => 'absint',
 		)
 	);
 
 	$wp_customize->add_control(
-		'home_page_slider_play_speed', array(
+		'home_page_slider_play_speed',
+		array(
 			'label' => esc_html__( 'Sliding speed of Home Page Slider (in ms)', 'blover' ),
 			'section' => 'static_front_page',
 			'description' => esc_html__( '0 to disable autoplay', 'blover' ),
@@ -173,14 +193,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'home_page_latest_posts_text', array(
+		'home_page_latest_posts_text',
+		array(
 			'default' => 1,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'home_page_latest_posts_text', array(
+		'home_page_latest_posts_text',
+		array(
 			'label' => esc_html__( 'Enable Latest Posts Text', 'blover' ),
 			'section' => 'static_front_page',
 			'type' => 'checkbox',
@@ -188,14 +210,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'home_page_display_content', array(
+		'home_page_display_content',
+		array(
 			'default' => 1,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'home_page_display_content', array(
+		'home_page_display_content',
+		array(
 			'label' => esc_html__( 'Display Content on Home and Archive Pages.', 'blover' ),
 			'section' => 'static_front_page',
 			'type' => 'checkbox',
@@ -203,14 +227,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'home_page_show_featured_images', array(
+		'home_page_show_featured_images',
+		array(
 			'default' => 1,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'home_page_show_featured_images', array(
+		'home_page_show_featured_images',
+		array(
 			'label' => esc_html__( 'Show Featured Images on Homepage', 'blover' ),
 			'section' => 'static_front_page',
 			'type' => 'checkbox',
@@ -218,14 +244,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'hide_title_on_home_archive', array(
+		'hide_title_on_home_archive',
+		array(
 			'default' => 0,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'hide_title_on_home_archive', array(
+		'hide_title_on_home_archive',
+		array(
 			'label' => esc_html__( 'Hide Titles On Home Page/Archive Pages', 'blover' ),
 			'section' => 'static_front_page',
 			'type' => 'checkbox',
@@ -233,14 +261,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'hide_meta_on_home_archive', array(
+		'hide_meta_on_home_archive',
+		array(
 			'default' => 0,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'hide_meta_on_home_archive', array(
+		'hide_meta_on_home_archive',
+		array(
 			'label' => esc_html__( 'Hide Meta On Home Page/Archive Pages', 'blover' ),
 			'section' => 'static_front_page',
 			'type' => 'checkbox',
@@ -248,14 +278,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'pagination', array(
+		'pagination',
+		array(
 			'default' => 'ajax',
 			'sanitize_callback' => 'blover_sanitize_pagination',
 		)
 	);
 
 	$wp_customize->add_control(
-		'pagination', array(
+		'pagination',
+		array(
 			'label' => esc_html__( 'Pagination Style', 'blover' ),
 			'section' => 'static_front_page',
 			'type' => 'select',
@@ -268,14 +300,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'wpp_img_size', array(
+		'wpp_img_size',
+		array(
 			'default' => 'medium',
 			'sanitize_callback' => 'blover_sanitize_select_img_size',
 		)
 	);
 
 	$wp_customize->add_control(
-		'wpp_img_size', array(
+		'wpp_img_size',
+		array(
 			'label' => esc_html__( 'Popular Posts Image Size', 'blover' ),
 			'section' => 'static_front_page',
 			'description' => esc_html__( 'From >Settings>Media', 'blover' ),
@@ -290,14 +324,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'home_page_show_sticky', array(
+		'home_page_show_sticky',
+		array(
 			'default' => 0,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'home_page_show_sticky', array(
+		'home_page_show_sticky',
+		array(
 			'label' => esc_html__( 'Show Sticky Posts Below Slider', 'blover' ),
 			'section' => 'static_front_page',
 			'type' => 'checkbox',
@@ -306,7 +342,8 @@ function blover_customize_register( $wp_customize ) {
 
 	// Section Single Page.
 	$wp_customize->add_section(
-		'single_page', array(
+		'single_page',
+		array(
 			'title' => esc_html__( 'Single Post', 'blover' ),
 			'priority' => 1010,
 			'description' => esc_html__( 'Single Post Settings', 'blover' ),
@@ -314,14 +351,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'single_post_sidebar', array(
+		'single_post_sidebar',
+		array(
 			'default' => 1,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'single_post_sidebar', array(
+		'single_post_sidebar',
+		array(
 			'label' => esc_html__( 'Show Sidebar', 'blover' ),
 			'section' => 'single_page',
 			'type' => 'checkbox',
@@ -329,14 +368,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'single_post_show_featured_image', array(
+		'single_post_show_featured_image',
+		array(
 			'default' => 1,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'single_post_show_featured_image', array(
+		'single_post_show_featured_image',
+		array(
 			'label' => esc_html__( 'Show Featured Images In Standard Posts', 'blover' ),
 			'section' => 'single_page',
 			'type' => 'checkbox',
@@ -344,14 +385,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'single_page_related_posts_show', array(
+		'single_page_related_posts_show',
+		array(
 			'default' => 1,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'single_page_related_posts_show', array(
+		'single_page_related_posts_show',
+		array(
 			'label' => esc_html__( 'Show Related Posts.', 'blover' ),
 			'section' => 'single_page',
 			'type' => 'checkbox',
@@ -359,14 +402,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'single_page_related_posts_title', array(
+		'single_page_related_posts_title',
+		array(
 			'default' => esc_html__( 'You May Also Like', 'blover' ),
 			'sanitize_callback' => 'esc_html',
 		)
 	);
 
 	$wp_customize->add_control(
-		'single_page_related_posts_title', array(
+		'single_page_related_posts_title',
+		array(
 			'label' => esc_html__( 'Related Posts Header Text', 'blover' ),
 			'section' => 'single_page',
 			'type' => 'text',
@@ -374,14 +419,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'single_post_navigation', array(
+		'single_post_navigation',
+		array(
 			'default' => 1,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'single_post_navigation', array(
+		'single_post_navigation',
+		array(
 			'label' => esc_html__( 'Enable Single Post Navigation', 'blover' ),
 			'section' => 'single_page',
 			'type' => 'checkbox',
@@ -389,14 +436,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'single_page_related_posts_by_tag_or_cat', array(
+		'single_page_related_posts_by_tag_or_cat',
+		array(
 			'default' => 1,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'single_page_related_posts_by_tag_or_cat', array(
+		'single_page_related_posts_by_tag_or_cat',
+		array(
 			'label' => esc_html__( 'Show Related Posts By Categories (Else by Tags).', 'blover' ),
 			'section' => 'single_page',
 			'type' => 'checkbox',
@@ -404,14 +453,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'single_post_navigation_next_label', array(
+		'single_post_navigation_next_label',
+		array(
 			'default' => esc_html__( 'Next Article', 'blover' ),
 			'sanitize_callback' => 'esc_html',
 		)
 	);
 
 	$wp_customize->add_control(
-		'single_post_navigation_next_label', array(
+		'single_post_navigation_next_label',
+		array(
 			'label' => esc_html__( 'Single Post Navigation Next Post Label', 'blover' ),
 			'section' => 'single_page',
 			'type' => 'text',
@@ -419,14 +470,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'single_post_navigation_previous_label', array(
+		'single_post_navigation_previous_label',
+		array(
 			'default' => esc_html__( 'Previous Article', 'blover' ),
 			'sanitize_callback' => 'esc_html',
 		)
 	);
 
 	$wp_customize->add_control(
-		'single_post_navigation_previous_label', array(
+		'single_post_navigation_previous_label',
+		array(
 			'label' => esc_html__( 'Single Post Navigation Previous Post Label', 'blover' ),
 			'section' => 'single_page',
 			'type' => 'text',
@@ -434,14 +487,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'single_post_navigation_only_category', array(
+		'single_post_navigation_only_category',
+		array(
 			'default' => 0,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'single_post_navigation_only_category', array(
+		'single_post_navigation_only_category',
+		array(
 			'label' => esc_html__( 'Navigate Only In The Same Category', 'blover' ),
 			'section' => 'single_page',
 			'type' => 'checkbox',
@@ -450,14 +505,16 @@ function blover_customize_register( $wp_customize ) {
 
 	// Section Custom Header.
 	$wp_customize->add_setting(
-		'show_full_width_image_in_header', array(
+		'show_full_width_image_in_header',
+		array(
 			'default' => 0,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'show_full_width_image_in_header', array(
+		'show_full_width_image_in_header',
+		array(
 			'label' => esc_html__( 'Show Full Width Image', 'blover' ),
 			'section' => 'header_image',
 			'type' => 'checkbox',
@@ -465,14 +522,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'enable_padding_for_image_in_header', array(
+		'enable_padding_for_image_in_header',
+		array(
 			'default' => 1,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'enable_padding_for_image_in_header', array(
+		'enable_padding_for_image_in_header',
+		array(
 			'label' => esc_html__( 'Enable Padding for Header Image', 'blover' ),
 			'section' => 'header_image',
 			'type' => 'checkbox',
@@ -481,7 +540,8 @@ function blover_customize_register( $wp_customize ) {
 
 	// Section - "WooCommerce settings".
 	$wp_customize->add_section(
-		'woocommerce_settings', array(
+		'woocommerce_settings',
+		array(
 			'title' => esc_html__( 'WooCommerce', 'blover' ),
 			'priority' => 1040,
 			'description' => esc_html__( 'WooCommerce Settings', 'blover' ),
@@ -489,14 +549,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'woocommerce_sidebar', array(
+		'woocommerce_sidebar',
+		array(
 			'default' => 1,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'woocommerce_sidebar', array(
+		'woocommerce_sidebar',
+		array(
 			'label' => esc_html__( 'Enable Sidebar on Shop Page', 'blover' ),
 			'section' => 'woocommerce_settings',
 			'type' => 'checkbox',
@@ -504,14 +566,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'woocommerce_show_page_title', array(
+		'woocommerce_show_page_title',
+		array(
 			'default' => 0,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'woocommerce_show_page_title', array(
+		'woocommerce_show_page_title',
+		array(
 			'label' => esc_html__( 'Enable Page Title on Shop Page', 'blover' ),
 			'section' => 'woocommerce_settings',
 			'type' => 'checkbox',
@@ -520,7 +584,8 @@ function blover_customize_register( $wp_customize ) {
 
 	// Section - "other settings".
 	$wp_customize->add_section(
-		'other_settings', array(
+		'other_settings',
+		array(
 			'title' => esc_html__( 'Advanced', 'blover' ),
 			'priority' => 1050,
 			'description' => esc_html__( 'Advanced Settings', 'blover' ),
@@ -528,14 +593,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'show_top_menu_width', array(
+		'show_top_menu_width',
+		array(
 			'default' => 978,
 			'sanitize_callback' => 'absint',
 		)
 	);
 
 	$wp_customize->add_control(
-		'show_top_menu_width', array(
+		'show_top_menu_width',
+		array(
 			'label' => esc_html__( 'When to Hide/Show Top Menu (in px)', 'blover' ),
 			'section' => 'other_settings',
 			'type' => 'number',
@@ -548,14 +615,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'sticky_sidebar', array(
+		'sticky_sidebar',
+		array(
 			'default' => 1,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'sticky_sidebar', array(
+		'sticky_sidebar',
+		array(
 			'label' => esc_html__( 'Enable Sticky Sidebar', 'blover' ),
 			'section' => 'other_settings',
 			'type' => 'checkbox',
@@ -563,14 +632,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'wpp_styling', array(
+		'wpp_styling',
+		array(
 			'default' => 0,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'wpp_styling', array(
+		'wpp_styling',
+		array(
 			'label' => esc_html__( 'Enable WordPress Popular Posts Original Output (needs page refresh)', 'blover' ),
 			'section' => 'other_settings',
 			'type' => 'checkbox',
@@ -578,14 +649,16 @@ function blover_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
-		'load_google_fonts_from_google', array(
+		'load_google_fonts_from_google',
+		array(
 			'default' => 1,
 			'sanitize_callback' => 'wp_validate_boolean',
 		)
 	);
 
 	$wp_customize->add_control(
-		'load_google_fonts_from_google', array(
+		'load_google_fonts_from_google',
+		array(
 			'label' => esc_html__( 'Load fonts from Google servers', 'loose' ),
 			'section' => 'other_settings',
 			'type' => 'checkbox',
