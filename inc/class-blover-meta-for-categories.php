@@ -40,22 +40,9 @@ class Blover_Meta_For_Categories {
 		 */
 		public function register_meta() {
 
-				register_meta( 'term', 'bg_color', array( $this, 'sanitize_hex' ) );
-				register_meta( 'term', 'text_color', array( $this, 'sanitize_hex' ) );
+				register_meta( 'term', 'bg_color', 'sanitize_hex_color_no_hash' );
+				register_meta( 'term', 'text_color', 'sanitize_hex_color_no_hash' );
 				register_meta( 'term', 'image', 'absint' );
-			}
-
-		/**
-		 * Sanitize function.
-		 *
-		 * @param type $color hex color.
-		 * @return type
-		 */
-		public function sanitize_hex( $color ) {
-
-				$color = ltrim( $color, '#' );
-
-				return preg_match( '/([A-Fa-f0-9]{3}){1,2}$/', $color ) ? $color : '';
 			}
 
 		/**
@@ -68,7 +55,7 @@ class Blover_Meta_For_Categories {
 		public function get_term_bg_color( $term_id, $hash = false ) {
 
 				$color = get_term_meta( $term_id, 'bg_color', true );
-				$color = $this->sanitize_hex( $color );
+				$color = sanitize_hex_color_no_hash( $color );
 
 				return $hash && $color ? "#{$color}" : $color;
 			}
@@ -83,7 +70,7 @@ class Blover_Meta_For_Categories {
 		public function get_term_text_color( $term_id, $hash = false ) {
 
 				$color = get_term_meta( $term_id, 'text_color', true );
-				$color = $this->sanitize_hex( $color );
+				$color = sanitize_hex_color_no_hash( $color );
 
 				return $hash && $color ? "#{$color}" : $color;
 			}
@@ -254,11 +241,11 @@ class Blover_Meta_For_Categories {
 		 */
 		public function save_term_bg_color( $term_id ) {
 
-				if ( ! isset( $_POST['mfc_term_bg_color_nonce'] ) || ! wp_verify_nonce( $_POST['mfc_term_bg_color_nonce'], basename( __FILE__ ) ) ) {
+				if ( ! isset( $_POST['mfc_term_bg_color_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['mfc_term_bg_color_nonce'] ), basename( __FILE__ ) ) ) {
 				return; }
 
 				$old_color = $this->get_term_bg_color( $term_id );
-				$new_color = isset( $_POST['mfc_term_bg_color'] ) ? $this->sanitize_hex( $_POST['mfc_term_bg_color'] ) : '';
+				$new_color = isset( $_POST['mfc_term_bg_color'] ) ? sanitize_hex_color_no_hash( wp_unslash( $_POST['mfc_term_bg_color'] ) ) : '';
 
 				if ( $old_color && '' === $new_color ) {
 				delete_term_meta( $term_id, 'bg_color' ); } else if ( $old_color !== $new_color ) {
@@ -273,11 +260,11 @@ class Blover_Meta_For_Categories {
 				 */
 		public function save_term_text_color( $term_id ) {
 
-				if ( ! isset( $_POST['mfc_term_text_color_nonce'] ) || ! wp_verify_nonce( $_POST['mfc_term_text_color_nonce'], basename( __FILE__ ) ) ) {
+				if ( ! isset( $_POST['mfc_term_text_color_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['mfc_term_text_color_nonce'] ), basename( __FILE__ ) ) ) {
 				return; }
 
 				$old_color = $this->get_term_text_color( $term_id );
-				$new_color = isset( $_POST['mfc_term_text_color'] ) ? $this->sanitize_hex( $_POST['mfc_term_text_color'] ) : '';
+				$new_color = isset( $_POST['mfc_term_text_color'] ) ? sanitize_hex_color_no_hash( wp_unslash( $_POST['mfc_term_text_color'] ) ) : '';
 
 				if ( $old_color && '' === $new_color ) {
 				delete_term_meta( $term_id, 'text_color' ); } else if ( $old_color !== $new_color ) {
@@ -292,7 +279,7 @@ class Blover_Meta_For_Categories {
 		 */
 		public function save_term_image( $term_id ) {
 
-				if ( ! isset( $_POST['mfc_term_image_nonce'] ) || ! wp_verify_nonce( $_POST['mfc_term_image_nonce'], basename( __FILE__ ) ) ) {
+				if ( ! isset( $_POST['mfc_term_image_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['mfc_term_image_nonce'] ), basename( __FILE__ ) ) ) {
 			 return; }
 
 				$old_image = $this->get_term_image( $term_id );

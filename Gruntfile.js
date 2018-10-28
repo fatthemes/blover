@@ -108,10 +108,10 @@ module.exports = function (grunt) {
 	      location: 'Dulles_MotoG',
 	      connectivity: '3G',
 	      budget: {
-		visualComplete: '7000',
-		render: '5000',
+		visualComplete: '10000',
+		render: '10000',
 		//requests: '100',
-		SpeedIndex: '6000'
+		SpeedIndex: '10000'
 	      }
             }
           }

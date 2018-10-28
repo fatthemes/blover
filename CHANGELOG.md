@@ -1,5 +1,11 @@
 # Changes to Blover
 
+## [1.1.6] - 2018-10-28
+
+### Changed
+- tested up to 4.9.8 (WP version)
+- author urls
+
 ## [1.1.5] - 2018-07-10
 
 ### Changed

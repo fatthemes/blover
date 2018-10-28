@@ -14,13 +14,14 @@ if ( ! function_exists( 'blover_jetpack_setup' ) ) :
  */
 function blover_jetpack_setup() {
 		add_theme_support(
-			 'infinite-scroll', array(
-				 'container' => 'main',
-				 'type' => 'scroll',
-				 'wrapper'        => false,
-				 'render'    => 'blover_infinite_scroll_render',
-				 'footer'    => false,
-			 )
+			 'infinite-scroll',
+			array(
+				'container' => 'main',
+				'type' => 'scroll',
+				'wrapper'        => false,
+				'render'    => 'blover_infinite_scroll_render',
+				'footer'    => false,
+			)
 			);
 } // end function blover_jetpack_setup
 add_action( 'after_setup_theme', 'blover_jetpack_setup' );
