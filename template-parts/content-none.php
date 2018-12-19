@@ -17,7 +17,7 @@
 			<p>
 			<?php
 			printf(
-				 wp_kses(
+				wp_kses(
 				// Translators: url to "new post" screen in admin panel.
 				 __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'blover' ),
 					 array(

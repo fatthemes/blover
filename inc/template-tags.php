@@ -243,8 +243,6 @@ if ( ! function_exists( 'blover_comment' ) ) :
 	function blover_get_excerpt_by_id( $post_id, $excerpt_length = 15 ) {
 		$the_post = get_post( $post_id ); // Gets post ID.
 		$the_excerpt = $the_post->post_content; // Gets post_content to be used as a basis for the excerpt.
-		// $excerpt_length = absint( get_theme_mod( 'wpp_excerpt_length' , 15 ) ); // Excerpt length.
-		// $excerpt_length = 15;
 		$the_excerpt = strip_tags( strip_shortcodes( $the_excerpt ) ); // Strips tags and images.
 		$words = explode( ' ', $the_excerpt, $excerpt_length + 1 );
 
@@ -384,18 +382,24 @@ if ( ! function_exists( 'blover_comment' ) ) :
 
 		if ( 'audio' === $format ) {
 			return blover_media_content();
-			} elseif ( 'video' === $format ) {
+		} elseif ( 'video' === $format ) {
 			return blover_media_content();
-			} elseif ( 'gallery' === $format ) {
+		} elseif ( 'gallery' === $format ) {
 			return blover_gallery_content();
-			} else {
-			// Translators: page/post title.
-			$content = get_the_content( sprintf( '<span>' . esc_html__( 'Read more %s', 'blover' ) . '</span>', the_title( '<span class="screen-reader-text">"', '"</span>', false ) ) );
-			$content = apply_filters( 'the_content', $content );
-			$content = str_replace( ']]>', ']]&gt;', $content );
-			echo $content; // WPCS: XSS OK.
+		} else {
+			switch ( get_theme_mod( 'show_content_or_excerpt', 'content' ) ) {
+				case 'content':
+					// Translators: page/post title.
+					the_content( sprintf( '<span>' . esc_html__( 'Read more %s', 'blover' ) . '</span>', the_title( '<span class="screen-reader-text">"', '"</span>', false ) ) );
+					break;
+				case 'excerpt':
+					the_excerpt();
+					break;
+				default:
+					echo '';
 			}
 		}
+	}
 
 	endif;
 
@@ -480,8 +484,8 @@ if ( ! function_exists( 'blover_comment' ) ) :
 	endif;
 
 	/*
-     * CSS output from customizer settings
-     */
+	 * CSS output from customizer settings
+	 */
 	if ( ! function_exists( 'blover_customize_css' ) ) :
 
 	/**

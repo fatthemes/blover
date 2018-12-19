@@ -99,6 +99,16 @@ function blover_customize_register( $wp_customize ) {
 		)
 	);
 
+	// Section Blog Home Page.
+	$wp_customize->add_section(
+		'home_page',
+		array(
+			'title' => esc_html__( 'Home Page', 'loose' ),
+			'priority' => 1000,
+			'description' => esc_html__( 'Blog Home Page Settings', 'loose' ),
+		)
+	);
+
 	$wp_customize->add_setting(
 		'home_page_layout',
 		array(
@@ -111,7 +121,7 @@ function blover_customize_register( $wp_customize ) {
 		'home_page_layout',
 		array(
 			'label' => esc_html__( 'Blog Home Page Layout', 'blover' ),
-			'section' => 'static_front_page',
+			'section' => 'home_page',
 			'type' => 'select',
 			'choices' => array(
 				'masonry' => esc_html__( 'Masonry + Sidebar', 'blover' ),
@@ -134,7 +144,7 @@ function blover_customize_register( $wp_customize ) {
 		'home_page_slider_height',
 		array(
 			'label' => esc_html__( 'Height of Home Page Slider', 'blover' ),
-			'section' => 'static_front_page',
+			'section' => 'home_page',
 			'description' => esc_html__( '(in pixels)', 'blover' ),
 			'type' => 'number',
 			'input_attrs' => array(
@@ -157,7 +167,7 @@ function blover_customize_register( $wp_customize ) {
 		'home_page_slider_img_size',
 		array(
 			'label' => esc_html__( 'Slider Image Size', 'blover' ),
-			'section' => 'static_front_page',
+			'section' => 'home_page',
 			'description' => esc_html__( 'From >Settings>Media', 'blover' ),
 			'type' => 'select',
 			'choices' => array(
@@ -181,7 +191,7 @@ function blover_customize_register( $wp_customize ) {
 		'home_page_slider_play_speed',
 		array(
 			'label' => esc_html__( 'Sliding speed of Home Page Slider (in ms)', 'blover' ),
-			'section' => 'static_front_page',
+			'section' => 'home_page',
 			'description' => esc_html__( '0 to disable autoplay', 'blover' ),
 			'type' => 'number',
 			'input_attrs' => array(
@@ -204,7 +214,7 @@ function blover_customize_register( $wp_customize ) {
 		'home_page_latest_posts_text',
 		array(
 			'label' => esc_html__( 'Enable Latest Posts Text', 'blover' ),
-			'section' => 'static_front_page',
+			'section' => 'home_page',
 			'type' => 'checkbox',
 		)
 	);
@@ -221,7 +231,7 @@ function blover_customize_register( $wp_customize ) {
 		'home_page_display_content',
 		array(
 			'label' => esc_html__( 'Display Content on Home and Archive Pages.', 'blover' ),
-			'section' => 'static_front_page',
+			'section' => 'home_page',
 			'type' => 'checkbox',
 		)
 	);
@@ -238,7 +248,7 @@ function blover_customize_register( $wp_customize ) {
 		'home_page_show_featured_images',
 		array(
 			'label' => esc_html__( 'Show Featured Images on Homepage', 'blover' ),
-			'section' => 'static_front_page',
+			'section' => 'home_page',
 			'type' => 'checkbox',
 		)
 	);
@@ -255,7 +265,7 @@ function blover_customize_register( $wp_customize ) {
 		'hide_title_on_home_archive',
 		array(
 			'label' => esc_html__( 'Hide Titles On Home Page/Archive Pages', 'blover' ),
-			'section' => 'static_front_page',
+			'section' => 'home_page',
 			'type' => 'checkbox',
 		)
 	);
@@ -272,7 +282,7 @@ function blover_customize_register( $wp_customize ) {
 		'hide_meta_on_home_archive',
 		array(
 			'label' => esc_html__( 'Hide Meta On Home Page/Archive Pages', 'blover' ),
-			'section' => 'static_front_page',
+			'section' => 'home_page',
 			'type' => 'checkbox',
 		)
 	);
@@ -289,7 +299,7 @@ function blover_customize_register( $wp_customize ) {
 		'pagination',
 		array(
 			'label' => esc_html__( 'Pagination Style', 'blover' ),
-			'section' => 'static_front_page',
+			'section' => 'home_page',
 			'type' => 'select',
 			'choices' => array(
 				'ajax' => esc_html__( 'Load More Button', 'blover' ),
@@ -311,7 +321,7 @@ function blover_customize_register( $wp_customize ) {
 		'wpp_img_size',
 		array(
 			'label' => esc_html__( 'Popular Posts Image Size', 'blover' ),
-			'section' => 'static_front_page',
+			'section' => 'home_page',
 			'description' => esc_html__( 'From >Settings>Media', 'blover' ),
 			'type' => 'select',
 			'choices' => array(
@@ -335,8 +345,53 @@ function blover_customize_register( $wp_customize ) {
 		'home_page_show_sticky',
 		array(
 			'label' => esc_html__( 'Show Sticky Posts Below Slider', 'blover' ),
-			'section' => 'static_front_page',
+			'section' => 'home_page',
 			'type' => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'show_content_or_excerpt',
+		array(
+			'default' => 'title',
+			'sanitize_callback' => 'blover_sanitize_select_show_content_or_excerpt',
+		)
+	);
+
+	$wp_customize->add_control(
+		'show_content_or_excerpt',
+		array(
+			'label' => esc_html__( 'What To Show On Home and Archive Pages:', 'blover' ),
+			'section' => 'home_page',
+			'type' => 'select',
+			'choices' => array(
+				'excerpt' => esc_html__( 'Excerpt', 'blover' ),
+				'content' => esc_html__( 'Content', 'blover' ),
+				'title' => esc_html__( 'Just Title', 'blover' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'excerpt_length',
+		array(
+			'default' => 55,
+			'sanitize_callback' => 'absint',
+		)
+	);
+
+	$wp_customize->add_control(
+		'excerpt_length',
+		array(
+			'label' => esc_html__( 'Excerpt Length', 'blover' ),
+			'section' => 'home_page',
+			'description' => esc_html__( '(in words)', 'blover' ),
+			'type' => 'number',
+			'input_attrs' => array(
+				'min' => 0,
+				'max' => 100,
+				'step' => 1,
+			),
 		)
 	);
 
@@ -659,7 +714,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'load_google_fonts_from_google',
 		array(
-			'label' => esc_html__( 'Load fonts from Google servers', 'loose' ),
+			'label' => esc_html__( 'Load fonts from Google servers', 'blover' ),
 			'section' => 'other_settings',
 			'type' => 'checkbox',
 		)
@@ -712,4 +767,18 @@ function blover_sanitize_select_img_size( $value ) {
 		return $value;
 	}
 	return 'full';
+}
+
+/**
+ * Sanitize select.
+ *
+ * @param type $value user input.
+ * @return type
+ */
+function blover_sanitize_select_show_content_or_excerpt( $value ) {
+	if ( in_array( $value, array( 'content', 'excerpt', 'title' ), true ) ) {
+		return $value;
+	} else {
+		return 'content';
+	}
 }

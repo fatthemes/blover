@@ -35,7 +35,7 @@ $the_slider->the_post();
 														<span class="featured-category">
 														<?php the_category( __( '<span> &#124; </span>', 'blover' ) ); ?>
 														</span>
-														<h2 class="blover-featured-slider-header"><a href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark"><?php echo get_the_title(); ?></a></h2>
+														<h2 class="blover-featured-slider-header"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 											 </div>
 										 </div>
 										<?php echo blover_post_format_icon( $the_slider->ID ); // WPCS: XSS OK. ?>
@@ -49,7 +49,7 @@ $the_slider->the_post();
 												<span class="featured-category">
 												<?php the_category( __( '<span> &#124; </span>', 'blover' ) ); ?>
 												</span>
-												<h2 class="blover-featured-slider-header"><a href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark"><?php echo get_the_title(); ?></a></h2>
+												<h2 class="blover-featured-slider-header"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 											</div>
 											</div>
 											</div>
