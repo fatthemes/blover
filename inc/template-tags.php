@@ -391,7 +391,7 @@ if ( ! function_exists( 'blover_comment' ) ) :
 		} else {
 			// Translators: page/post title.
 			the_content( sprintf( '<span>' . esc_html__( 'Read more %s', 'blover' ) . '</span>', the_title( '<span class="screen-reader-text">"', '"</span>', false ) ) );
-		}		
+		}
 	}
 
 	endif;
