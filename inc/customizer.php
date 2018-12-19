@@ -230,7 +230,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'home_page_display_content',
 		array(
-			'label' => esc_html__( 'Display Content on Home and Archive Pages.', 'blover' ),
+			'label' => esc_html__( 'Display Content (or Excerpt) on Home and Archive Pages.', 'blover' ),
 			'section' => 'home_page',
 			'type' => 'checkbox',
 		)
@@ -353,7 +353,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'show_content_or_excerpt',
 		array(
-			'default' => 'title',
+			'default' => 'content',
 			'sanitize_callback' => 'blover_sanitize_select_show_content_or_excerpt',
 		)
 	);
@@ -367,7 +367,6 @@ function blover_customize_register( $wp_customize ) {
 			'choices' => array(
 				'excerpt' => esc_html__( 'Excerpt', 'blover' ),
 				'content' => esc_html__( 'Content', 'blover' ),
-				'title' => esc_html__( 'Just Title', 'blover' ),
 			),
 		)
 	);
@@ -776,7 +775,7 @@ function blover_sanitize_select_img_size( $value ) {
  * @return type
  */
 function blover_sanitize_select_show_content_or_excerpt( $value ) {
-	if ( in_array( $value, array( 'content', 'excerpt', 'title' ), true ) ) {
+	if ( in_array( $value, array( 'content', 'excerpt' ), true ) ) {
 		return $value;
 	} else {
 		return 'content';

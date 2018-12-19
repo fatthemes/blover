@@ -386,19 +386,12 @@ if ( ! function_exists( 'blover_comment' ) ) :
 			return blover_media_content();
 		} elseif ( 'gallery' === $format ) {
 			return blover_gallery_content();
+		} elseif ( 'excerpt' === get_theme_mod( 'show_content_or_excerpt', 'content' ) ) {
+			the_excerpt();
 		} else {
-			switch ( get_theme_mod( 'show_content_or_excerpt', 'content' ) ) {
-				case 'content':
-					// Translators: page/post title.
-					the_content( sprintf( '<span>' . esc_html__( 'Read more %s', 'blover' ) . '</span>', the_title( '<span class="screen-reader-text">"', '"</span>', false ) ) );
-					break;
-				case 'excerpt':
-					the_excerpt();
-					break;
-				default:
-					echo '';
-			}
-		}
+			// Translators: page/post title.
+			the_content( sprintf( '<span>' . esc_html__( 'Read more %s', 'blover' ) . '</span>', the_title( '<span class="screen-reader-text">"', '"</span>', false ) ) );
+		}		
 	}
 
 	endif;
