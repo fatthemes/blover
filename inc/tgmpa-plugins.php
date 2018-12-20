@@ -74,13 +74,6 @@ function blover_register_required_plugins() {
 			'slug'      => 'amp',
 			'required'  => false,
 		),
-
-		// WordPress Popular Posts from WordPress Plugin Repository.
-		array(
-			'name'      => esc_html__( 'Liveblog', 'blover' ),
-			'slug'      => 'liveblog',
-			'required'  => false,
-		),
 	);
 
 	/**

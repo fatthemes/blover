@@ -63,7 +63,7 @@
 		if ( has_custom_logo() ) {
 			the_custom_logo();
 		}
-		$blover_dafault_footer_text = '<p>&copy; ' . date_i18n( __( 'Y', 'blover' ) ) . ' ' . get_bloginfo( 'name' ) . '</p><p><a href="https://wordpress.org/">' .
+		$blover_dafault_footer_text = '<p>&copy; ' . date_i18n( 'Y' ) . ' ' . get_bloginfo( 'name' ) . '</p><p><a href="https://wordpress.org/">' .
 			// translators: WordPress.
 			sprintf( esc_html__( 'Proudly powered by %s', 'blover' ), 'WordPress' ) . '</a><span class="sep"> | </span>' .
 			// translators: theme name and theme author.
