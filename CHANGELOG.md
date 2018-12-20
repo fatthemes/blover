@@ -1,5 +1,15 @@
 # Changes to Blover
 
+## [1.2] - 2018-12-20
+
+### Added
+- option to display excerpts on blog and archive pages
+- Block Editor (Gutenberg) comaptibility tested
+- Liveblog plugin support tested
+
+### Fixed
+- AMP display issue
+
 ## [1.1.6] - 2018-10-28
 
 ### Changed
