@@ -20,6 +20,11 @@ function blover_amp_additional_css_styles( $amp_template ) {
 	a, a:visited {
 		color: #000;
 	}
+	.amp-wp-article,
+	.amp-wp-header div,
+	.amp-wp-footer div {
+		max-width: 720px;
+	}
 	.amp-wp-header {
 		background-color: #fff;
 		border-bottom: 1px solid #ddd;
@@ -33,6 +38,19 @@ function blover_amp_additional_css_styles( $amp_template ) {
 	}
 	.amp-wp-title {
 		font-family: 'Amiri', 'Merriweather', 'Times New Roman', Times, Serif;
+	}
+	.amp-wp-article-header {
+		margin-bottom: 1.5em;
+	}
+	.amp-wp-article-header .amp-wp-meta {
+		margin: 0;
+	}
+	.amp-wp-article-header .amp-wp-byline {
+		display: inline-block;
+	}
+	.amp-wp-article-header .amp-wp-meta.amp-wp-posted-on {
+		
+		text-align: right;
 	}
 	.amp-wp-meta, .amp-wp-header div, .wp-caption-text, .amp-wp-tax-category, .amp-wp-tax-tag, .amp-wp-comments-link, .amp-wp-footer p, .back-to-top {
 		font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
