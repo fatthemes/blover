@@ -822,3 +822,16 @@ if ( ! function_exists( 'blover_comment' ) ) :
 	return $title;
 	}
 
+	if ( ! function_exists( 'blover_excerpt_length' ) ) :
+
+	add_filter( 'excerpt_length', 'blover_excerpt_length', 100 );
+	/**
+	 * Custom excerpt length
+	 *
+	 * @return int
+	 */
+	function blover_excerpt_length() {
+		return get_theme_mod( 'excerpt_length', 55 );
+		}
+	endif;
+	

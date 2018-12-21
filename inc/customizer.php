@@ -103,9 +103,9 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_section(
 		'home_page',
 		array(
-			'title' => esc_html__( 'Home Page', 'loose' ),
+			'title' => esc_html__( 'Home Page', 'blover' ),
 			'priority' => 1000,
-			'description' => esc_html__( 'Blog Home Page Settings', 'loose' ),
+			'description' => esc_html__( 'Blog Home Page Settings', 'blover' ),
 		)
 	);
 
