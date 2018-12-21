@@ -834,4 +834,4 @@ if ( ! function_exists( 'blover_comment' ) ) :
 		return get_theme_mod( 'excerpt_length', 55 );
 		}
 	endif;
-	
+
