@@ -1,5 +1,11 @@
 # Changes to Blover
 
+## [1.2.1] - 2018-12-21
+
+### Fixed
+- excerpt length option not working
+
+
 ## [1.2] - 2018-12-20
 
 ### Added
