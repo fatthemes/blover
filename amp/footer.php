@@ -1,6 +1,6 @@
 <?php
 /**
- * Blover Theme Customizer.
+ * Blover AMP footer.
  *
  * @package blover
  */
