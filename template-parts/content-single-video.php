@@ -13,12 +13,12 @@
 
 						<div class="category-list">
 						<?php
-							if ( is_attachment() ) :
+						if ( is_attachment() ) :
 							echo esc_html__( 'Attachment page', 'blover' );
 							else :
 								the_category( __( '<span> &#124; </span>', 'blover' ) );
 							endif;
-						?>
+							?>
 						</div>
 
 	<header class="entry-header row">
@@ -33,17 +33,17 @@
 		<div class="featured-media row">
 				<div class="single-featured-image col-xs-12">
 				<?php
-					$featured_video = hybrid_media_grabber(
-						 array(
-							 'type' => 'video',
-						 )
-						);
-					if ( ! empty( $featured_video ) ) {
-					echo $featured_video; // WPCS: XSS OK.
-				} elseif ( has_post_thumbnail() && get_theme_mod( 'single_post_show_featured_image', 1 ) ) {
+					$blover_featured_video = hybrid_media_grabber(
+						array(
+							'type' => 'video',
+						)
+					);
+					if ( ! empty( $blover_featured_video ) ) {
+						echo $blover_featured_video; // WPCS: XSS OK.
+					} elseif ( has_post_thumbnail() && get_theme_mod( 'single_post_show_featured_image', 1 ) ) {
 						the_post_thumbnail();
 					}
-				?>
+					?>
 				</div>
 		</div>
 
@@ -53,12 +53,12 @@
 		<?php blover_media_content(); ?>
 		<?php
 			wp_link_pages(
-				 array(
-					 'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'blover' ),
-					 'after'  => '</div>',
-				 )
-				);
-		?>
+				array(
+					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'blover' ),
+					'after'  => '</div>',
+				)
+			);
+			?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer col-xs-12">

@@ -14,17 +14,17 @@
 
 get_header(); ?>
 
-		 <?php get_sidebar( 'top' ); ?>
+			<?php get_sidebar( 'top' ); ?>
 	<div class="row">
 
 	<div id="primary" class="content-area
 	<?php
 	$blover_home_page_layout = get_theme_mod( 'home_page_layout', 'classic' );
 			echo ( empty( $blover_home_page_layout ) ) ? ' col-md-12' : ' col-lg-8';
-			if ( ! empty( $blover_home_page_layout ) && ! is_active_sidebar( 'sidebar-1' ) ) :
-echo ' col-lg-push-2';
+	if ( ! empty( $blover_home_page_layout ) && ! is_active_sidebar( 'sidebar-1' ) ) :
+		echo ' col-lg-push-2';
 			endif;
-			?>
+	?>
 			">
 			<?php if ( get_theme_mod( 'home_page_latest_posts_text', 1 ) ) : ?>
 			<div class="blover-page-intro">
@@ -51,7 +51,7 @@ echo ' col-lg-push-2';
 
 				endif;
 			endwhile;
-		?>
+			?>
 
 		<?php else : ?>
 
@@ -62,17 +62,17 @@ echo ' col-lg-push-2';
 		</main><!-- #main -->
 
 		<?php
-			if ( '' === get_theme_mod( 'pagination', 'infinite' ) ) {
+		if ( '' === get_theme_mod( 'pagination', 'infinite' ) ) {
 			the_posts_pagination();
-			} else {
+		} else {
 			the_posts_navigation();
-			}
+		}
 		?>
 	</div><!-- #primary -->
 
 <?php
 if ( ! empty( $blover_home_page_layout ) ) {
-get_sidebar();}
+	get_sidebar();}
 ?>
 	</div><!-- .row -->
 <?php

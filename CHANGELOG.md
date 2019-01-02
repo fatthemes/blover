@@ -1,5 +1,10 @@
 # Changes to Blover
 
+## [1.2.2] - 2019-01-02
+
+### Fixed
+- ajax cart count update issue
+
 ## [1.2.1] - 2018-12-21
 
 ### Fixed
