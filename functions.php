@@ -103,7 +103,7 @@ add_action( 'after_setup_theme', 'blover_setup' );
  * @global int $content_width
  */
 function blover_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'blover_content_width', 738 );
+	$GLOBALS['content_width'] = apply_filters( 'blover_content_width', 738 ); // WPCS: prefix ok.
 }
 
 add_action( 'after_setup_theme', 'blover_content_width', 0 );

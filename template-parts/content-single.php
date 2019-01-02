@@ -14,12 +14,12 @@
 
 						<div class="category-list">
 						<?php
-							if ( is_attachment() ) :
+						if ( is_attachment() ) :
 							echo esc_html__( 'Attachment page', 'blover' );
 							else :
 								the_category( __( '<span> &#124; </span>', 'blover' ) );
 							endif;
-						?>
+							?>
 						</div>
 
 	<header class="entry-header row">
@@ -43,12 +43,12 @@
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages(
-				 array(
-					 'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'blover' ),
-					 'after'  => '</div>',
-				 )
-				);
-		?>
+				array(
+					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'blover' ),
+					'after'  => '</div>',
+				)
+			);
+			?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer col-xs-12">

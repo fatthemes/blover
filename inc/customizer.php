@@ -26,7 +26,7 @@ function blover_customize_register( $wp_customize ) {
 
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
-		$wp_customize,
+			$wp_customize,
 			'sidebar_bg_color_1',
 			array(
 				'label' => esc_html__( 'Sidebar Background Color 1', 'blover' ),
@@ -47,7 +47,7 @@ function blover_customize_register( $wp_customize ) {
 
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
-		$wp_customize,
+			$wp_customize,
 			'sidebar_bg_color_2',
 			array(
 				'label' => esc_html__( 'Sidebar Background Color 2', 'blover' ),
@@ -68,7 +68,7 @@ function blover_customize_register( $wp_customize ) {
 
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
-		$wp_customize,
+			$wp_customize,
 			'sidebar_bg_color_3',
 			array(
 				'label' => esc_html__( 'Sidebar Background Color 3', 'blover' ),
@@ -89,7 +89,7 @@ function blover_customize_register( $wp_customize ) {
 
 	$wp_customize->add_control(
 		new WP_Customize_Color_Control(
-		$wp_customize,
+			$wp_customize,
 			'footer_bg_color',
 			array(
 				'label' => esc_html__( 'Footer Widget Area Background Color', 'blover' ),

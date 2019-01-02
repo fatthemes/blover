@@ -33,17 +33,17 @@
 	<div class="featured-media row">
 		<div class="single-featured-image col-xs-12">
 				<?php
-					$featured_gallery = hybrid_media_grabber(
-						 array(
-							 'type' => 'gallery',
-						 )
-						);
-					if ( ! empty( $featured_gallery ) ) {
-					echo $featured_gallery; // WPCS: XSS OK.
-				} elseif ( has_post_thumbnail() && get_theme_mod( 'single_post_show_featured_image', 1 ) ) {
+					$blover_featured_gallery = hybrid_media_grabber(
+						array(
+							'type' => 'gallery',
+						)
+					);
+					if ( ! empty( $blover_featured_gallery ) ) {
+						echo $blover_featured_gallery; // WPCS: XSS OK.
+					} elseif ( has_post_thumbnail() && get_theme_mod( 'single_post_show_featured_image', 1 ) ) {
 						the_post_thumbnail();
 					}
-				?>
+					?>
 		</div>
 	</div>
 
@@ -52,12 +52,12 @@
 			<?php blover_gallery_content(); ?>
 			<?php
 				wp_link_pages(
-					 array(
-						 'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'blover' ),
-						 'after'  => '</div>',
-					 )
-					);
-			?>
+					array(
+						'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'blover' ),
+						'after'  => '</div>',
+					)
+				);
+				?>
 		</div><!-- .entry-content -->
 
 		<footer class="entry-footer col-xs-12">

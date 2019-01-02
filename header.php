@@ -29,7 +29,7 @@
 
 					<button id="left-navbar-toggle" class="menu-toggle" aria-controls="left-sidebar" aria-expanded="false"><span class="screen-reader-text"><?php esc_html_e( 'Menu', 'blover' ); ?></span><svg><path d="M3 6h18v2.016h-18v-2.016zM3 12.984v-1.969h18v1.969h-18zM3 18v-2.016h18v2.016h-18z"></path></svg></button>
 					<?php
-						if ( function_exists( 'wc_get_cart_url' ) ) :
+					if ( function_exists( 'wc_get_cart_url' ) ) :
 						?>
 						<a class="btn blover-cart" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_html_e( 'Cart', 'blover' ); ?>"><?php esc_html_e( 'Cart', 'blover' ); ?>(<span class="blover-cart-content-counts"><?php echo esc_html( wc()->cart->get_cart_contents_count() ); ?></span>)</a>
 						<?php
@@ -46,7 +46,7 @@
 						if ( has_custom_logo() ) :
 							the_custom_logo();
 						else :
-						?>
+							?>
 						<p class="menu-blogname"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" ><?php bloginfo( 'name' ); ?></a></p>
 						<?php endif; ?>
 					</div>
@@ -77,16 +77,16 @@
 					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 						<?php if ( get_header_image() ) : ?>
 							<img src="<?php header_image(); ?>" alt="<?php bloginfo( 'name' ); ?>" >
-						<?php
+							<?php
 						else :
-bloginfo( 'name' );
+							bloginfo( 'name' );
 						endif;
 						?>
 						</a></h1>
 
 			<?php
 			if ( ! get_header_image() ) :
-?>
+				?>
 <p class="site-description"><?php bloginfo( 'description' ); ?></p><?php endif; ?>
 
 		</div><!-- .site-branding -->
