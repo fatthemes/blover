@@ -740,7 +740,7 @@ if ( ! function_exists( 'blover_comment' ) ) :
 
 	ob_start();
 	?>
-	<a class="btn blover-cart" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_html_e( 'Cart', 'blover' ); ?>"><?php esc_html_e( 'Cart', 'blover' ); ?>(<span class="blover-cart-content-counts"><?php echo esc_html( $woocommerce->cart->get_cart_contents_count() ); ?></span>)</a>
+	<a class="btn blover-cart" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_html_e( 'Cart', 'blover' ); ?>"><?php esc_html_e( 'Cart', 'blover' ); ?>(<span class="blover-cart-content-counts"><?php echo esc_html( wc()->cart->get_cart_contents_count() ); ?></span>)</a>
 	<?php
 	$fragments['a.blover-cart'] = ob_get_clean();
 
