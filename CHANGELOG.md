@@ -1,5 +1,10 @@
 # Changes to Blover
 
+## [1.2.3] - 2019-01-16
+
+### Changed
+- Screenshot changed to fit updated image policy on wp.org
+
 ## [1.2.2] - 2019-01-02
 
 ### Fixed
