@@ -35,7 +35,7 @@ function blover_customize_register( $wp_customize ) {
 			)
 		)
 	);
-	
+
 	$wp_customize->add_setting(
 		'sidebar_bg_color_1',
 		array(
