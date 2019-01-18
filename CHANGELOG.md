@@ -20,7 +20,7 @@
 
 ### Added
 - option to display excerpts on blog and archive pages
-- Block Editor (Gutenberg) comaptibility tested
+- Block Editor (Gutenberg) compatibility tested
 - Liveblog plugin support tested
 
 ### Fixed

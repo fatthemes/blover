@@ -494,11 +494,12 @@ if ( ! function_exists( 'blover_customize_css' ) ) :
 			$custom_css .= '.site-title, .site-description {display:none;}
 		.site-branding {padding:0;}';
 		}
-		$custom_css .= '.blover-featured-slider, .blover-featured-slider .featured-image, .blover-featured-slider .no-featured-image {height:' . ( absint( get_theme_mod( 'home_page_slider_height', 500 ) ) * 0.6 ) . 'px;}
-		#secondary .widget:nth-of-type(3n+1), #secondary .widget:nth-of-type(3n+1) .widget-title span {background-color:' . esc_attr( get_theme_mod( 'sidebar_bg_color_1', '#f8f8f8' ) ) . ';}
-		#secondary .widget:nth-of-type(3n+2), #secondary .widget:nth-of-type(3n+2) .widget-title span {background-color:' . esc_attr( get_theme_mod( 'sidebar_bg_color_2', '#f8f8f8' ) ) . ';}
-		#secondary .widget:nth-of-type(3n+3), #secondary .widget:nth-of-type(3n+3) .widget-title span {background-color:' . esc_attr( get_theme_mod( 'sidebar_bg_color_3', '#f8f8f8' ) ) . ';}
-		#footer-widget, #footer-widget .widget-title span {background-color:' . esc_attr( get_theme_mod( 'footer_bg_color', '#f8f8f8' ) ) . '}';
+		$custom_css .= '.blover-featured-slider, .blover-featured-slider .featured-image, .blover-featured-slider .no-featured-image {height:' . ( absint( get_theme_mod( 'home_page_slider_height', 500 ) ) * 0.6 ) . 'px;}';
+		$custom_css .= '#secondary .widget:nth-of-type(3n+1), #secondary .widget:nth-of-type(3n+1) .widget-title span {background-color:' . esc_attr( get_theme_mod( 'sidebar_bg_color_1', '#f8f8f8' ) ) . ';}';
+		$custom_css .= '#secondary .widget:nth-of-type(3n+2), #secondary .widget:nth-of-type(3n+2) .widget-title span {background-color:' . esc_attr( get_theme_mod( 'sidebar_bg_color_2', '#f8f8f8' ) ) . ';}';
+		$custom_css .= '#secondary .widget:nth-of-type(3n+3), #secondary .widget:nth-of-type(3n+3) .widget-title span {background-color:' . esc_attr( get_theme_mod( 'sidebar_bg_color_3', '#f8f8f8' ) ) . ';}';
+		$custom_css .= '#footer-widget, #footer-widget .widget-title span {background-color:' . esc_attr( get_theme_mod( 'footer_bg_color', '#f8f8f8' ) ) . ';}';
+		$custom_css .= 'a:hover, a:focus, a:active {color:' . esc_attr( get_theme_mod( 'footer_bg_color', '#a0946b' ) ) . ';}';
 		if ( $hide_title_on_home_archive ) {
 			$custom_css .= '.blog .content-area .entry-title, .archive .content-area .entry-title, .search .content-area .entry-title {display:none;}';
 		}
