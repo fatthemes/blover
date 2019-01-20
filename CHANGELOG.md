@@ -1,5 +1,11 @@
 # Changes to Blover
 
+
+## [1.3.1] - 2019-01-20
+
+### Fixed
+- small link color option issue
+
 ## [1.3] - 2019-01-18
 
 ### Added
