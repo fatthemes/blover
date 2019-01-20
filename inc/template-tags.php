@@ -499,7 +499,7 @@ if ( ! function_exists( 'blover_customize_css' ) ) :
 		$custom_css .= '#secondary .widget:nth-of-type(3n+2), #secondary .widget:nth-of-type(3n+2) .widget-title span {background-color:' . esc_attr( get_theme_mod( 'sidebar_bg_color_2', '#f8f8f8' ) ) . ';}';
 		$custom_css .= '#secondary .widget:nth-of-type(3n+3), #secondary .widget:nth-of-type(3n+3) .widget-title span {background-color:' . esc_attr( get_theme_mod( 'sidebar_bg_color_3', '#f8f8f8' ) ) . ';}';
 		$custom_css .= '#footer-widget, #footer-widget .widget-title span {background-color:' . esc_attr( get_theme_mod( 'footer_bg_color', '#f8f8f8' ) ) . ';}';
-		$custom_css .= 'a:hover, a:focus, a:active {color:' . esc_attr( get_theme_mod( 'footer_bg_color', '#a0946b' ) ) . ';}';
+		$custom_css .= 'a:hover, a:focus, a:active {color:' . esc_attr( get_theme_mod( 'link_hover_color', '#a0946b' ) ) . ';}';
 		if ( $hide_title_on_home_archive ) {
 			$custom_css .= '.blog .content-area .entry-title, .archive .content-area .entry-title, .search .content-area .entry-title {display:none;}';
 		}
