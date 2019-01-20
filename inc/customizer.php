@@ -16,6 +16,27 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
 	$wp_customize->add_setting(
+		'link_hover_color',
+		array(
+			'type' => 'theme_mod',
+			'default' => '#a0946b',
+			'sanitize_callback' => 'sanitize_hex_color',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'link_hover_color',
+			array(
+				'label' => esc_html__( 'Link hover color', 'blover' ),
+				'section' => 'colors',
+				'priority' => 105,
+			)
+		)
+	);
+
+	$wp_customize->add_setting(
 		'sidebar_bg_color_1',
 		array(
 			'type' => 'theme_mod',

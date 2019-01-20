@@ -1,5 +1,13 @@
 # Changes to Blover
 
+## [1.3] - 2019-01-18
+
+### Added
+- link color option added
+
+### Fixed
+- date function in footer
+
 ## [1.2.3] - 2019-01-16
 
 ### Changed
@@ -15,12 +23,11 @@
 ### Fixed
 - excerpt length option not working
 
-
 ## [1.2] - 2018-12-20
 
 ### Added
 - option to display excerpts on blog and archive pages
-- Block Editor (Gutenberg) comaptibility tested
+- Block Editor (Gutenberg) compatibility tested
 - Liveblog plugin support tested
 
 ### Fixed
