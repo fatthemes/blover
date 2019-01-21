@@ -1,10 +1,13 @@
 # Changes to Blover
 
 
-## [1.3.1] - 2019-01-20
+## [1.3.1] - 2019-01-21
 
 ### Fixed
 - small link color option issue
+
+### Added
+- colored menu active item
 
 ## [1.3] - 2019-01-18
 
