@@ -1,5 +1,9 @@
 # Changes to Blover
 
+## [1.3.2] - 2019-01-23
+
+### Fixed
+- link color option regressions
 
 ## [1.3.1] - 2019-01-21
 
