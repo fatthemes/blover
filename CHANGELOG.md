@@ -1,5 +1,10 @@
 # Changes to Blover
 
+## [1.3.3] - 2019-01-28
+
+### Fixed
+- comments box overflowing article in some cases
+
 ## [1.3.2] - 2019-01-23
 
 ### Fixed
