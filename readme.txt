@@ -1,7 +1,7 @@
 === Blover ===
 Contributors: limestreet, moniula
 Requires at least: 4.5
-Tested up to: 5.0.3
+Tested up to: 5.1.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, right-sidebar, grid-layout, custom-background, custom-colors, custom-menu, custom-logo, featured-images, full-width-template, footer-widgets, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, news, e-commerce
