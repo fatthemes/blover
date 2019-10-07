@@ -1,5 +1,10 @@
 # Changes to Blover
 
+## [1.3.4] - 2019-10-07
+
+### Fixed
+- top menu logo alignment
+
 ## [1.3.3] - 2019-01-28
 
 ### Fixed
