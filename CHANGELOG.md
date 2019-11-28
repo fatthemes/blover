@@ -1,5 +1,10 @@
 # Changes to Blover
 
+## [1.4] - 2019-11-28
+
+### Added
+- support for WooCommerce product gallery
+
 ## [1.3.4] - 2019-10-07
 
 ### Fixed

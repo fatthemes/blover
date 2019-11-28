@@ -281,7 +281,7 @@ if ( ! function_exists( 'blover_custom_popular_posts_html_list' ) ) :
 				// display text in singular or plural, according to comments count.
 				$stats[] = '<span class="wpp-comments">' . sprintf(
 					// Translators: comment count.
-						_n( '%s comment', '%s comments', absint( $popular->comment_count ), 'blover' ),
+					_n( '%s comment', '%s comments', absint( $popular->comment_count ), 'blover' ),
 					number_format_i18n( $popular->comment_count )
 				) . '</span>';
 			}
@@ -294,14 +294,14 @@ if ( ! function_exists( 'blover_custom_popular_posts_html_list' ) ) :
 					// display text in singular or plural, according to views count.
 					$stats[] = '<span class="wpp-views">' . sprintf(
 						// Translators: pageviews.
-							_n( '%s view per day', '%s views per day', absint( $popular->pageviews ), 'blover' ),
+						_n( '%s view per day', '%s views per day', absint( $popular->pageviews ), 'blover' ),
 						number_format_i18n( $popular->pageviews, 2 )
 					) . '</span>';
 				} else { // Sorting posts by views
 					// display text in singular or plural, according to views count.
 					$stats[] = '<span class="wpp-views">' . sprintf(
 						// Translators: pageviews.
-							_n( '%s view', '%s views', absint( $popular->pageviews ), 'blover' ),
+						_n( '%s view', '%s views', absint( $popular->pageviews ), 'blover' ),
 						number_format_i18n( $popular->pageviews )
 					) . '</span>';
 				}

@@ -124,7 +124,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_section(
 		'home_page',
 		array(
-			'title' => esc_html__( 'Home Page', 'blover' ),
+			'title' => esc_html__( 'Homepage (Blover)', 'blover' ),
 			'priority' => 1000,
 			'description' => esc_html__( 'Blog Home Page Settings', 'blover' ),
 		)
@@ -617,7 +617,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_section(
 		'woocommerce_settings',
 		array(
-			'title' => esc_html__( 'WooCommerce', 'blover' ),
+			'title' => esc_html__( 'WooCommerce (Blover)', 'blover' ),
 			'priority' => 1040,
 			'description' => esc_html__( 'WooCommerce Settings', 'blover' ),
 		)
