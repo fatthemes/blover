@@ -46,8 +46,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php the_posts_navigation(); ?>
-				</main><!-- #main -->
+			
 
 		<?php else : ?>
 				<div class="blover-page-intro nothing-found">
@@ -55,9 +54,16 @@ get_header(); ?>
 				</div>
 		<main id="main" class="site-main row" role="main">
 			<?php get_template_part( 'template-parts/content', 'none' ); ?>
-				</main><!-- #main -->
 		<?php endif; ?>
 
+		</main><!-- #main -->	
+		<?php
+		if ( '' === get_theme_mod( 'pagination', 'infinite' ) ) {
+			the_posts_pagination();
+		} else {
+			the_posts_navigation();
+		}
+		?>
 
 	</div><!-- #primary -->
 

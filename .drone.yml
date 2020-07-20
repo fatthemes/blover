@@ -12,7 +12,7 @@ steps:
     MYSQL_PASSWORD: wp
     MYSQL_DATABASE: wordpress_test
   
-- name: changelog
+- name: tested_up_to_check
   image: limestreet/apache-php-7
   commands:
   - apt-get update && apt-get install -y jq
