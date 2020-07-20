@@ -1,12 +1,12 @@
 === Blover ===
 Contributors: limestreet, moniula
 Requires at least: 4.5
-Tested up to: 5.3
+Tested up to: 5.4.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, right-sidebar, grid-layout, custom-background, custom-colors, custom-menu, custom-logo, featured-images, full-width-template, footer-widgets, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, news, e-commerce
 
- Blover WordPress Theme, Copyright 2017-2019 Patryk Kachel, Monika Dziedzic
+ Blover WordPress Theme, Copyright 2017-2020 Patryk Kachel, Monika Dziedzic
  Blover is distributed under the terms of the GNU GPL v2 or later
 
 == Description ==
