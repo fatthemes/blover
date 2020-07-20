@@ -3,7 +3,7 @@
 ## [1.4.2] - 2020-07-20
 
 ### Fixed
-- WooCommerce product gallery css issue
+- pagination issue
 
 ## [1.4.1] - 2019-11-29
 
