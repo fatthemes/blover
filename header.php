@@ -23,7 +23,7 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page" class="hfeed site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_attr_e( 'Skip to content', 'blover' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'blover' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
 				<nav id="top-navigation" class="navbar-navigation" role="navigation">
@@ -32,7 +32,7 @@
 					<?php
 					if ( function_exists( 'wc_get_cart_url' ) ) :
 						?>
-						<a class="btn blover-cart" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_html_e( 'Cart', 'blover' ); ?>"><?php esc_html_e( 'Cart', 'blover' ); ?>(<span class="blover-cart-content-counts"><?php echo esc_html( wc()->cart->get_cart_contents_count() ); ?></span>)</a>
+						<a class="btn blover-cart" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'Cart', 'blover' ); ?>"><?php esc_html_e( 'Cart', 'blover' ); ?>(<span class="blover-cart-content-counts"><?php echo esc_html( wc()->cart->get_cart_contents_count() ); ?></span>)</a>
 						<?php
 						endif;
 					?>
