@@ -1,5 +1,10 @@
 # Changes to Blover
 
+## [1.4.3] - 2020-07-21
+
+### Fixed
+- new theme check requirements
+
 ## [1.4.2] - 2020-07-20
 
 ### Fixed
