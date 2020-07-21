@@ -23,7 +23,7 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page" class="hfeed site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_attr_e( 'Skip to content', 'blover' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'blover' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
 				<nav id="top-navigation" class="navbar-navigation" role="navigation">
