@@ -136,7 +136,7 @@ steps:
   image: limestreet/apache-php-7
   commands:
   #- TAG=`echo "$DRONE_TAG" | sed 's/^v//'`
-  - TAG=`echo "$DRONE_TAG" | grep -Po "\d\d?\.\d\d?\.?\d?\d?"
+  - TAG=`echo "$DRONE_TAG" | grep -Po "\d\d?\.\d\d?\.?\d?\d?"`
   - echo $TAG
   - VERSION_LINE=$(grep -Po "Version:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
   #- echo $VERSION_LINE
