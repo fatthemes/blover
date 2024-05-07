@@ -62,7 +62,7 @@ if ( ! function_exists( 'blover_entry_footer' ) ) :
 			$tags_list = get_the_tag_list( '', esc_html__( ', ', 'blover' ) );
 			if ( $tags_list ) {
 				// Translators: tag list.
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged: %1$s', 'blover' ) . '</span>', $tags_list );
+				printf( '<span class="tags-links">' . esc_html__( 'Tagged: %1$s', 'blover' ) . '</span>', esc_html( $tags_list ) );
 			}
 		}
 
@@ -755,9 +755,9 @@ function blover_jetpack_sharing() {
 
 		if ( ! is_feed() ) {
 			if ( is_singular() && in_array( get_post_type(), $display_options, true ) ) {
-				echo '<div class="blover-jp-sharing">' . esc_html( sharing_display( '', false )) . '</div>';
+				echo '<div class="blover-jp-sharing">' . esc_html( sharing_display( '', false ) ) . '</div>';
 			} elseif ( in_array( 'index', $display_options, true ) && ( is_home() || is_front_page() || is_archive() || is_search() || in_array( get_post_type(), $display_options, true ) ) ) {
-				echo '<button class="blover-jp-sharing-toggle"><span><svg width="12" height="14"><path d="M9.5 8q1.039 0 1.77 0.73t0.73 1.77-0.73 1.77-1.77 0.73-1.77-0.73-0.73-1.77q0-0.094 0.016-0.266l-2.812-1.406q-0.719 0.672-1.703 0.672-1.039 0-1.77-0.73t-0.73-1.77 0.73-1.77 1.77-0.73q0.984 0 1.703 0.672l2.812-1.406q-0.016-0.172-0.016-0.266 0-1.039 0.73-1.77t1.77-0.73 1.77 0.73 0.73 1.77-0.73 1.77-1.77 0.73q-0.984 0-1.703-0.672l-2.812 1.406q0.016 0.172 0.016 0.266t-0.016 0.266l2.812 1.406q0.719-0.672 1.703-0.672z"></path></svg></span></button><div class="blover-jp-sharing">' . esc_html( sharing_display( '', false )) . '</div><button class="blover-jp-sharing-close"><span><svg width="14" height="14"><svg><line stroke-miterlimit="10" x1="0.354" y1="0.354" x2="14.354" y2="14.354"/><line stroke-miterlimit="10" x1="14.354" y1="0.354" x2="0.354" y2="14.354"/></svg></svg></span></button>';
+				echo '<button class="blover-jp-sharing-toggle"><span><svg width="12" height="14"><path d="M9.5 8q1.039 0 1.77 0.73t0.73 1.77-0.73 1.77-1.77 0.73-1.77-0.73-0.73-1.77q0-0.094 0.016-0.266l-2.812-1.406q-0.719 0.672-1.703 0.672-1.039 0-1.77-0.73t-0.73-1.77 0.73-1.77 1.77-0.73q0.984 0 1.703 0.672l2.812-1.406q-0.016-0.172-0.016-0.266 0-1.039 0.73-1.77t1.77-0.73 1.77 0.73 0.73 1.77-0.73 1.77-1.77 0.73q-0.984 0-1.703-0.672l-2.812 1.406q0.016 0.172 0.016 0.266t-0.016 0.266l2.812 1.406q0.719-0.672 1.703-0.672z"></path></svg></span></button><div class="blover-jp-sharing">' . esc_html( sharing_display( '', false ) ) . '</div><button class="blover-jp-sharing-close"><span><svg width="14" height="14"><svg><line stroke-miterlimit="10" x1="0.354" y1="0.354" x2="14.354" y2="14.354"/><line stroke-miterlimit="10" x1="14.354" y1="0.354" x2="0.354" y2="14.354"/></svg></svg></span></button>';
 			}
 		}
 	}
