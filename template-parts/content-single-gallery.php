@@ -39,7 +39,7 @@
 						)
 					);
 					if ( ! empty( $blover_featured_gallery ) ) {
-						echo $blover_featured_gallery; // WPCS: XSS OK.
+						echo esc_html( $blover_featured_gallery );
 					} elseif ( has_post_thumbnail() && get_theme_mod( 'single_post_show_featured_image', 1 ) ) {
 						the_post_thumbnail();
 					}

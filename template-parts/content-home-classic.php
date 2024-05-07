@@ -21,10 +21,10 @@
 			<a href="<?php the_permalink(); ?>" rel="bookmark">
 			<?php the_post_thumbnail( 'large' ); ?>
 			</a>
-			<?php echo blover_post_format_icon( get_the_ID() ); // WPCS: XSS OK. ?>
+			<?php echo esc_html( blover_post_format_icon( get_the_ID() ) );?>
 		</div>
 	<?php else : ?>
-		<?php echo blover_post_format_icon( get_the_ID() ); // WPCS: XSS OK. ?>
+		<?php echo esc_html( blover_post_format_icon( get_the_ID() ) );?>
 	<?php endif; ?>
 
 	<!-- .entry-header -->

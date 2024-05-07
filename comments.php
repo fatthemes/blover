@@ -29,7 +29,7 @@ if ( post_password_required() ) {
 				printf( // WPCS: XSS OK.
 					// Translators: comments number.
 					esc_html( _nx( '%1$s Comment', '%1$s Comments', get_comments_number(), 'comments title', 'blover' ) ),
-					number_format_i18n( get_comments_number() )
+					esc_html( number_format_i18n( get_comments_number() ) )
 				);
 			?>
 		</span></h2>
