@@ -41,7 +41,7 @@ if ( ! function_exists( 'blover_posted_on' ) ) :
 
 			$posted_on = '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>';
 
-			echo '<span class="posted-on">' . esc_html( $posted_on ) . '</span>';
+			echo '<span class="posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
@@ -413,7 +413,7 @@ if ( ! function_exists( 'blover_gallery_content' ) ) :
 		$newcontent = preg_replace( $pattern, $replacement, $content, 1 );
 		$newcontent = apply_filters( 'the_content', $newcontent ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$newcontent = str_replace( ']]>', ']]&gt;', $newcontent );
-		echo esc_html( $newcontent );
+		echo $newcontent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	endif;
@@ -438,7 +438,7 @@ if ( ! function_exists( 'blover_media_content' ) ) :
 
 		$newcontent = preg_replace( '#<(?P<tag>' . $tags . ')[^<]*?(?:>[\s\S]*?<\/(?P=tag)>|\s*\/>)#', $replacement, $content, 1 );
 
-		echo esc_html( $newcontent );
+		echo $newcontent; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	endif;

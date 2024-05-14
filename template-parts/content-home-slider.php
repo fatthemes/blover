@@ -38,7 +38,7 @@ if ( ! empty( $blover_sticky_posts ) ) :
 														<h2 class="blover-featured-slider-header"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 											 </div>
 										 </div>
-										<?php echo esc_html( blover_post_format_icon( $blover_the_slider->ID ) ); ?>
+										<?php echo blover_post_format_icon( $blover_the_slider->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 										</div>
 										</div>
 									<?php else : ?>

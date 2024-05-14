@@ -39,7 +39,7 @@
 						)
 					);
 					if ( ! empty( $blover_featured_video ) ) {
-						echo esc_html( $blover_featured_video );
+						echo $blover_featured_video; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					} elseif ( has_post_thumbnail() && get_theme_mod( 'single_post_show_featured_image', 1 ) ) {
 						the_post_thumbnail();
 					}
