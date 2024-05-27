@@ -62,7 +62,7 @@ if ( ! function_exists( 'blover_entry_footer' ) ) :
 			$tags_list = get_the_tag_list( '', esc_html__( ', ', 'blover' ) );
 			if ( $tags_list ) {
 				// Translators: tag list.
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged: %1$s', 'blover' ) . '</span>', esc_html( $tags_list ) );
+				printf( '<span class="tags-links">' . esc_html__( 'Tagged: %1$s', 'blover' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 
