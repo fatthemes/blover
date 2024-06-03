@@ -22,7 +22,7 @@ jobs:
           CURRENT_WP_VERSION=`echo "$CURRENT_WP_VERSION_API" | sed 's/"//g' | grep -Po "\d\d?\.\d\d?"`
           echo $CURRENT_WP_VERSION
           README_TESTED_UP_TO_WP_LINE=$(grep -Po "Tested\ up\ to:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/readme.txt)
-          README_TESTED_UP_TO_WP=$(echo $README_TESTED_UP_TO_WP_LINE | grep -Po "\d\d?\.\d\d?\")
+          README_TESTED_UP_TO_WP=$(echo $README_TESTED_UP_TO_WP_LINE | grep -Po "\d\d?\.\d\d?")
           echo $README_TESTED_UP_TO_WP
           if [ $README_TESTED_UP_TO_WP != $CURRENT_WP_VERSION ]; then echo "readme.txt - tested up to - use $CURRENT_WP_VERSION instead of $README_TESTED_UP_TO_WP" && exit 1 ;fi
           STYLE_TESTED_UP_TO_WP_LINE=$(grep -Po "Tested\ up\ to:\s?\s?\d\d?\.\d\d?\.?\d?\d?.*" $PWD/style.css)
