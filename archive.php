@@ -16,9 +16,10 @@ get_header(); ?>
 			$blover_cat_text_color = ( ! empty( $blover_catmeta['text_color'][0] ) ) ? '#' . $blover_catmeta['text_color'][0] : '';
 			$blover_catimage = ( ! empty( $blover_catmeta['image'][0] ) ) ? $blover_catmeta['image'][0] : '';
 			$blover_catimgsrc = wp_get_attachment_image_src( $blover_catimage, 'full' );
+			$blover_catimgsrc_url  = ! empty( $blover_catimgsrc[0] ) ? $blover_catimgsrc[0] : '';
 		?>
 		<div class="row archive-blover-page-intro-row">
-		<div class="blover-page-intro col-xs-12" style="<?php echo 'background:' . esc_attr( $blover_cat_bg_color ) . ' url(' . esc_url( $blover_catimgsrc[0] ) . ') no-repeat center;color:' . esc_attr( $blover_cat_text_color ) . ';'; ?>background-size:cover;">
+		<div class="blover-page-intro col-xs-12" style="<?php echo 'background:' . esc_attr( $blover_cat_bg_color ) . ' url(' . esc_url( $blover_catimgsrc_url ) . ') no-repeat center;color:' . esc_attr( $blover_cat_text_color ) . ';'; ?>background-size:cover;">
 			<h1 style="color:<?php echo esc_attr( $blover_cat_text_color ); ?>;"><?php the_archive_title(); ?></h1>
 			<div class="row">
 			<?php the_archive_description( '<div class="taxonomy-description col-md-8 col-md-offset-2">', '</div>' ); ?>

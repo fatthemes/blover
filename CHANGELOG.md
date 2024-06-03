@@ -1,5 +1,10 @@
 # Changes to Blover
 
+## [1.5.0] - 2024-06-03
+
+### Changed
+- Tested up to 6.5.3 (WordPress version)
+
 ## [1.4.4] - 2020-07-21
 
 ### Fixed

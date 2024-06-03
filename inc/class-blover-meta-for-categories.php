@@ -327,10 +327,7 @@ if ( ! class_exists( 'Blover_Meta_For_Categories' ) ) {
 
 				wp_enqueue_style( 'wp-color-picker' );
 				wp_enqueue_script( 'wp-color-picker' );
-
 		}
 	}
-
 	new Blover_Meta_For_Categories();
-
 }// End if().

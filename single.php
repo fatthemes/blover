@@ -14,7 +14,7 @@ $blover_has_sidebar = get_theme_mod( 'single_post_sidebar', 1 );
 get_sidebar( 'top' );
 ?>
 <div class="row">
-		<div id="primary" class="content-area<?php echo ( $blover_has_sidebar ? ' col-lg-8' . $blover_is_active_sidebar : ' col-lg-8 col-lg-offset-2' ); // WP XSS OK. ?>">
+		<div id="primary" class="content-area<?php echo ( esc_html( $blover_has_sidebar ) ? ' col-lg-8' . esc_html( $blover_is_active_sidebar ) : ' col-lg-8 col-lg-offset-2' ); ?>">
 		<main id="main" class="site-main row" role="main">
 
 		<?php
