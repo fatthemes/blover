@@ -1,5 +1,9 @@
 # Changes to Blover
 
+## [1.5.1] - 2024-09-12
+ - Added Block Editor support
+ - Tested up to 6.6.2 (WordPress version)
+
 ## [1.5.0] - 2024-06-03
 
 ### Changed
