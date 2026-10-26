@@ -2516,6 +2516,17 @@ h1 a, .site-title a, h2 a, h3 a, h4 a, h5 a, h6 a, .navigation a, .main-navigati
   padding: 1.5rem 1rem;
 }
 
+/* Set by blover.js when the top bar items don't fit on one row. */
+.navbar-navigation.blover-top-bar-compact .menu > li > a {
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  letter-spacing: 0.1em;
+}
+
+.navbar-navigation.blover-top-bar-collapsed ul {
+  display: none;
+}
+
 .admin-bar .navbar-navigation {
   top: 46px;
 }

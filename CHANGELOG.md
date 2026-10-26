@@ -1,4 +1,12 @@
 # Changes to Blover
+## [Unreleased]
+- Fixed a crash when a commenter's name or website contains a "%" sign
+- Fixed the top bar wrapping onto several rows and covering the site title
+- Fixed the sidebar and footer being unreachable on mobile with infinite scroll
+- Fixed Customizer showing different defaults from the site
+- Fixed the header listing every page when no menu is assigned
+- The side menu now shows the main menu when no mobile menu is set
+
 ## [1.5.2] - 2024-09-13
 - Removed `theme.json` to resolve conflicts with block editor styles.
 

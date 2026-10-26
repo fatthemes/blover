@@ -29,10 +29,12 @@
 					</div>
 					<nav id="site-navigation" class="main-navigation" role="navigation">
 					<?php
+					// Without a Left Menu, show the Top menu here so its items stay reachable when the top bar collapses.
+					$blover_side_menu_location = ( ! blover_menu_location_has_items( 'primary' ) && blover_menu_location_has_items( 'top' ) ) ? 'top' : 'primary';
 					wp_nav_menu(
 						array(
-							'theme_location' => 'primary',
-							'menu_id' => 'primary-menu',
+							'theme_location' => $blover_side_menu_location,
+							'menu_id'        => 'primary-menu',
 						)
 					);
 					wp_nav_menu(

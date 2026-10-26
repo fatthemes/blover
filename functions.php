@@ -331,6 +331,11 @@ add_action( 'wp_enqueue_scripts', 'blover_scripts' );
 require get_template_directory() . '/inc/template-tags.php';
 
 /**
+ * Page walker for the Top menu fallback.
+ */
+require get_template_directory() . '/inc/class-blover-walker-menu-fallback.php';
+
+/**
  * Hybrid Media Grabber for getting media from posts.
  */
 require get_template_directory() . '/inc/class-media-grabber.php';

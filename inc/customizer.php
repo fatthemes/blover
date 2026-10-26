@@ -156,7 +156,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'home_page_slider_height',
 		array(
-			'default' => 740,
+			'default'           => 500,
 			'sanitize_callback' => 'absint',
 		)
 	);
@@ -311,7 +311,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'pagination',
 		array(
-			'default' => 'ajax',
+			'default'           => 'infinite',
 			'sanitize_callback' => 'blover_sanitize_pagination',
 		)
 	);
@@ -530,7 +530,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'single_post_navigation_next_label',
 		array(
-			'default' => esc_html__( 'Next Article', 'blover' ),
+			'default'           => esc_html__( 'Next article', 'blover' ),
 			'sanitize_callback' => 'esc_html',
 		)
 	);
@@ -547,7 +547,7 @@ function blover_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'single_post_navigation_previous_label',
 		array(
-			'default' => esc_html__( 'Previous Article', 'blover' ),
+			'default'           => esc_html__( 'Previous article', 'blover' ),
 			'sanitize_callback' => 'esc_html',
 		)
 	);
