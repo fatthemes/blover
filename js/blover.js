@@ -100,6 +100,22 @@ var lastScrollTop = 0; //, delta = 5;
      lastScrollTop = st;
     });
 
+	// When the top bar items don't fit on one row, tighten their spacing first, then fall back to the hamburger menu.
+	var bloverTopBarFit = function() {
+	    if ( ! $bloverSiteNavigation.is( ':visible' ) || $bloverSiteNavigation.is( ':animated' ) ) {
+		return;
+	    }
+	    $bloverSiteNavigation.addClass( 'blover-top-bar-collapsed' );
+	    var collapsedHeight = $bloverSiteNavigation.outerHeight();
+	    $bloverSiteNavigation.removeClass( 'blover-top-bar-collapsed blover-top-bar-compact' );
+	    if ( $bloverSiteNavigation.outerHeight() > collapsedHeight * 1.5 ) {
+		$bloverSiteNavigation.addClass( 'blover-top-bar-compact' );
+		$bloverSiteNavigation.toggleClass( 'blover-top-bar-collapsed', $bloverSiteNavigation.outerHeight() > collapsedHeight * 1.5 );
+	    }
+	};
+	bloverTopBarFit();
+	$(window).on( 'load resize', bloverTopBarFit );
+
 	var button, closeButton, menu, bgmenu;
 
 	button = $( '#left-navbar-toggle' );
@@ -181,7 +197,10 @@ var lastScrollTop = 0; //, delta = 5;
       });
     }
   }
-if ( blover.pagination === 'infinite' ) {
+// Below the 62em grid breakpoint the sidebar stacks under the posts, so infinite scroll would keep pushing it away.
+var bloverPagination = ( blover.pagination === 'infinite' && ! window.matchMedia( '(min-width: 62em)' ).matches ) ? 'ajax' : blover.pagination;
+
+if ( bloverPagination === 'infinite' ) {
   if (typeof $.infinitescroll === 'function'){
 
     $bloverContainer.infinitescroll({
@@ -214,7 +233,7 @@ if ( blover.pagination === 'infinite' ) {
   }
 }
 
-if( blover.pagination === 'ajax' ) {
+if( bloverPagination === 'ajax' ) {
        // The number of the next page to load (/page/x/).
 	var pageNum = parseInt(blover.startPage, 10) + 1;
 
