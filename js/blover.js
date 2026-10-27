@@ -4,10 +4,6 @@
 
 $(document).ready(function($) {
 
-$('a').on( 'click', function(){
-  $(this).blur();
-});
-
    var $bloverSecondary = $('#secondary');
 
   if(typeof $.fn.theiaStickySidebar === 'function'){
@@ -46,14 +42,65 @@ $('.blover-featured-slider').slick({
 var $bloverSearchPanel = $('.blover-search-panel');
 var $bloverSearchToggle = $('.search-toggle');
 
-    $bloverSearchToggle.on( 'click', function(){
-        $bloverSearchPanel.slideToggle(250).css('z-index', '1001');
-	$(this).attr('aria-expanded', 'true');
-        });
-    $('.blover-search-panel-close').on( 'click', function(){
-        $bloverSearchPanel.slideToggle(250).css('z-index', '');
-	$bloverSearchToggle.attr('aria-expanded', 'false');
-        });
+	// aria-expanded is the state, so clicks during the slide animation stay in sync.
+	var bloverSearchPanelToggle = function() {
+	    var open = $bloverSearchToggle.attr( 'aria-expanded' ) !== 'true';
+
+	    $bloverSearchToggle.attr( 'aria-expanded', String( open ) );
+	    $bloverSearchPanel.slideToggle(250).css('z-index', open ? '1001' : '');
+
+	    if ( open ) {
+		$bloverSearchPanel.promise().done( function() {
+		    $bloverSearchPanel.find( '.search-field' ).trigger( 'focus' );
+		});
+	    } else {
+		$bloverSearchToggle.trigger( 'focus' );
+	    }
+	};
+
+	$bloverSearchToggle.on( 'click', bloverSearchPanelToggle );
+	$('.blover-search-panel-close').on( 'click', bloverSearchPanelToggle );
+
+	// Open a dropdown leftwards when it would run past the right edge of the window.
+	var bloverSubmenuFlip = function( li ) {
+	    var $submenu = $( li ).children( 'ul' );
+	    var $parentItem = $( li ).parent().closest( 'li' );
+	    if ( $submenu.length ) {
+		var rect = li.getBoundingClientRect();
+		var width = $submenu.outerWidth();
+		var flip = rect.left + width > document.documentElement.clientWidth;
+		if ( $parentItem.length ) {
+		    // Under a submenu that already opened leftwards, keep going left while there is room.
+		    flip = rect.right + width > document.documentElement.clientWidth || ( $parentItem.hasClass( 'blover-submenu-flip' ) && $parentItem.parent().closest( 'li' ).length > 0 && rect.left >= width );
+		}
+		$( li ).toggleClass( 'blover-submenu-flip', flip );
+	    }
+	};
+
+	$( '#top-navigation' ).on( 'mouseenter', 'li', function() {
+	    bloverSubmenuFlip( this );
+	});
+
+	// Whether focus came from the keyboard; browsers without :focus-visible count all focus.
+	var bloverFocusVisible = function( el ) {
+	    try {
+		return el.matches( ':focus-visible' );
+	    } catch ( err ) {
+		return true;
+	    }
+	};
+
+	// Hold a dropdown open while keyboard focus is inside its item (style.css expects .focus).
+	$( '#top-navigation' ).on( 'focusin focusout', function( e ) {
+	    var $items = $( e.target ).parents( 'li' ).toggleClass( 'focus', e.type === 'focusin' && bloverFocusVisible( e.target ) );
+
+	    if ( e.type === 'focusin' ) {
+		// Outer menus first, so each one is open and placed before the next is measured.
+		$( $items.get().reverse() ).each( function() {
+		    bloverSubmenuFlip( this );
+		});
+	    }
+	});
 
 
 //Sticky menu
@@ -134,29 +181,75 @@ var lastScrollTop = 0; //, delta = 5;
                             bloverMenuToggle();
                         });
 
+	// Visible, enabled elements inside a panel that can take keyboard focus.
+	var bloverFocusable = function( $panel ) {
+	    return $panel.find( 'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])' ).filter( ':visible:not(:disabled)' );
+	};
+
         var bloverMenuToggle = function(){
+	    // aria-expanded is the state, so clicks during the slide animation stay in sync.
+	    var open = button.attr( 'aria-expanded' ) !== 'true';
 
-	    if(menu.is(':visible')) {
-
-		button.attr('aria-expanded', 'false');
-	    } else {
-
-		button.attr('aria-expanded', 'true');
-	    }
+	    button.attr( 'aria-expanded', String( open ) );
             menu.toggle('slide', {direction: 'left' } , 150);
             bgmenu.fadeToggle(500);
 
+	    if ( open ) {
+		menu.promise().done( function() {
+		    bloverFocusable( menu ).first().trigger( 'focus' );
+		});
+	    } else {
+		button.trigger( 'focus' );
+	    }
         };
 
-    var $bloverMenuPlusLeft = $('#site-navigation .expand-submenu');
+	// Escape closes the open panel; Tab and Shift+Tab stay inside it.
+	$( document ).on( 'keydown', function( e ) {
+	    var $panel, $items, first, last;
+
+	    if ( button.attr( 'aria-expanded' ) === 'true' ) {
+		$panel = menu;
+	    } else if ( $bloverSearchToggle.attr( 'aria-expanded' ) === 'true' ) {
+		$panel = $bloverSearchPanel;
+	    } else {
+		return;
+	    }
+
+	    if ( e.key === 'Escape' || e.keyCode === 27 ) {
+		if ( $panel === menu ) {
+		    bloverMenuToggle();
+		} else {
+		    bloverSearchPanelToggle();
+		}
+	    } else if ( e.key === 'Tab' || e.keyCode === 9 ) {
+		$items = bloverFocusable( $panel );
+		first = $items.get( 0 );
+		last = $items.get( -1 );
+
+		if ( ! first ) {
+		    e.preventDefault();
+		} else if ( ! $.contains( $panel[0], document.activeElement ) ) {
+		    e.preventDefault();
+		    first.focus();
+		} else if ( e.shiftKey && document.activeElement === first ) {
+		    e.preventDefault();
+		    last.focus();
+		} else if ( ! e.shiftKey && document.activeElement === last ) {
+		    e.preventDefault();
+		    first.focus();
+		}
+	    }
+	});
+
+    var $bloverMenuPlusLeft = $('#left-sidebar .expand-submenu');
 
     $bloverMenuPlusLeft.on( 'click', function(){
 
 	if( $(this).hasClass('submenu-expanded')) {
-            $(this).css({'transform': 'none'}).removeClass('submenu-expanded').prop('title', blover.expandText);
+            $(this).css({'transform': 'none'}).removeClass('submenu-expanded').prop('title', blover.expandText).attr({'aria-expanded': 'false', 'aria-label': blover.expandSubmenuText});
 	    $(this).parent().children('ul').hide();
         } else {
-            $(this).css({'transform': 'rotate(45deg)'}).addClass('submenu-expanded').prop('title', blover.closeText);
+            $(this).css({'transform': 'rotate(45deg)'}).addClass('submenu-expanded').prop('title', blover.closeText).attr({'aria-expanded': 'true', 'aria-label': blover.collapseSubmenuText});
 	    $(this).parent().children('ul').show();
         }
 

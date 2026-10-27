@@ -462,7 +462,7 @@ table {
 caption {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  color: #818a91;
+  color: #6b737a;
   text-align: left;
   caption-side: bottom;
 }
@@ -2376,7 +2376,7 @@ input[type=password] {
 ## Links
 --------------------------------------------------------------*/
 a:hover, a:focus, a:active {
-  color: #a0946b;
+  color: #7c7250;
 }
 a:hover, a:active {
   outline: none;
@@ -2463,6 +2463,10 @@ h1 a, .site-title a, h2 a, h3 a, h4 a, h5 a, h6 a, .navigation a, .main-navigati
   left: 100%;
   top: 0;
 }
+.navbar-navigation ul ul li.blover-submenu-flip:hover > ul, .navbar-navigation ul ul li.blover-submenu-flip.focus > ul {
+  left: auto;
+  right: 100%;
+}
 .navbar-navigation ul ul li:last-of-type a {
   border-bottom: none;
 }
@@ -2478,6 +2482,11 @@ h1 a, .site-title a, h2 a, h3 a, h4 a, h5 a, h6 a, .navigation a, .main-navigati
 .navbar-navigation ul li:hover > ul,
 .navbar-navigation ul li.focus > ul {
   left: auto;
+}
+/* Added by blover.js when a dropdown would run past the right edge of the window. */
+.navbar-navigation ul li.blover-submenu-flip:hover > ul,
+.navbar-navigation ul li.blover-submenu-flip.focus > ul {
+  right: 0;
 }
 .navbar-navigation ul li {
   position: relative;
@@ -2591,11 +2600,28 @@ h1 a, .site-title a, h2 a, h3 a, h4 a, h5 a, h6 a, .navigation a, .main-navigati
 }
 .main-navigation .expand-submenu:hover,
 .left-sidebar-area .widget_nav_menu .expand-submenu:hover {
-  color: #a0946b;
+  color: #7c7250;
 }
 .main-navigation a:hover,
 .left-sidebar-area .widget_nav_menu a:hover {
-  color: #a0946b;
+  color: #7c7250;
+}
+
+/* The submenu toggle is a button; drop the theme's button styles so it still looks like a plain "+". */
+.expand-submenu {
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+  transition: none;
+}
+
+/* The toggle only works in the side panel. */
+.widget_nav_menu .expand-submenu {
+  display: none;
 }
 
 .blover-search-panel {
@@ -2870,7 +2896,7 @@ h1 a, .site-title a, h2 a, h3 a, h4 a, h5 a, h6 a, .navigation a, .main-navigati
   font-weight: 300;
   font-size: 1em;
   letter-spacing: 0.05em;
-  color: #999;
+  color: #767676;
 }
 
 .blover-next-article-title, .blover-previous-article-title {
@@ -2883,7 +2909,7 @@ h1 a, .site-title a, h2 a, h3 a, h4 a, h5 a, h6 a, .navigation a, .main-navigati
 .nav-links a:hover > .blover-previous-article-title,
 .nav-links a:hover > .blover-next-article,
 .nav-links a:hover > .blover-previous-article {
-  color: #a0946b;
+  color: #7c7250;
 }
 
 .nav-previous {
@@ -5247,6 +5273,52 @@ p.has-drop-cap:not(:focus)::first-letter {
 
 .liveblog-key-events .liveblog-key-timeline li .date {
   font-size: 14px;
+}
+
+/*--------------------------------------------------------------
+# Focus
+--------------------------------------------------------------*/
+/* The two-tone ring shows on light and dark backgrounds. */
+a:focus-visible,
+button:focus-visible,
+input[type=button]:focus-visible,
+input[type=reset]:focus-visible,
+input[type=submit]:focus-visible,
+[role=button]:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+/* These links only hold blocks, so as inline boxes they'd have no area for the ring. */
+.post-navigation .nav-links a,
+.wp-caption > a {
+  display: block;
+}
+
+/* Slick arrows and dots sit on dark slides and reset the outline. */
+.slick-slider .slick-arrow:focus-visible,
+.slick-dots li button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #000;
+}
+
+/* Where a container clips overflow, draw the ring inside the element. */
+.slick-slide[tabindex]:focus-visible,
+.post-navigation .nav-links a:focus-visible,
+.woocommerce-product-gallery__image a:focus-visible,
+.woocommerce-pagination a:focus-visible,
+.woocommerce-tabs .tabs a:focus-visible {
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+/* Slide images cover the inset shadow, and the slides are dark. */
+.slick-slide[tabindex]:focus-visible {
+  outline-color: #fff;
+  outline-offset: -4px;
 }
 
 /*# sourceMappingURL=style.css.map */

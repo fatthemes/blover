@@ -6,6 +6,10 @@
 - Fixed Customizer showing different defaults from the site
 - Fixed the header listing every page when no menu is assigned
 - The side menu now shows the main menu when no mobile menu is set
+- Improved keyboard navigation for menus, the side panel and search
+- Side panel and search now close with the Escape key
+- Fixed dropdown menus running off the right edge of the screen
+- Improved colour contrast for links, menus and post navigation labels
 
 ## [1.5.2] - 2024-09-13
 - Removed `theme.json` to resolve conflicts with block editor styles.
