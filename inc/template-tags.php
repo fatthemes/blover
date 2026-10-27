@@ -496,7 +496,7 @@ if ( ! function_exists( 'blover_customize_css' ) ) :
 		$custom_css .= '#secondary .widget:nth-of-type(3n+2), #secondary .widget:nth-of-type(3n+2) .widget-title span {background-color:' . esc_attr( get_theme_mod( 'sidebar_bg_color_2', '#f8f8f8' ) ) . ';}';
 		$custom_css .= '#secondary .widget:nth-of-type(3n+3), #secondary .widget:nth-of-type(3n+3) .widget-title span {background-color:' . esc_attr( get_theme_mod( 'sidebar_bg_color_3', '#f8f8f8' ) ) . ';}';
 		$custom_css .= '#footer-widget, #footer-widget .widget-title span {background-color:' . esc_attr( get_theme_mod( 'footer_bg_color', '#f8f8f8' ) ) . ';}';
-		$custom_css .= 'a:hover, a:focus, a:active, .main-navigation .current_page_item > a, .main-navigation .current-menu-item > a, .main-navigation .current_page_ancestor > a, .main-navigation .current-menu-ancestor > a, .navbar-navigation .current_page_item > a, .navbar-navigation .current-menu-item > a, .navbar-navigation .current_page_ancestor > a, .navbar-navigation .current-menu-ancestor > a {color:' . esc_attr( get_theme_mod( 'link_hover_color', '#a0946b' ) ) . ';}';
+		$custom_css .= 'a:hover, a:focus, a:active, .main-navigation .current_page_item > a, .main-navigation .current-menu-item > a, .main-navigation .current_page_ancestor > a, .main-navigation .current-menu-ancestor > a, .navbar-navigation .current_page_item > a, .navbar-navigation .current-menu-item > a, .navbar-navigation .current_page_ancestor > a, .navbar-navigation .current-menu-ancestor > a {color:' . esc_attr( get_theme_mod( 'link_hover_color', '#7c7250' ) ) . ';}';
 		if ( $hide_title_on_home_archive ) {
 			$custom_css .= '.blog .content-area .entry-title, .archive .content-area .entry-title, .search .content-area .entry-title {display:none;}';
 		}
@@ -598,13 +598,26 @@ if ( ! function_exists( 'blover_submenu_span' ) ) :
 		$needle2 = 'page_item_has_children';
 		$haystack = $item->classes;
 		if ( in_array( $needle1, $haystack, true ) || in_array( $needle2, $haystack, true ) ) {
-			$item_output = $item_output . '<span class="expand-submenu" title="' . esc_attr__( 'Expand', 'blover' ) . '">&#43;</span>';
+			$item_output = $item_output . blover_get_submenu_toggle();
 		}
 
 		return $item_output;
 	}
 
 	add_filter( 'walker_nav_menu_start_el', 'blover_submenu_span', 10, 4 );
+
+	endif;
+
+if ( ! function_exists( 'blover_get_submenu_toggle' ) ) :
+
+	/**
+	 * Returns the button that expands a submenu in the side panel.
+	 *
+	 * @return string
+	 */
+	function blover_get_submenu_toggle() {
+		return '<button type="button" class="expand-submenu" aria-expanded="false" aria-label="' . esc_attr__( 'Expand submenu', 'blover' ) . '" title="' . esc_attr__( 'Expand', 'blover' ) . '">&#43;</button>';
+	}
 
 	endif;
 

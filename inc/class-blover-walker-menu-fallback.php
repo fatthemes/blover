@@ -38,7 +38,7 @@ class Blover_Walker_Menu_Fallback extends Walker_Page {
 
 		// Same expand toggle as blover_submenu_span() adds to wp_nav_menu() items.
 		if ( isset( $args['pages_with_children'][ $data_object->ID ] ) && ( empty( $args['depth'] ) || $depth + 1 < $args['depth'] ) ) {
-			$output .= '<span class="expand-submenu" title="' . esc_attr__( 'Expand', 'blover' ) . '">&#43;</span>';
+			$output .= blover_get_submenu_toggle();
 		}
 	}
 }
