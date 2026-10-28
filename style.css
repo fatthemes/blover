@@ -5099,6 +5099,228 @@ p.has-drop-cap:not(:focus)::first-letter {
   width: 100%;
 }
 
+/* Variable products: options sit above the quantity and button instead of beside them. */
+.woocommerce div.product form.variations_form {
+  display: block;
+}
+.woocommerce div.product form.variations_form table.variations,
+.woocommerce div.product form.variations_form table.variations tbody,
+.woocommerce div.product form.variations_form table.variations tr,
+.woocommerce div.product form.variations_form table.variations th,
+.woocommerce div.product form.variations_form table.variations td {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  line-height: 1.5;
+}
+.woocommerce div.product form.variations_form table.variations {
+  margin-bottom: 0;
+}
+.woocommerce div.product form.variations_form table.variations tr {
+  margin-bottom: 1rem;
+}
+.woocommerce div.product form.variations_form table.variations label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: "Work Sans", Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #000;
+}
+.woocommerce div.product form.variations_form table.variations select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 0.5rem 3em 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  background-color: #fff;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.woocommerce div.product form.variations_form .reset_variations {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: "Work Sans", Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  color: #000;
+}
+.woocommerce div.product form.variations_form .reset_variations:hover {
+  color: #7c7250;
+}
+.woocommerce div.product form.variations_form .woocommerce-variation {
+  margin-bottom: 1rem;
+}
+.woocommerce div.product form.variations_form .woocommerce-variation-price .price {
+  font-weight: 700;
+  color: #000;
+}
+.woocommerce div.product form.variations_form .woocommerce-variation-availability .stock {
+  font-family: "Work Sans", Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.woocommerce div.product form.variations_form .woocommerce-variation-availability .stock:not(.out-of-stock) {
+  color: #707070;
+}
+.woocommerce div.product form.variations_form .woocommerce-variation-add-to-cart {
+  display: flex;
+}
+.woocommerce div.product form.variations_form div.quantity input {
+  width: 4em;
+  height: 100%;
+  min-height: 44px;
+  padding: 0 0.5rem;
+}
+.woocommerce div.product form.variations_form .single_add_to_cart_button {
+  flex: 1 1 auto;
+  min-height: 44px;
+}
+/* WooCommerce greys out its purple button with opacity; keep the theme's button and readable text instead. */
+.woocommerce div.product form.variations_form .single_add_to_cart_button.disabled,
+.woocommerce div.product form.variations_form .single_add_to_cart_button:disabled {
+  border-color: #767676;
+  background-color: #f5f5f5;
+  color: #595959;
+  opacity: 1;
+  cursor: not-allowed;
+}
+.woocommerce div.product form.variations_form select:focus-visible,
+.woocommerce div.product form.variations_form div.quantity input:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs::before {
+  border-bottom-color: #ddd;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li,
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active {
+  margin: 0 1rem 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li::before,
+.woocommerce div.product .woocommerce-tabs ul.tabs li::after {
+  display: none;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li a {
+  display: block;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans", Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #707070;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li a:hover,
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
+  color: #000;
+}
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
+  border-bottom-color: #000;
+}
+
+@media (min-width: 48em) {
+  .woocommerce div.product form.variations_form .single_add_to_cart_button {
+    flex-grow: 0;
+  }
+}
+/* Block cart and checkout. WooCommerce sizes most text with the core "small" preset (13px), which is tiny in Amiri. */
+.wp-block-woocommerce-cart,
+.wp-block-woocommerce-checkout {
+  --wp--preset--font-size--small: 1rem;
+}
+.wp-block-woocommerce-cart .wc-block-components-title.wc-block-components-title,
+.wp-block-woocommerce-checkout .wc-block-components-title.wc-block-components-title,
+.wp-block-woocommerce-checkout .wp-block-woocommerce-checkout-order-summary-block .wc-block-components-checkout-order-summary__title .wc-block-components-checkout-order-summary__title-text {
+  font-family: "Work Sans", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #000;
+}
+/* Doubled class to beat WooCommerce's body:not() min-height rule. */
+.wp-block-woocommerce-cart .wc-block-components-button.wc-block-components-button:not(.is-link),
+.wp-block-woocommerce-checkout .wc-block-components-button.wc-block-components-button:not(.is-link) {
+  min-height: 44px;
+  padding: 0.75em 1.5em;
+  border: 1px solid #000;
+  border-radius: 0;
+  background-color: #000;
+  color: #fff;
+  font-family: "Work Sans", Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+.wp-block-woocommerce-cart .wc-block-components-button:not(.is-link):hover,
+.wp-block-woocommerce-checkout .wc-block-components-button:not(.is-link):hover {
+  background-color: #fff;
+  color: #000;
+}
+.wp-block-woocommerce-cart .wc-block-components-button:not(.is-link):disabled,
+.wp-block-woocommerce-checkout .wc-block-components-button:not(.is-link):disabled {
+  border-color: #767676;
+  background-color: #f5f5f5;
+  color: #595959;
+  opacity: 1;
+}
+.wp-block-woocommerce-cart .wc-block-components-button:not(.is-link):focus-visible,
+.wp-block-woocommerce-checkout .wc-block-components-button:not(.is-link):focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff;
+}
+.wp-block-woocommerce-cart .wc-block-components-text-input input,
+.wp-block-woocommerce-checkout .wc-block-components-form .wc-block-components-text-input input,
+.wp-block-woocommerce-checkout .wc-block-components-text-input input,
+.wp-block-woocommerce-checkout .wc-blocks-components-select .wc-blocks-components-select__select,
+.wp-block-woocommerce-checkout .wc-block-components-textarea,
+.wp-block-woocommerce-cart .wc-block-components-quantity-selector {
+  border-color: #707070;
+  border-radius: 0;
+}
+.wp-block-woocommerce-cart .wc-block-components-text-input.has-error input,
+.wp-block-woocommerce-checkout .wc-block-components-form .wc-block-components-text-input.has-error input,
+.wp-block-woocommerce-checkout .wc-block-components-text-input.has-error input,
+.wp-block-woocommerce-checkout .has-error .wc-blocks-components-select .wc-blocks-components-select__select {
+  border-color: #cc1818;
+}
+.wp-block-woocommerce-checkout .wc-blocks-components-select .wc-blocks-components-select__container,
+.wp-block-woocommerce-checkout .wp-block-woocommerce-checkout-order-summary-block,
+.wp-block-woocommerce-checkout .wp-block-woocommerce-checkout-order-summary-block .checkout-order-summary-block-fill,
+.wp-block-woocommerce-checkout .wc-block-components-checkbox .wc-block-components-checkbox__input[type=checkbox],
+.wp-block-woocommerce-checkout .wc-block-components-radio-control--highlight-checked::after,
+.wp-block-woocommerce-checkout .wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control__option--checked-option-highlighted,
+.wp-block-woocommerce-cart .wc-block-components-notice-banner,
+.wp-block-woocommerce-checkout .wc-block-components-notice-banner {
+  border-radius: 0;
+}
+
 .blover-jp-sharing {
   display: none;
   position: absolute;

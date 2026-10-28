@@ -10,6 +10,9 @@
 - Side panel and search now close with the Escape key
 - Fixed dropdown menus running off the right edge of the screen
 - Improved colour contrast for links, menus and post navigation labels
+- Improved styling of product options, quantity and Add to cart on variable products
+- Improved styling of product tabs
+- Added styling for the WooCommerce block cart and checkout
 
 ## [1.5.2] - 2024-09-13
 - Removed `theme.json` to resolve conflicts with block editor styles.
