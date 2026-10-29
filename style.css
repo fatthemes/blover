@@ -4220,6 +4220,98 @@ p.has-drop-cap:not(:focus)::first-letter {
   padding-left: 0.1em;
 }
 
+/* Wide and full blocks (Customizer > Extras) on layouts without a sidebar. Clip stops 100vw causing a side scroll. */
+.blover-wide-alignment #page {
+  overflow-x: clip;
+}
+
+.blover-wide-alignment .entry-content > .alignfull {
+  width: auto;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* The content spans 8 of 12 columns, so a quarter of its width plus half a gutter each side fills the container. */
+@media (min-width: 48em) {
+  .blover-wide-alignment.page-template-template-page-nosidebar-php .entry-content > .alignwide {
+    width: auto;
+    max-width: none;
+    margin-left: calc(-25% - 8px);
+    margin-right: calc(-25% - 8px);
+  }
+}
+@media (min-width: 62em) {
+  .blover-wide-alignment .entry-content > .alignwide {
+    width: auto;
+    max-width: none;
+    margin-left: calc(-25% - 8px);
+    margin-right: calc(-25% - 8px);
+  }
+}
+
+/* Back to top button (Customizer > Extras). It stays below the side panel and its overlay. */
+.blover-back-to-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 999;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s, background-color 0.3s, color 0.3s;
+}
+.blover-back-to-top.is-visible, .blover-back-to-top:focus {
+  opacity: 1;
+  visibility: visible;
+}
+.blover-back-to-top:hover {
+  background-color: #fff;
+}
+.blover-back-to-top svg {
+  fill: currentColor;
+}
+
+/* Keep the footer text clear of the button on narrow screens. */
+@media (max-width: 47.99em) {
+  .blover-has-back-to-top .site-footer {
+    padding-bottom: 4.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .blover-back-to-top {
+    transition: none;
+  }
+}
+
+/* Reading time and author box (Customizer > Extras). */
+.entry-meta .blover-reading-time {
+  padding-left: 0.5em;
+  font-size: 0.7rem;
+  font-weight: 300;
+  line-height: 1.625;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.blover-author-box {
+  margin-bottom: 4rem;
+}
+
+.blover-author-box-link {
+  font-family: "Work Sans", Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
 /*--------------------------------------------------------------
 # External assets
 --------------------------------------------------------------*/

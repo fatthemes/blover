@@ -13,6 +13,9 @@
 - Improved styling of product options, quantity and Add to cart on variable products
 - Improved styling of product tabs
 - Added styling for the WooCommerce block cart and checkout
+- Added block editor styles so the editor matches the site
+- Added wide/full alignment, back-to-top button, reading time and author box options (Customizer → Extras)
+- New features are off by default on existing sites
 
 ## [1.5.2] - 2024-09-13
 - Removed `theme.json` to resolve conflicts with block editor styles.
