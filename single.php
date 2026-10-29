@@ -24,7 +24,10 @@ get_sidebar( 'top' );
 
 			<?php get_template_part( 'template-parts/content-single', get_post_format() ); ?>
 
-			<?php blover_related_posts(); ?>
+			<?php
+			blover_author_box();
+			blover_related_posts();
+			?>
 
 			<?php
 			if ( get_theme_mod( 'single_post_navigation', 1 ) ) :

@@ -657,6 +657,85 @@ function blover_customize_register( $wp_customize ) {
 		)
 	);
 
+	// Section - "Extras". Unsaved settings count as off, so existing sites don't change.
+	$wp_customize->add_section(
+		'blover_extras',
+		array(
+			'title'    => esc_html__( 'Extras', 'blover' ),
+			'priority' => 1045,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'blover_wide_alignment',
+		array(
+			'default'           => 0,
+			'sanitize_callback' => 'wp_validate_boolean',
+		)
+	);
+
+	$wp_customize->add_control(
+		'blover_wide_alignment',
+		array(
+			'label'       => esc_html__( 'Enable wide and full width blocks', 'blover' ),
+			'description' => esc_html__( 'Wide and full width blocks extend beyond the content on pages and posts without a sidebar. Embedded videos also keep their proportions.', 'blover' ),
+			'section'     => 'blover_extras',
+			'type'        => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'blover_back_to_top',
+		array(
+			'default'           => 0,
+			'sanitize_callback' => 'wp_validate_boolean',
+		)
+	);
+
+	$wp_customize->add_control(
+		'blover_back_to_top',
+		array(
+			'label'   => esc_html__( 'Show a back to top button', 'blover' ),
+			'section' => 'blover_extras',
+			'type'    => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'blover_reading_time',
+		array(
+			'default'           => 0,
+			'sanitize_callback' => 'wp_validate_boolean',
+		)
+	);
+
+	$wp_customize->add_control(
+		'blover_reading_time',
+		array(
+			'label'   => esc_html__( 'Show reading time on single posts', 'blover' ),
+			'section' => 'blover_extras',
+			'type'    => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'blover_author_box',
+		array(
+			'default'           => 0,
+			'sanitize_callback' => 'wp_validate_boolean',
+		)
+	);
+
+	$wp_customize->add_control(
+		'blover_author_box',
+		array(
+			'label'       => esc_html__( 'Show an author box after single posts', 'blover' ),
+			'description' => esc_html__( 'Shows the author\'s biographical info and a link to their posts, when the author has a bio.', 'blover' ),
+			'section'     => 'blover_extras',
+			'type'        => 'checkbox',
+		)
+	);
+
 	// Section - "other settings".
 	$wp_customize->add_section(
 		'other_settings',

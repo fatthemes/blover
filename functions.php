@@ -93,6 +93,16 @@ if ( ! function_exists( 'blover_setup' ) ) :
 		add_theme_support( 'wc-product-gallery-zoom' );
 		add_theme_support( 'wc-product-gallery-lightbox' );
 		add_theme_support( 'wc-product-gallery-slider' );
+
+		// Style the block editor like the front end.
+		add_theme_support( 'editor-styles' );
+		add_editor_style( array( 'editor-style.css', get_theme_mod( 'load_google_fonts_from_google', 1 ) ? str_replace( '&#038;', '&', blover_fonts_url() ) : 'fonts/fonts.css' ) );
+
+		// Both change how existing content renders, so they are opt-in.
+		if ( get_theme_mod( 'blover_wide_alignment', 0 ) ) {
+			add_theme_support( 'align-wide' );
+			add_theme_support( 'responsive-embeds' );
+		}
 	}
 
 endif; // End of blover_setup.
@@ -110,6 +120,26 @@ function blover_content_width() {
 }
 
 add_action( 'after_setup_theme', 'blover_content_width', 0 );
+
+/**
+ * Add the block editor styles that depend on Customizer settings.
+ *
+ * @param array $settings Block editor settings.
+ * @return array
+ */
+function blover_editor_customizer_styles( $settings ) {
+	$css = 'a:hover, a:focus, a:active {color:' . esc_attr( get_theme_mod( 'link_hover_color', '#7c7250' ) ) . ';}';
+	if ( get_theme_mod( 'blover_wide_alignment', 0 ) ) {
+		$css .= '.wp-block[data-align="wide"] {max-width: 1124px;}';
+	}
+	$settings['styles'][] = array(
+		'css'            => $css,
+		'__unstableType' => 'theme',
+	);
+	return $settings;
+}
+
+add_filter( 'block_editor_settings_all', 'blover_editor_customizer_styles' );
 
 /**
  * Register widget area.
@@ -284,6 +314,10 @@ function blover_scripts() {
 	wp_enqueue_script( 'blover-scripts', get_template_directory_uri() . '/js/blover.min.js', array( 'jquery', 'jquery-effects-core', 'jquery-effects-slide' ), $blover_theme_info->get( 'Version' ), true );
 
 	wp_enqueue_script( 'blover-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.min.js', array(), '20130115', true );
+
+	if ( get_theme_mod( 'blover_back_to_top', 0 ) ) {
+		wp_enqueue_script( 'blover-back-to-top', get_template_directory_uri() . '/js/back-to-top.js', array(), $blover_theme_info->get( 'Version' ), true );
+	}
 
 	// Preparing to pass variables to js -> load more posts via ajax call.
 	global $wp_query;

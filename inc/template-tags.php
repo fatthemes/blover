@@ -33,6 +33,9 @@ if ( ! function_exists( 'blover_posted_on' ) ) :
 			$byline = '<span class="author vcard">' . get_avatar( get_the_author_meta( 'ID' ) ) . '<a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>';
 
 			echo '<span class="byline"> ' . $byline . '</span><div class="blover-posted-on-sharing-wrapper"><span class="posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			if ( get_theme_mod( 'blover_reading_time', 0 ) ) {
+				echo '<span class="blover-reading-time"><span aria-hidden="true">&middot;</span> ' . esc_html( blover_get_reading_time() ) . '</span>';
+			}
 			blover_jetpack_sharing();
 			echo '</div>';
 		} else {
@@ -993,3 +996,51 @@ if ( ! function_exists( 'blover_menu_location_has_items' ) ) :
 	}
 
 	endif;
+
+/**
+ * Prints the back to top button when it's enabled in Customizer > Extras.
+ */
+function blover_back_to_top_button() {
+	if ( ! get_theme_mod( 'blover_back_to_top', 0 ) ) {
+		return;
+	}
+	?>
+	<button type="button" class="blover-back-to-top" aria-label="<?php esc_attr_e( 'Back to top', 'blover' ); ?>"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 7.41l-6.29 6.3 1.41 1.41L12 10.24l4.88 4.88 1.41-1.41z"></path></svg></button>
+	<?php
+}
+add_action( 'wp_footer', 'blover_back_to_top_button' );
+
+/**
+ * Returns the estimated reading time of the current post, e.g. "3 min read".
+ *
+ * @return string
+ */
+function blover_get_reading_time() {
+	$words   = preg_split( '/\s+/u', wp_strip_all_tags( strip_shortcodes( get_post_field( 'post_content', get_the_ID() ) ) ), -1, PREG_SPLIT_NO_EMPTY );
+	$per_min = max( 1, absint( apply_filters( 'blover_reading_time_words_per_minute', 200 ) ) );
+	$minutes = max( 1, (int) ceil( ( is_array( $words ) ? count( $words ) : 0 ) / $per_min ) );
+
+	/* translators: %s: number of minutes. */
+	return sprintf( _n( '%s min read', '%s min read', $minutes, 'blover' ), number_format_i18n( $minutes ) );
+}
+
+/**
+ * Prints the author's bio and a link to their posts after a single post, when enabled in Customizer > Extras.
+ */
+function blover_author_box() {
+	if ( ! get_theme_mod( 'blover_author_box', 0 ) || ! is_singular( 'post' ) ) {
+		return;
+	}
+
+	$bio = get_the_author_meta( 'description' );
+	if ( ! $bio ) {
+		return;
+	}
+	?>
+	<section class="blover-author-box col-xs-12" aria-labelledby="blover-author-box-title">
+		<h2 id="blover-author-box-title" class="comments-title"><span><?php esc_html_e( 'About the author', 'blover' ); ?></span></h2>
+		<div class="blover-author-box-bio"><?php echo wp_kses_post( wpautop( $bio ) ); ?></div>
+		<a class="blover-author-box-link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><?php esc_html_e( 'View all posts by this author', 'blover' ); ?></a>
+	</section>
+	<?php
+}
